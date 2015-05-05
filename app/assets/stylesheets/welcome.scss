@@ -1,8 +1,11 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 $green: #008811;
 $light-green: #DDFFDD;
 
 * {
-  font-family: Georgia;
+  font-family: "Times New Roman";
   font-size: 20px;
   padding: 0px;
   margin: 0px;
@@ -17,10 +20,8 @@ hr.headline_header {
   background-color: $green;
   border: 0;
   color: green;
-  height: 0;
-  box-shadow: 0 0 5px 3px $green;
+  height: 2;
   margin-left: 10px;
- 
 }
 
 div.wrapper {

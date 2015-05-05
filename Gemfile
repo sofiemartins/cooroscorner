@@ -5,6 +5,10 @@ gem 'sqlite3', '1.3.10'
 gem 'sass-rails', '5.0.3'
 gem 'uglifier', '2.7.1'
 gem 'coffee-rails', '4.1.0'
+gem 'bootstrap',   '0.0.1'
+gem 'bootstrap-sass', '3.3.4.1'
+gem 'autoprefixer-rails', '5.1.11'
+gem 'sprockets', '3.0.3'
 
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
@@ -16,9 +20,7 @@ gem 'unicorn', '4.9.0'
 
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
-  gem 'debugger', '1.6.8'
-  gem 'web-console', '2.1.2'
-  gem 'spring', '1.3.5'
-end
+gem 'debugger', '1.6.8'
+gem 'web-console', '2.1.2'
+gem 'spring', '1.3.5'
 
