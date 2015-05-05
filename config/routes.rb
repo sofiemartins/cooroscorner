@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'comics/archive'
-
+  get 'archive'			=> 'comics#archive' 
+  get 'about' 			=> 'welcome#about'
   root 'welcome#index' 
 
   # The priority is based upon order of creation: first created -> highest priority.
