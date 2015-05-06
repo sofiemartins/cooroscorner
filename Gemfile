@@ -24,3 +24,6 @@ gem 'debugger', '1.6.8'
 gem 'web-console', '2.1.2'
 gem 'spring', '1.3.5'
 
+group :production do
+  gem 'rails_12factor'
+end

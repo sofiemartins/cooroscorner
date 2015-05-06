@@ -1,12 +1,13 @@
-<header>
+<header class="navbar">
   <div class="container">
-    <%= link_to "Cooro's Corner", root_path, id: "logo" %>
     <nav>
-      <ul class="navbar">
+      <ul class="nav">
+        <li><%= link_to "Cooro's Corner", root_path, id: "logo" %>
         <li><%= link_to "Comics", root_path %></li>
         <li><%= link_to "Archive", archive_path %></li>
         <li><%= link_to "About", about_path %></li>
       </ul>
+      <hr class="header-bar">
     </nav>
   </div>
 </header>

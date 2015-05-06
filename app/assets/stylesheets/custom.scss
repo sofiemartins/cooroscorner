@@ -1,0 +1,59 @@
+$green: #008811;
+
+/* general */
+* {
+  font-family: "Times New Roman";
+  margin: 0;
+  padding: 0;
+}
+
+
+/* logo */
+#logo {
+  float: left;
+  color: $green;
+  font-size: 200%;
+  text-decoration: none;
+  .hover{
+    color: #DDDDDD;
+  }
+}
+
+hr.header-bar {
+  border: 0;
+  height: 2px;
+  background-color: black;
+  margin-left: 20px;
+}
+
+ul.nav {
+  text-align: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+div.container{
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 60px;
+  font-size: 200%;
+  ul li {
+    display: inline;
+    font-size: 80%;
+  }
+  a:link {
+    color: #888888;
+    text-decoration: none;
+  }
+  a:visited {
+    color: #888888;
+  }
+  a:hover{
+    color: #111111;
+  }
+  a:active{
+    background-color: #BBBBBB;
+    color: #000000;
+  }
+}
