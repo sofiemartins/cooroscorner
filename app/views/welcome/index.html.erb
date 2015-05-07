@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang='en'>
   <%= render 'layouts/header' %>
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+  <div class="welcome-img">
+    <%= image_tag("welcome.jpe", :usemap => "#comic-links") %>
+    <map name="comic-links">
+      <area shape="rect" coords="9,116,220,221" href="offensive" alt="Offensively Offensive">
+      <area shape="rect" coords="265,116,511,222" href="random" alt="Random">
+      <area shape="rect" coords="544,115,795,219" href="comipo" alt="Comipo">
+      <area shape="rect" coords="264,311,510,423" href="tina" alt="Tina And Her Funny Friends">
+    </map>
   </div>
 </html>

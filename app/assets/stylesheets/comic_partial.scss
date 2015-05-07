@@ -1,0 +1,32 @@
+$light-green: #CCFF88;
+$green: #008800;
+
+div.comic-section {
+  margin-top: 30px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 30px;
+  padding: 30px 30px 30px 30px; 
+  background: $light-green;
+  border: 2px solid; 
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+#comic-image {
+  text-align: center;
+}
+
+#headline {
+  text-align: left;
+  font-size: 120%;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#title {
+  text-align: left;
+  font-size: 180%;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

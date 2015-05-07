@@ -1,21 +1,14 @@
-$green: #008811;
 $light-green: #DDFFDD;
 
-hr.headline_header {
-  background-color: $green;
-  border: 0;
-  color: green;
-  height: 2;
-  margin-left: 10px;
-}
-
-div.wrapper {
-  background-color: $light-green;
-  margin-left: 7%;
-  margin-right: 7%;
-  min-height: 500px;
-}
-
-div.content {
-  margin-top: 50px;
+div.welcome-img {
+  padding: 0;
+  margin: 30px 10% 0 10%;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  map {
+    width: 100%;
+    height: auto;
+  }
 }
