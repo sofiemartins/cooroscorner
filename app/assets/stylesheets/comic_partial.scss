@@ -1,4 +1,4 @@
-$light-green: #CCFF88;
+$light-green: #55BB55;
 $green: #008800;
 
 div.comic-section {
@@ -8,7 +8,7 @@ div.comic-section {
   margin-bottom: 30px;
   padding: 30px 30px 30px 30px; 
   background: $light-green;
-  border: 2px solid; 
+  border: 1px solid; 
   -moz-border-radius: 15px;
   border-radius: 15px;
 }
@@ -29,4 +29,41 @@ div.comic-section {
   font-size: 180%;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+ul.comic-navigation {
+  margin: 10px 10px 10px 10px;
+  list-style-type: none;
+  li {
+    display:inline;
+  }
+  a:link {
+    font-size: 130%;
+    color: #444444;
+    text-decoration: none;
+    background-color: #CCCCCC;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    border: 1px solid;
+    border-radius: 5px;
+  }
+  a:visited {
+    font-size: 130%;
+    color: #444444;
+    background-color: #CCCCCC;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+  }
+  a:hover {
+    font-size: 130%;
+    color: #222222;
+    background-color: #EEEEEE;
+  }
+  a:active {
+    font-size: 130%;
+    background-color: #EEEEEE;
+    color: #000000;
+  
+  }
+
 }

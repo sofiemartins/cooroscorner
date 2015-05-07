@@ -7,6 +7,12 @@ $green: #008811;
   padding: 0;
 }
 
+body.alien {
+  background-image: image_url("alien.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 /* logo */
 #logo {
@@ -14,9 +20,6 @@ $green: #008811;
   color: $green;
   font-size: 200%;
   text-decoration: none;
-  .hover{
-    color: #DDDDDD;
-  }
 }
 
 hr.header-bar {
@@ -39,6 +42,7 @@ div.container{
   height: 60px;
   font-size: 200%;
   ul li {
+    padding-left: 5px;
     display: inline;
     font-size: 80%;
   }
@@ -53,7 +57,6 @@ div.container{
     color: #111111;
   }
   a:active{
-    background-color: #BBBBBB;
     color: #000000;
   }
 }

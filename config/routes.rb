@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/signin'
+
   get 'archive'			=> 'comics#archive' 
   get 'about' 			=> 'welcome#about'
   root 'welcome#index' 

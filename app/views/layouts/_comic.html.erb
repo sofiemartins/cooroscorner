@@ -1,6 +1,11 @@
 <div id="comic-image" class="comic-section">
   <p id="title">Title</p>
   <%= image_tag("imgo.jpe", alt: "Image") %>
+  <ul class="comic-navigation">
+    <li><%= link_to("Back!", '#') %></li>
+    <li><%= link_to("Random!", '#') %></li>
+    <li><%= link_to("Next!", '#') %></li>
+  </ul>
 </div>
 <div id="authors-comment" class="comic-section">
   <p id="headline" >Author's Comment</p>
