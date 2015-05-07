@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'user/new'
+
+  get 'sessions/new'
+
+  devise_for :users
   get 'sessions/signin'
 
   get 'archive'			=> 'comics#archive' 

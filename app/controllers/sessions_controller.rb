@@ -1,4 +1,4 @@
 class SessionsController < ApplicationController
-  def signin
+  def new
   end
 end

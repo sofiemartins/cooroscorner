@@ -9,6 +9,8 @@ gem 'bootstrap',   '0.0.1'
 gem 'bootstrap-sass', '3.3.4.1'
 gem 'autoprefixer-rails', '5.1.11'
 gem 'sprockets', '3.0.3'
+gem 'devise', '3.4.1'
+
 
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
