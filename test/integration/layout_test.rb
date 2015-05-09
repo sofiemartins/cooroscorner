@@ -8,17 +8,12 @@ class LayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", root_path
     assert_select "a[href=?]", archive_path
     assert_select "a[href=?]", about_path
-    assert_select "a[href=?]", offensive_path
-    assert_select "a[href=?]", random_path
-    assert_select "a[href=?]", mayuyu_path
-    assert_select "a[href=?]", tina_path
+    assert_select "a[href=?]", offensive_path, count: 2
+    assert_select "a[href=?]", random_path, count: 2
+    assert_select "a[href=?]", mayuyu_path, count: 2
+    assert_select "a[href=?]", tina_path, count: 2
   
-    if user_signed_in?
-      assert_select "a[href=?]", login_path, count: 0
-    else
-      assert_select "a[href=?]", login_path
-    end
-    
+    # test the login link! 
   end
 
 end

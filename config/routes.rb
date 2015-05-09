@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     get 'login'			=> 'devise/sessions#new' 
     get 'signup'		=> 'devise/registrations#new'
   end
+  get 'offensive'		=> 'comics#offensive'
+  get 'random'			=> 'comics#random'
+  get 'mayuyu'			=> 'comics#mayuyu'
+  get 'tina'			=> 'comics#tina'
   get 'signup'			=> 'user#new'
   get 'archive'			=> 'comics#archive'
   get 'about'			=> 'welcome#about'
