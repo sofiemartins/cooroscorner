@@ -1,4 +1,3 @@
-class SessionsController < ApplicationController
-  def new
-  end
+class SessionsController < Devise::SessionsController
+  respond_to :json
 end

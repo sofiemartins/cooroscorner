@@ -12,11 +12,16 @@ div.comic-section {
   border: 1px solid; 
   -moz-border-radius: 15px;
   border-radius: 15px;
+  box-shadow: 10px 10px 5px #000000;
 }
 
 #comic-image {
   text-align: center;
+  img {
+  box-shadow: 10px 10px 5px #000000;
+  }
 }
+
 
 #headline {
   text-align: left;
@@ -33,7 +38,7 @@ div.comic-section {
 }
 
 ul.comic-navigation {
-  margin: 10px 10px 10px 10px;
+  margin: 30px 10px 10px 10px;
   list-style-type: none;
   li {
     display:inline;
