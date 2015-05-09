@@ -7,6 +7,13 @@ $green: #008811;
   padding: 0;
 }
 
+body.tina {
+  background-image: image_url("tina.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: -700px -80px;
+}
+
 body.alien {
   background-image: image_url("alien.jpg");
   background-repeat: no-repeat;
