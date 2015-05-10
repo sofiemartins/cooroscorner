@@ -32,6 +32,7 @@ body.alien {
 }
 
 hr.header-bar {
+  padding: 0;
   border: 0;
   height: 2px;
   background-color: black;
@@ -46,12 +47,12 @@ ul.nav {
 }
 
 div.container{
-  margin-left: 20px;
-  margin-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 60px;
   font-size: 200%;
-  ul li {
-    padding-left: 5px;
+  ul.nav li {
+    padding: 0 0 0 5px;
     display: inline;
     font-size: 80%;
   }
@@ -69,3 +70,19 @@ div.container{
     color: #000000;
   }
 }
+
+#comic-dropdown {
+  display: none;
+  font-size: 50%;
+  color: #BBBBBB;
+  background-color: #880000;
+  padding: 100px 30px 30px 30px;
+  :hover {
+    display: inline;
+  }
+}
+
+li.comic-list-item:hover ~ #comic-dropdown {
+  display: inline;
+}
+

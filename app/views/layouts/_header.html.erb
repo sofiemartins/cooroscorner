@@ -2,18 +2,35 @@
   <div class="container">
     <nav>
       <ul class="nav">
-        <li><%= link_to "Cooro's Corner", root_path, id: "logo" %>
-        <li><%= link_to "Comics", root_path %></li>
-        <li><%= link_to "Archive", archive_path %></li>
-        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Cooro's Corner", root_path, id: "logo" %></li>
+        <li class="comic-list-item"><%= link_to "Comic", '', id: "comic" %></li>
+        <li class="archive"><%= link_to "Archive", archive_path %></li>
+        <li class="about"><%= link_to "About", about_path %></li>
         <% if user_signed_in? %>
           <li><%= current_user.name %></li>
         <% else %>
-          <li><%= link_to "Login", 'login' %></li>
-        <% end %>
+          <li class="login"><%= link_to "Login", 'login' %></li>
+        <% end %><br>
+	<hr class="comic-list-item" id="header-bar">
+	<li class="comic-list-item" id="comic-dropdown">
+		<%= link_to "Offensively Offensive", 'offensive' %>
+	</li>
+	<li class="comic-list-item" id="comic-dropdown">
+		<%= link_to "Random", 'random' %>
+	</li>
+	<li class="comic-list-item" id="comic-dropdown">
+		<%= link_to "Mayuyu's Anger Diaries", 'mayuyu' %>
+	</li>
+	<li class="comic-list-item" id="comic-dropdown">
+		<%= link_to "Tina And Her Funny Friends", 'tina' %>
+	</li>
       </ul>
-      <hr class="header-bar">
+      </div>
     </nav>
   </div>
+
+  <script>
+
+  </script>
 </header>
 
