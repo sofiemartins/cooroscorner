@@ -52,7 +52,7 @@ div.container{
   height: 60px;
   font-size: 200%;
   ul.nav li {
-    padding: 0 0 0 5px;
+    padding-left: 5px;
     display: inline;
     font-size: 80%;
   }
@@ -71,18 +71,17 @@ div.container{
   }
 }
 
-#comic-dropdown {
+.submenu-comics {
+  padding-top: 10px;
+  font-size: 80%;
   display: none;
-  font-size: 50%;
-  color: #BBBBBB;
-  background-color: #880000;
-  padding: 100px 30px 30px 30px;
-  :hover {
-    display: inline;
-  }
+  margin-top: 50px;
+  position: absolute;
+  left: 48%;
+  top: -13px;
 }
 
-li.comic-list-item:hover ~ #comic-dropdown {
-  display: inline;
+li.comic-list-item:hover > .submenu-comics {
+  display: table-caption; 
 }
 
