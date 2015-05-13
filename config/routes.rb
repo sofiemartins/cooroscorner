@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'login'			=> 'devise/sessions#new' 
     get 'signup'		=> 'devise/registrations#new'
+    get 'signout'		=> 'devise/sessions#destroy'
   end
   get 'offensive'		=> 'comics#offensive'
   get 'random'			=> 'comics#random'

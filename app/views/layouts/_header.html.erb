@@ -15,7 +15,13 @@
         <li class="archive"><%= link_to "Archive", archive_path %></li>
         <li class="about"><%= link_to "About", about_path %></li>
         <% if user_signed_in? %>
-          <li><%= current_user.username %></li>
+         <li><%= current_user.username %>
+            <ul class="submenu-logged-in">
+	      <li>preferences</li>
+	      <li>logout</li>
+	    </ul>
+          </li>
+          
         <% else %>
           <li class="login"><%= link_to "Login", 'login' %></li>
         <% end %><br>

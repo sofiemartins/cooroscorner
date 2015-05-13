@@ -85,3 +85,17 @@ li.comic-list-item:hover > .submenu-comics {
   display: table-caption; 
 }
 
+.submenu-logged-in {
+  padding-top: 10px;
+  font-size: 80%;
+  display: none;
+  margin-top: 50px;
+  position: absolute;
+  left: 80%;
+  top: -13px;
+}
+
+li.log-in-list-item:hover > .submenu-logged-in {
+  display: table-caption;
+}
+
