@@ -2,6 +2,9 @@ class RegistrationsController < Devise::RegistrationsController
   clear_respond_to
   respond_to :json
 
+  def new
+  end
+
   def create
     @user = User.new(user_params)
     if user.save

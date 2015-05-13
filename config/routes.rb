@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get 'random'			=> 'comics#random'
   get 'mayuyu'			=> 'comics#mayuyu'
   get 'tina'			=> 'comics#tina'
-  get 'signup'			=> 'user#new'
   get 'archive'			=> 'comics#archive'
   get 'about'			=> 'welcome#about'
   root :to => 'welcome#index'
