@@ -1,0 +1,40 @@
+$light-red: #FFBBBB;
+$light-blue: #BBBBFF;
+
+#error_explanation {
+  padding: 10px 10px 10px 20px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: $light-red;
+  h2 {
+    font-size: 120%;  
+  }
+  ul {
+   margin: 20px 10px 10px 10px;
+    li {
+      padding: 10px 10px 10px 10px;
+      margin-left: 20%
+    }
+  }
+}
+
+.alert-notice {
+  padding: 10px 20px 10px 20px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: $light-blue;
+  font-size: 90%;
+  font-style: italic;
+}
+
+.alert-alert {
+  padding: 10px 20px 10px 20px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: $light-red;
+  font-size: 90%;
+  font-style: italic;
+}
