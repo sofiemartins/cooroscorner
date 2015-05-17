@@ -7,7 +7,7 @@ Devise.setup do |config|
 
   require 'devise/orm/active_record'
 
-  config.authentication_keys = [ :login ]
+  config.authentication_keys = [ :username ]
 
   # config.request_keys = []
 

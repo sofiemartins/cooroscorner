@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 		|u| u.permit(:username, :email, :password)
       }
       devise_parameter_sanitizer.for(:sign_in) {
-     		|u| u.permit(:login, :password, :remember_me)
+     		|u| u.permit(:username, :password, :remember_me)
       }
     end
 

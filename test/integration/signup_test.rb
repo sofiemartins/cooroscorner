@@ -3,7 +3,7 @@ require 'test_helper'
 class SignupTest < ActionDispatch::IntegrationTest
 
   test "valid signup information" do
-    get signup_path
+    get register_path
     assert_difference 'User.count' do
       post user_registration_path, user: { email: "example@example.com",
 				username: "example1",
@@ -14,7 +14,7 @@ class SignupTest < ActionDispatch::IntegrationTest
   end
 
   test "assert invalid emails won't be accepted" do
-    get signup_path
+    get register_path
     assert_no_difference 'User.count' do
       post user_registration_path, user: { email:  "@example.com",
 				username: "test1",

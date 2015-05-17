@@ -3,10 +3,10 @@
   <body class="alien">
     <div class="comic-section">
       <h1 class="site-headline">Log in</h1>
-      <%= form_for(:session, url: login_path) do |f| %>
+      <%= form_for(:session) do |f| %>
 
-        <%= f.label :username %><br>
-        <%= f.text_field :username %><br>
+        <%= f.label :login %><br>
+        <%= f.text_field :login %><br>
 
         <%= f.label :password %><br>
         <%= f.password_field :password %><br>
@@ -18,8 +18,8 @@
 
         <%= f.submit "Log in", class: "login-button" %>
       <% end %>
-      
-      <p>Are you a new user? <%= link_to "Sign up now!", register_path %></p>
+
+      <p>Are you a new user? <%= link_to "Sign up now!", signup_path %></p>
     </div>
   </body>
 </html>
