@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "login", :to => "user/sessions#new" 
     post "login", :to => "user/sessions#create"
     get "register", :to	=> "user/registrations#new"
+    post "register", :to => "user/registrations#create"
     get "settings", :to => "user/registrations#edit"
     get "logout", :to => "user/sessions#destroy"
   end

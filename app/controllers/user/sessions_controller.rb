@@ -7,7 +7,7 @@ before_filter :configure_sign_in_params, only: [:create]
 
   def create
     @user = User.find_by_username(params[:session][:username])
-    if @user.valid_password?(params[:session][:password])
+    if @user && @user.valid_password?(params[:session][:password])
       sign_in @user
       flash[:notice] = "You have been logged in successfully!"
       redirect_to root_path
