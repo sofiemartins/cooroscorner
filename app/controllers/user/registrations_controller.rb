@@ -9,14 +9,7 @@ before_filter :configure_sign_up_params, only: [:create]
 
   # POST /resource
   def create
-    @user = User.new(user_params)
-    if user.save
-#      log_in @user
-      flash[:success] = "Your account has been created successfully!"
-      redirect_to root
-    else
-      render 'new'
-    end
+    super 
   end
 
   private
@@ -27,19 +20,19 @@ before_filter :configure_sign_up_params, only: [:create]
     end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+   def edit
+     super
+   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+   def update
+     super
+   end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+   def destroy
+     super
+   end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

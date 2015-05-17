@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :user, :path_names => {
-    :sign_up => "register",
-    :sign_in => "login",
-    :sign_out => "logout",
-    :settings => "settings"
+  devise_for :user, :controllers => {
+    :sessions => 'user/sessions', 
+    :registrations => 'user/registrations'
   }
+
   devise_scope :user do
-    get "login", :to => "devise/sessions#new" 
-    post "login", :to => "devise/sessions#create"
-    get "register", :to	=> "devise/registrations#new"
-    get "settings", :to => "devise/registrations#edit"
-    get "logout", :to => "devise/sessions#destroy"
+    get "login", :to => "user/sessions#new" 
+    post "login", :to => "user/sessions#create"
+    get "register", :to	=> "user/registrations#new"
+    get "settings", :to => "user/registrations#edit"
+    get "logout", :to => "user/sessions#destroy"
   end
 
   get 'offensive'		=> 'comics#offensive'

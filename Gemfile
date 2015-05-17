@@ -7,7 +7,7 @@ gem 'uglifier', '2.7.1'
 gem 'coffee-rails', '4.1.0'
 gem 'autoprefixer-rails', '5.1.11'
 gem 'sprockets', '3.0.3'
-gem 'devise', '3.4.1'
+gem 'devise'
 
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
@@ -16,6 +16,7 @@ gem 'sdoc', '0.4.1', group: :doc
 
 gem 'bcrypt', '3.1.10'
 gem 'unicorn', '4.9.0'
+gem 'bcrypt-ruby'
 
 # gem 'capistrano-rails', group: :development
 

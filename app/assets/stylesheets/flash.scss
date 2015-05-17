@@ -1,5 +1,6 @@
 $light-red: #FFBBBB;
 $light-blue: #BBBBFF;
+$light-green: #BBFFBB;
 
 #error_explanation {
   padding: 10px 10px 10px 20px;
@@ -19,9 +20,19 @@ $light-blue: #BBBBFF;
   }
 }
 
+.alert-success {
+  padding: 10px 20px 10px 20px;
+  margin: 20px 10px 10px 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: $light-green;
+  font-size: 90%;
+  font-style: italic;
+}
+
 .alert-notice {
   padding: 10px 20px 10px 20px;
-  margin: 10px 10px 10px 10px;
+  margin: 20px 10px 10px 10px;
   border: 1px solid;
   border-radius: 5px;
   background-color: $light-blue;
@@ -31,10 +42,12 @@ $light-blue: #BBBBFF;
 
 .alert-alert {
   padding: 10px 20px 10px 20px;
-  margin: 10px 10px 10px 10px;
+  margin: 20px 10px 10px 10px;
   border: 1px solid;
   border-radius: 5px;
   background-color: $light-red;
   font-size: 90%;
   font-style: italic;
 }
+
+

@@ -7,20 +7,21 @@ before_filter :configure_sign_in_params, only: [:create]
 
   def create
     @user = User.find_by_username(params[:session][:username])
-    if @user.valid_password?("password")
-      log_in @user
-      flash[:success] = "You have been logged in successfully!"
-      redirect_to root
+    if @user.valid_password?(params[:session][:password])
+      sign_in @user
+      flash[:notice] = "You have been logged in successfully!"
+      redirect_to root_path
     else
-      flash[:error] = "Invalid username/password combination"
+      flash[:alert] = "Invalid username/password combination!"
+      render 'new'
     end
     ## remember me?
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+  end
 
   # protected
 
