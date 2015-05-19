@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get "logout", :to => "user/sessions#destroy"
   end
 
+  get 'upload'			=> 'comics#new'
+  post 'upload'			=> 'comics#create'
   get 'offensive'		=> 'comics#offensive'
   get 'random'			=> 'comics#random'
   get 'mayuyu'			=> 'comics#mayuyu'
