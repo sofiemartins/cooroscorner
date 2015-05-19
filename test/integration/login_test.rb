@@ -2,27 +2,24 @@ require 'test_helper'
 
 class LoginTest < ActionDispatch::IntegrationTest
 
-  test "should not log in with wrong password" do
-    setup
-    post login_path, user: { username: "test", 
-				password: "wrong_password" }
+  test "login with invalid information" do
+    get login_path
+    assert_template 'user/sessions/new'
+    post login_path, session: { username: "", password: "" }
+    assert_template 'user/sessions/new'
+    assert_not flash.empty?
+    get root_path
+    assert flash.empty?
   end
 
-  test "should log in with valid password" do
-    setup
-    post login_path, user: { username: "test", 
-				password: "testpasswordhorseandroid" }
+  test "login with valid information" do
+    get login_path
+    post login_path, session { username: users(valid1).username, "testpasswordhorseandroid" }
+    assert_redirected_to root
+    follow_redirect!
+    assert_template 'welcome/index'
+    assert_select "a[href=?]", preferences_path, count: 1
+    assert_select "a[href=?]", logout_path, count: 1
+    assert_select "a[href=?]", login_path, count: 0
   end
-
-  private 
-
-    def setup
-      if !User.find_by_username("test")
-        post register_path, user: { email: "test1@example.com",
-				username: "test",
-				password: "testpasswordhorseandroid",
-				password_confirmation: "testpasswordhorseandroid" }
-      end
-    end
-
 end
