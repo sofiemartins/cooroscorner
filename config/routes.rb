@@ -10,18 +10,22 @@ Rails.application.routes.draw do
     post "login", :to => "user/sessions#create"
     get "register", :to	=> "user/registrations#new"
     post "register", :to => "user/registrations#create"
-    get "settings", :to => "user/registrations#edit"
+    get "preferences", :to => "user/registrations#edit"
     get "logout", :to => "user/sessions#destroy"
   end
 
-  get 'upload'			=> 'comics#new'
-  post 'upload'			=> 'comics#create'
-  get 'offensive'		=> 'comics#offensive'
-  get 'random'			=> 'comics#random'
-  get 'mayuyu'			=> 'comics#mayuyu'
-  get 'tina'			=> 'comics#tina'
-  get 'archive'			=> 'comics#archive'
+  # Admin routes
+  get 'upload'			=> 'comic#new'
+  post 'upload'			=> 'comic#create'
+
+  # Static pages, accessible for everyone
+  get 'offensive'		=> 'comic#offensive'
+  get 'random'			=> 'comic#random'
+  get 'mayuyu'			=> 'comic#mayuyu'
+  get 'tina'			=> 'comic#tina'
+  get 'archive'			=> 'comic#archive'
   get 'about'			=> 'welcome#about'
+
   root :to => 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

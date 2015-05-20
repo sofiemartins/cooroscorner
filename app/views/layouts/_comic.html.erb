@@ -1,6 +1,6 @@
 <div id="comic-image" class="comic-section">
-  <p id="title">Title</p>
-  <%= image_tag("tina.jpg", size: "800x500", alt: "Image") %>
+  <p id="title"><%= yield(:title) %></p>
+  <%= image_tag(yield(:image), size: "800x500", alt: yield(:title)) %>
   <ul class="comic-navigation">
     <li><%= link_to("Back!", '#') %></li>
     <li><%= link_to("Random!", '#') %></li>

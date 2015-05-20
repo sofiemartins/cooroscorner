@@ -9,10 +9,10 @@ before_filter :configure_sign_in_params, only: [:create]
     @user = User.find_by_username(params[:session][:username])
     if @user && @user.valid_password?(params[:session][:password])
       sign_in @user
-      flash[:notice] = "You have been logged in successfully!"
+      flash.now[:notice] = "You have been logged in successfully!"
       redirect_to root_path
     else
-      flash[:alert] = "Invalid username/password combination!"
+      flash.now[:alert] = "Invalid username/password combination!"
       render 'new'
     end
     ## remember me?

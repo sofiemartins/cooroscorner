@@ -1,17 +1,20 @@
   <body class="alien">
     <div class="comic-section">
       <h1 class="site-headline">Upload new image</h1>
-      <%= form_for(:comic, url: login_path) do |f| %>
+      <%= form_for(:comic, url: upload_path) do |f| %>
 
       <%= f.label :title %><br />
       <%= f.text_field :title %><br />
+
+      <%= f.label :category %><br />
+      <%= f.text_field :category %><br /> 
 
       <%= f.label :authors_comment %><br />
       <%= f.text_area :authors_comment, cols: 40, rows: 5 %>
       <br />
 
       <%= f.label :image %><br />
-      <%= f.file_field :files, multiple: true %>
+      <%= f.file_field :files, multiple: false %>
       <br />
 
       <%= f.submit "Save", class: "login-button" %>
