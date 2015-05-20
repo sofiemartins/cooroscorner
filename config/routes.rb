@@ -19,19 +19,12 @@ Rails.application.routes.draw do
   post 'upload'			=> 'comic#create'
 
   # Static pages, accessible for everyone
-  get 'offensive'		=> 'comic#offensive'
-  get 'random'			=> 'comic#random'
-  get 'mayuyu'			=> 'comic#mayuyu'
-  get 'tina'			=> 'comic#tina'
-  get 'archive'			=> 'comic#archive'
   get 'about'			=> 'welcome#about'
-
-  # accessing comics
   get '/archive/:index'		=> 'comic#archive'
-  get '/offensive/:index'	=> 'comic#offensive'
-  get '/random/:index'		=> 'comic#random'
-  get '/mayuyu/:index'		=> 'comic#mayuyu'
-  get '/tina/:index'		=> 'comic#tina'
+  get 'archive'			=> 'comic#archive_last'
+
+  get '/:category/:index'	=> 'comic#show'
+  get '/:category'		=> 'comic#show_last'
 
   root :to => 'welcome#index'
 

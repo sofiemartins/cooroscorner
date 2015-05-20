@@ -2,9 +2,9 @@
   <p id="title"><%= @comic.title %></p>
   <%= image_tag @comic.image.to_s %>
   <ul class="comic-navigation">
-    <li><%= link_to("Back!", back_path ) %></li>
-    <li><%= link_to("Random!", random_path ) %></li>
-    <li><%= link_to("Next!", next_path ) %></li>
+    <li><%= link_to("Back!", '#' ) %></li>
+    <li><%= link_to("Random!", '#' ) %></li>
+    <li><%= link_to("Next!", '#' ) %></li>
   </ul>
 </div>
 <div id="authors-comment" class="comic-section">

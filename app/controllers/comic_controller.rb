@@ -1,48 +1,28 @@
 class ComicController < ApplicationController
 
-  def archive
-    @all_comics = Array(Comic.all) 
-    @comic = @all_comics.last
-    @index = @all_comics.index(@comic)
+  def show 
+    @all_comics = Array(Comic.find_by_category(params[:category]))
+    @comic = @all_comics.fetch(params[:index].to_i)
   end
 
-  def offensive
-    @all_comics = Array(Comic.find_by_category("offensive"))
-    @comic = @all_comics.last
-    @index = @all_comics.index(@comic)
-  end
- 
-  def random
-    @all_comics = Array(Comics.find_by_category("random"))
-    @comic = @all_comics.last
-    @index = @all_comics.index(@comic)
-  end
-
-  def mayuyu
-    @all_comics = Array(Comics.find_by_category("mayuyu"))
-    @comic = @all_comics.last
-    @index = @all_comics.index(@comic)
-  end
-
-  def tina
-    @all_comics = Array(Comic.find_by_category("tina"))
-    @comic = @all_comics.last
-    @index = @all_comics.index(@comic)
+  def show_last
+    @last_index = Array(Comic.find_by_category(params[:category])).count
+    render "/#{params[:category]}/#{@last_index}"
   end
 
   def back
-    @index -= 1;
-    @comic = @all_comics.fetch(@index)
+    new_index = params[:index].to_i - 1
+    render "/#{params[:category]}/#{new_index}"
   end
 
-  def random
-    @index = Random.rand(@all_comics.length) 
-    @comic = @all_comics.fetch(@index)
+  def archive
+    @all_comics = Array(Comic.all)
+    @comic = @all_comics.fetch(params[:index].to_i)
   end
 
-  def next
-    @index += 1;
-    @comic = @all_comics.fetch(@index)
+  def archive_last
+    @index = Comic.count - 1
+    render "/archive/#{@index}"
   end
 
   def new

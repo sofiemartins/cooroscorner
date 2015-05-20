@@ -5,11 +5,10 @@
         <li><%= link_to "Cooro's Corner", root_path, id: "logo" %></li>
         <li class="comic-list-item"><%= link_to "Comic", '', id: "comic" %>
 	  <ul class="submenu-comics">
-	    <li><%= link_to "Offensively Offensive", offensive_path %></li>
-	    <li><%= link_to "Random", random_path %></li>
-	    <li><%= link_to "Mayuyu's Anger Diaries", mayuyu_path %></li>
-	    <li><%= link_to "Tina And Her Funny Friends", tina_path %></li>
-	  </ul>
+            <% Category.all.each do |category| %>
+            <li><%= link_to "#{category.label}", "/#{category.short}" %></li>
+            <% end %>
+          </ul>
 	</li>
 
         <li class="archive"><%= link_to "Archive", archive_path %></li>
