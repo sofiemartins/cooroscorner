@@ -14,8 +14,8 @@ class LoginTest < ActionDispatch::IntegrationTest
 
   test "login with valid information" do
     get login_path
-    post login_path, session { username: users(valid1).username, "testpasswordhorseandroid" }
-    assert_redirected_to root
+    post login_path, session: { username: "test", password: "testpasswordhorseandroid" }
+    assert_redirected_to root_path
     follow_redirect!
     assert_template 'welcome/index'
     assert_select "a[href=?]", preferences_path, count: 1
