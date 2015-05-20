@@ -18,6 +18,8 @@ div.comic-section {
 #comic-image {
   text-align: center;
   img {
+  max-width: 80%;
+  height: auto;
   box-shadow: 10px 10px 5px #000000;
   }
 }

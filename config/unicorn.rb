@@ -9,7 +9,7 @@ listen "/home/pi/cooroscorner/var/sockets/cooroscorner.sock", :backlog => 64
 
 pid "/home/pi/cooroscorner/tmp/pids/unicorn.pid"
 
-stderr_path "/home/pi/cooroscorner/log/unicorn_errors.log"
+stderr_path "/home/pi/cooroscorner/log/unicorn_err.log"
 stdout_path "/home/pi/cooroscorner/log/unicorn_out.log"
 
 before_fork do |server, worker|

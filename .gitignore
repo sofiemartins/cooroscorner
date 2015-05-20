@@ -15,6 +15,3 @@
 /log/*
 !/log/.keep
 /tmp
-
-# Ignore uploaded images
-/public/uploads

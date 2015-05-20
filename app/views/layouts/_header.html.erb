@@ -17,7 +17,7 @@
         <% if user_signed_in? %>
          <li class="log-in-list-item"><%= link_to current_user.username %>
             <ul class="submenu-logged-in">
-	      <li><%= link_to "preferences" %></li>
+	      <li><%= link_to "preferences", preferences_path %></li>
 	      <li><%= link_to "logout", logout_path %></li>
 	    </ul>
           </li>
