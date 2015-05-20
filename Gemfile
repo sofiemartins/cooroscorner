@@ -9,6 +9,7 @@ gem 'autoprefixer-rails', '5.1.11'
 gem 'sprockets', '3.0.3'
 gem 'devise'
 gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
