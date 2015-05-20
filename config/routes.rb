@@ -26,6 +26,13 @@ Rails.application.routes.draw do
   get 'archive'			=> 'comic#archive'
   get 'about'			=> 'welcome#about'
 
+  # accessing comics
+  get '/archive/:index'		=> 'comic#archive'
+  get '/offensive/:index'	=> 'comic#offensive'
+  get '/random/:index'		=> 'comic#random'
+  get '/mayuyu/:index'		=> 'comic#mayuyu'
+  get '/tina/:index'		=> 'comic#tina'
+
   root :to => 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
