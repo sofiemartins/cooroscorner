@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'category/new'
+
   devise_for :user, :controllers => {
     :sessions => 'user/sessions', 
     :registrations => 'user/registrations'
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
   # Admin routes
   get 'upload'			=> 'comic#new'
   post 'upload'			=> 'comic#create'
+  get 'category'		=> 'category#new'
+  post 'category'		=> 'category#create'
 
   # Static pages, accessible for everyone
   get 'about'			=> 'welcome#about'

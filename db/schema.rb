@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520222137) do
+ActiveRecord::Schema.define(version: 20150520235753) do
+
+  create_table "backgrounds", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "image"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "label"
     t.string   "short"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "background"
   end
 
   create_table "comics", force: :cascade do |t|
