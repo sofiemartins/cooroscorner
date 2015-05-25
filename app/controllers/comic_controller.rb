@@ -2,7 +2,8 @@ class ComicController < ApplicationController
 
   def show 
     @all_comics = Array(Comic.find_by_category(params[:category]))
-    @comic = @all_comics.fetch(params[:index].to_i)
+    new_index = params[:index].to_i - 1
+    @comic = @all_comics.fetch(new_index)
   end
 
   def show_last

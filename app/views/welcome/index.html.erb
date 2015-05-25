@@ -3,12 +3,20 @@
   <body>
   <div class="welcome-img">
     <div class="first-line">
-    <%= link_to( image_tag("offensive.png", alt: "Offensively Offensive"), offensive_path ) %> 
-    <%= link_to( image_tag("random.png", alt: "Random"), random_path ) %>
-    <%= link_to( image_tag("mayuyu.png", alt: "Mayuyu's Anger Diaries"), mayuyu_path ) %>
+    <%= link_to( image_tag("offensive.png", 
+				alt: "Offensively Offensive"), 
+				'/offensive' ) %> 
+    <%= link_to( image_tag("random.png", 
+				alt: "Random"), 
+				'/random' ) %>
+    <%= link_to( image_tag("mayuyu.png", 
+				alt: "Mayuyu's Anger Diaries"), 
+				'/mayuyu' ) %>
     </div>  
     <div class="second-line">
-    <%= link_to( image_tag("tina-comics.png", alt: "Tina And Her Funny Friends"), tina_path ) %>
+    <%= link_to( image_tag("tina-comics.png", 
+			alt: "Tina And Her Funny Friends"), 
+			'/tina' ) %>
     </div>
   </div>
   </body>

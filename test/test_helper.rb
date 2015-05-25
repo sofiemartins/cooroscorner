@@ -14,4 +14,18 @@ class ActionController::TestCase
 
   fixtures :all
 
+  def log_in_admin
+    post login_path, user: { username: "testadmin",
+				password: "Sealupthemouthofoutrageforawhile"}
+  end
+
+  def log_in_user
+    post login_path, user: { username: "test",
+				password: "testpasswordhorseandroid" }
+  end
+
+  def log_out
+    get logout_path
+  end
+
 end
