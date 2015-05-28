@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class SignupTest < ActionDispatch::IntegrationTest
+  include Devise::TestHelpers
 
   test "valid signup information" do
     get register_path

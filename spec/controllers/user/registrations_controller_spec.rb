@@ -10,7 +10,7 @@ RSpec.describe User::RegistrationsController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it "renders the index template" do
+    it "renders the new template" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       get :new
       expect(response).to render_template("new")
@@ -18,12 +18,19 @@ RSpec.describe User::RegistrationsController, type: :controller do
   end
 
   describe "GET #create" do
-    it "creates a user and redirects to root" do
+    it "creates a user" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      testuser = FactoryGirl.create :user
-      post :create, testuser
+      post :create, FactoryGirl.build(:user).attributes
       expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it "redirects to root and renders root template" do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      post :create, FactoryGirl.build(:user).attributes
+      expect(response).to render_template("/")
     end
   end
 
 end
+

@@ -20,7 +20,12 @@ before_filter :configure_sign_in_params, only: [:create]
 
   # DELETE /resource/sign_out
   def destroy
-    super
+    if user_signed_in?
+      sign_out current_user
+      flash.now[:notice] = "Signed out successfully."
+    else 
+      flash.now[:alert] = "You have to log in before logging out!"
+    end
   end
 
   # protected

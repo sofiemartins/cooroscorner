@@ -2,18 +2,30 @@ require 'test_helper'
 
 class LayoutTest < ActionDispatch::IntegrationTest
 
-  test "root layout" do
+  test "root layout" do 
     get root_path
-    assert_template 'welcome/index'
-    assert_select "a[href=?]", root_path
-    assert_select "a[href=?]", archive_path
-    assert_select "a[href=?]", about_path
-    assert_select "a[href=?]", '/offensive', count: 2
-    assert_select "a[href=?]", '/random', count: 2
-    assert_select "a[href=?]", '/mayuyu', count: 2
-    assert_select "a[href=?]", '/tina', count: 2
-  
-    # test the login link! 
+    assert_template "welcome/index"
+    assert_select('a[href="/"]') do |elements|
+      elements.count == 1
+    end
+    assert_select('a[href="/archive"]') do |elements|
+      elements.count == 1
+    end
+    assert_select('a[href="/about"]') do |elements|
+      elements.count == 1
+    end
+    assert_select('a[href="/offensive"]') do |elements|
+      elements.count == 2
+    end
+    assert_select('a[href="/random"]') do |elements|
+      elements.count == 2
+    end
+    assert_select('a[href="/mayuyu"]') do |elements|
+      elements.count == 2
+    end
+    assert_select('a[href="/tina"]') do |elements|
+      elements.count == 2
+    end
   end
 
 end

@@ -1,4 +1,5 @@
 class ComicController < ApplicationController
+  include ActionView::Helpers::UrlHelper
 
   def show 
     @all_comics = Array(Comic.find_by_category(params[:category]))
@@ -8,12 +9,23 @@ class ComicController < ApplicationController
 
   def show_last
     @last_index = Array(Comic.find_by_category(params[:category])).count
-    render "/#{params[:category]}/#{@last_index}"
+    redirect_to "/#{params[:category]}/#{@last_index}"
   end
 
   def back
     new_index = params[:index].to_i - 1
-    render "/#{params[:category]}/#{new_index}"
+    redirect_to "/#{params[:category]}/#{new_index}"
+  end
+
+  def next
+    new_index = params[:index].to_i + 1
+    redirect_to "/#{params[:category]}/#{new_index}"
+  end
+
+  def random
+    total_number_of_comics = @all_comics.count
+    new_index = 1 + Random.rand(total_number_of_comics)
+    redirect_to "/#{params[:category]}/#{new_index}"
   end
 
   def archive
@@ -23,7 +35,7 @@ class ComicController < ApplicationController
 
   def archive_last
     @index = Comic.count - 1
-    render "/archive/#{@index}"
+    redirect_to "/archive/#{@index}"
   end
 
   def new

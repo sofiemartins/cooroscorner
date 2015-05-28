@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   get '/:category/:index'	=> 'comic#show'
   get '/:category'		=> 'comic#show_last'
 
+  get '/back/:category/:index'	=> 'comic#back'
+  get '/next/:category/:index'	=> 'comic#next'
+  get '/random/:category'	=> 'comic#random'
+
   root :to => 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
