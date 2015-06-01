@@ -10,6 +10,8 @@ gem 'sprockets', '3.0.3'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'minitest'
+gem 'capybara'
 
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
@@ -35,4 +37,5 @@ group :development, :test do
   gem 'rspec'
   gem 'factory_girl'
   gem 'factory_girl_rails'
+  gem 'cucumber-rails', :require => false
 end

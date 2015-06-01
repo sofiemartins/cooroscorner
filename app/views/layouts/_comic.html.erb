@@ -3,7 +3,7 @@
   <%= image_tag @comic.image.to_s %>
   <ul class="comic-navigation">
     <li><%= link_to("Back!", "/back/#{params[:category]}/#{params[:index]}" ) %></li>
-    <li><%= link_to("Random!", "/random/#{params[:category]}" ) %></li>
+    <li><%= link_to("Random!", "/random/#{params[:category]}/#{params[:index]}" ) %></li>
     <li><%= link_to("Next!", "/next/#{params[:category]}/#{params[:index]}" ) %></li>
   </ul>
 </div>

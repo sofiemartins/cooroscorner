@@ -1,8 +1,8 @@
-<header class="navbar">
+<div class="navbar">
   <div class="container">
     <nav>
       <ul class="nav">
-        <li><%= link_to "Cooro's Corner", root_path, id: "logo" %></li>
+        <li><%= link_to image_tag("logo.jpg", alt: "Cooro's Corner"), root_path, id: "logo" %></li>
         <li class="comic-list-item"><%= link_to "Comic", '', id: "comic" %>
 	  <ul class="submenu-comics">
             <% Category.all.each do |category| %>
@@ -28,5 +28,5 @@
       </ul>
     </nav>
   </div>
-</header>
+</div>
 

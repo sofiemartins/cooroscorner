@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'background/new'
+
   get 'category/new'
 
   devise_for :user, :controllers => {
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   post 'upload'			=> 'comic#create'
   get 'category'		=> 'category#new'
   post 'category'		=> 'category#create'
+  get 'background'		=> 'background#new'
+  post 'background'		=> 'background#create'
 
   # Static pages, accessible for everyone
   get 'about'			=> 'welcome#about'
@@ -32,7 +36,7 @@ Rails.application.routes.draw do
 
   get '/back/:category/:index'	=> 'comic#back'
   get '/next/:category/:index'	=> 'comic#next'
-  get '/random/:category'	=> 'comic#random'
+  get '/random/:category/:index' => 'comic#random'
 
   root :to => 'welcome#index'
 

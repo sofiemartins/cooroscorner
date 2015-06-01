@@ -29,6 +29,9 @@ RSpec.configure do |config|
   # Devise includes
   config.include Devise::TestHelpers, type: :controller
 
+  # Capybara/Cucumber setup
+  config.include Capybara::DSL
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

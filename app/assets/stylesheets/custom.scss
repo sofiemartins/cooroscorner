@@ -7,6 +7,10 @@ $green: #008811;
   padding: 0;
 }
 
+body {
+  min-width: 1000px;
+}
+
 body.tina {
   background-image: image_url("tina.jpg");
   background-repeat: no-repeat;
@@ -25,30 +29,39 @@ body.alien {
 
 /* logo */
 #logo {
+  margin-right: 50px;
+  display: block;
   float: left;
   color: $green;
   font-size: 200%;
   text-decoration: none;
+  img {
+    float: left;
+    height: 150px;
+  }
 }
 
+div.navbar {
+  height: 170px;
+}
+ 
 hr.header-bar {
   padding: 0;
   border: 0;
   height: 2px;
   background-color: black;
-  margin-left: 20px;
 }
 
 ul.nav {
+  margin-left: 15%;
+  margin-right: 12%;
   text-align: right;
   list-style-type: none;
-  margin: 0;
+  margin-top: 1%;
   padding: 0;
 }
 
 div.container{
-  padding-left: 20px;
-  padding-right: 20px;
   height: 60px;
   font-size: 200%;
   ul.nav li {
@@ -72,22 +85,31 @@ div.container{
 }
 
 .submenu-comics {
-  padding-top: 10px;
-  font-size: 80%;
   display: none;
-  margin-top: 50px;
+  text-align: right;
+  float: right;
+  font-size: 80%;
+  padding-top: 20px;
+  top: 35px;
+  right: 12%;
   position: absolute;
-  right: 20px;
-  top: -13px;
+  li {
+    list-style-type: none;
+    display: none;
+  }
 }
 
 li.comic-list-item:hover > .submenu-comics {
-  display: table-caption; 
+  display: block;
+}
+
+li.comic-list-item:hover > .submenu-comics > li {
+  display: list-item;
 }
 
 .submenu-logged-in {
   padding-top: 10px;
-  font-size: 80%;
+  font-size: 0.8em;
   display: none;
   margin-top: 50px;
   position: absolute;

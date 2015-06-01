@@ -2,9 +2,13 @@ class ComicController < ApplicationController
   include ActionView::Helpers::UrlHelper
 
   def show 
-    @all_comics = Array(Comic.find_by_category(params[:category]))
-    new_index = params[:index].to_i - 1
-    @comic = @all_comics.fetch(new_index)
+    # begin
+      @all_comics = Array(Comic.find_by_category(params[:category]))
+      new_index = params[:index].to_i - 1
+      @comic = @all_comics.fetch(new_index)
+    # rescue IndexError => e
+    #  not_found  
+    #end
   end
 
   def show_last
@@ -61,10 +65,6 @@ class ComicController < ApplicationController
   def destroy
   end
 
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
   private
 
     def save_comic_from_params
@@ -78,5 +78,9 @@ class ComicController < ApplicationController
     def upload_image
       uploader = ComicImageUploader.new
       uploader.store!(params[:comic][:image]) 
+    end
+
+    def not_found
+      raise ActionController::RoutingError.new('Not Found')
     end
 end
