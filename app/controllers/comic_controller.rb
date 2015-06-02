@@ -7,7 +7,7 @@ class ComicController < ApplicationController
 
   def show 
     begin
-      @all_comics = Array(Comic.find_by_category(params[:category]))
+      @all_comics = Comic.where(:category => params[:category])
       new_index = params[:index].to_i - 1
       @comic = @all_comics.fetch(new_index)
     rescue IndexError => e
@@ -16,7 +16,7 @@ class ComicController < ApplicationController
   end
 
   def show_last
-    @last_index = Array(Comic.find_by_category(params[:category])).count
+    @last_index = Comic.where(:category => params[:category]).count
     redirect_to "/#{params[:category]}/#{@last_index}"
   end
 
@@ -44,7 +44,7 @@ class ComicController < ApplicationController
       new_index = 1 + Random.rand(total_number_of_comics)
       redirect_to "/archive/#{new_index}"
     else
-      all_comics = Array(Comic.find_by_category(params[:category]))
+      all_comics = Comic.where(:category => params[:category])
       total_number_of_comics = all_comics.count
       new_index = 1 + Random.rand(total_number_of_comics)
       redirect_to "/#{params[:category]}/#{new_index}"

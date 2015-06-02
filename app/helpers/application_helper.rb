@@ -4,8 +4,8 @@ module ApplicationHelper
     if !category
       return index
     else
-      comic = Array(Comic.find_by_category(category)).find_by_index(index)
-      archive_index = Comic.index(comic)
+      comic = Comic.where(:category => category).fetch(index.to_i - 1)
+      archive_index = Comic.all.index(comic)
       return archive_index
     end
   end

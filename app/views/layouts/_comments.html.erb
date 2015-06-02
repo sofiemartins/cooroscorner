@@ -1,10 +1,17 @@
 <div class="comments">
-  <% Array(Comment.find_by_comic_index(archive_index(params[:category], params[:index]))).each do |comment| %>
-    <p id="username-label">
-      <%= comment.username %> - <%= comment.created_at%>
-    </p>
-    <p id="comment-content">
-      <%= comment.content %>
-    </p>
+  <h3 class="comic-section-label">Comments</h3>
+  <% Array(Comment.where(:comic_index => archive_index(params[:category], params[:index]))).each do |comment| %>
+    <div class="single-comment">
+      <p id="username-label">
+        <%= comment.username %> - <%= comment.created_at%>
+      </p>
+      <p id="comment-content">
+        <%= comment.content %>
+      </p>
+        <ul>
+          <li><%= link_to "Edit", '#' %></li>
+          <li><%= link_to "Delete", '#' %></li>
+        </ul>
+    </div>
   <%end%>
 </div>
