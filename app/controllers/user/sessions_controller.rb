@@ -9,13 +9,15 @@ before_filter :configure_sign_in_params, only: [:create]
     @user = User.find_by_username(params[:session][:username])
     if @user && @user.valid_password?(params[:session][:password])
       sign_in @user
+      if !!params[:session][:remember_me]
+        @user.remember_me!
+      end
       flash.now[:notice] = "You have been logged in successfully!"
       redirect_to root_path
     else
       flash.now[:alert] = "Invalid username/password combination!"
       render 'new'
     end
-    ## remember me?
   end
 
   # DELETE /resource/sign_out
@@ -26,6 +28,7 @@ before_filter :configure_sign_in_params, only: [:create]
     else 
       flash.now[:alert] = "You have to log in before logging out!"
     end
+    redirect_to root_path
   end
 
   # protected

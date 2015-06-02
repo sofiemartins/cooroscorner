@@ -1,0 +1,10 @@
+<div class="comments">
+  <% Array(Comment.find_by_comic_index(archive_index(params[:category], params[:index]))).each do |comment| %>
+    <p id="username-label">
+      <%= comment.username %> - <%= comment.created_at%>
+    </p>
+    <p id="comment-content">
+      <%= comment.content %>
+    </p>
+  <%end%>
+</div>

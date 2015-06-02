@@ -19,24 +19,27 @@ Rails.application.routes.draw do
   end
 
   # Admin routes
-  get 'upload'			=> 'comic#new'
-  post 'upload'			=> 'comic#create'
-  get 'category'		=> 'category#new'
-  post 'category'		=> 'category#create'
-  get 'background'		=> 'background#new'
-  post 'background'		=> 'background#create'
+  get 'upload'				=> 'comic#new'
+  post 'upload'				=> 'comic#create'
+  get 'category'			=> 'category#new'
+  post 'category'			=> 'category#create'
+  get 'background'			=> 'background#new'
+  post 'background'			=> 'background#create'
+ 
+  # only accessible for users	
+  post '/comment/:category/:index' 	=> 'comic#comment'
 
   # Static pages, accessible for everyone
-  get 'about'			=> 'welcome#about'
-  get '/archive/:index'		=> 'comic#archive'
-  get 'archive'			=> 'comic#archive_last'
+  get 'about'				=> 'welcome#about'
+  get '/archive/:index'			=> 'comic#archive'
+  get 'archive'				=> 'comic#archive_last'
 
-  get '/:category/:index'	=> 'comic#show'
-  get '/:category'		=> 'comic#show_last'
+  get '/back/:category/:index'		=> 'comic#back'
+  get '/next/:category/:index'		=> 'comic#next'
+  get '/random/:category/:index' 	=> 'comic#random'
 
-  get '/back/:category/:index'	=> 'comic#back'
-  get '/next/:category/:index'	=> 'comic#next'
-  get '/random/:category/:index' => 'comic#random'
+  get '/:category/:index'		=> 'comic#show'
+  get '/:category'			=> 'comic#show_last'
 
   root :to => 'welcome#index'
 

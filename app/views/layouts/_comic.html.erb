@@ -2,15 +2,30 @@
   <p id="title"><%= @comic.title %></p>
   <%= image_tag @comic.image.to_s %>
   <ul class="comic-navigation">
-    <li><%= link_to("Back!", "/back/#{params[:category]}/#{params[:index]}" ) %></li>
-    <li><%= link_to("Random!", "/random/#{params[:category]}/#{params[:index]}" ) %></li>
-    <li><%= link_to("Next!", "/next/#{params[:category]}/#{params[:index]}" ) %></li>
+      <li><%= link_to("Back!", 
+	"/back/#{params[:category] || "archive"}/#{params[:index]}" ) %></li>
+      <li><%= link_to("Random!", 
+	"/random/#{params[:category] || "archive"}/#{params[:index]}" ) %></li>
+      <li><%= link_to("Next!", 
+	"/next/#{params[:category] || "archive"}/#{params[:index]}" ) %></li>
   </ul>
 </div>
 <div id="authors-comment" class="comic-section">
   <p id="headline" >Author's Comment</p>
   <p><%= @comic.authors_comment %></p>
 </div>
-<div id="user-comment" class="comic-section">
+<div id="user-comments" class="comic-section">
+  <% if user_signed_in? %>
+    <%= form_for(:comment, url: "/comment/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
+  
+      <%= f.label "new comment" %><br />
+      <%= f.text_area :content, cols: 80, rows: 1 %><br />
+
+      <%= f.submit "Submit", class: "login-button" %><br />
+
+    <% end %>
+  <% end %>
   <p id="headline">Comments</p>
+  <%= render 'layouts/comments' %>
+  
 </div>

@@ -1,14 +1,18 @@
 class ComicController < ApplicationController
   include ActionView::Helpers::UrlHelper
 
+  before_action :authenticate_user!, :except => [:show, :show_last, 
+	:back, :next, :random, :archive, :archive_last, :new, :create,
+        :destroy ]
+
   def show 
-    # begin
+    begin
       @all_comics = Array(Comic.find_by_category(params[:category]))
       new_index = params[:index].to_i - 1
       @comic = @all_comics.fetch(new_index)
-    # rescue IndexError => e
-    #  not_found  
-    #end
+    rescue IndexError => e
+      not_found  
+    end
   end
 
   def show_last
@@ -18,18 +22,33 @@ class ComicController < ApplicationController
 
   def back
     new_index = params[:index].to_i - 1
-    redirect_to "/#{params[:category]}/#{new_index}"
+    if !params[:category]
+      redirect_to "/archive/#{new_index}"
+    else
+      redirect_to "/#{params[:category]}/#{new_index}"
+    end
   end
 
   def next
     new_index = params[:index].to_i + 1
-    redirect_to "/#{params[:category]}/#{new_index}"
+    if !params[:category]
+      redirect_to "/archive/#{new_index}"
+    else
+      redirect_to "/#{params[:category]}/#{new_index}"
+    end
   end
 
   def random
-    total_number_of_comics = @all_comics.count
-    new_index = 1 + Random.rand(total_number_of_comics)
-    redirect_to "/#{params[:category]}/#{new_index}"
+    if params[:category] == "archive" 
+      total_number_of_comics = Comic.count
+      new_index = 1 + Random.rand(total_number_of_comics)
+      redirect_to "/archive/#{new_index}"
+    else
+      all_comics = Array(Comic.find_by_category(params[:category]))
+      total_number_of_comics = all_comics.count
+      new_index = 1 + Random.rand(total_number_of_comics)
+      redirect_to "/#{params[:category]}/#{new_index}"
+    end
   end
 
   def archive
@@ -53,7 +72,7 @@ class ComicController < ApplicationController
     if !current_user || !current_user.admin?
       not_found
     else
-     if save_comic_from_params
+     if save_comic_from_params && upload_image
         flash.now[:success] = "The image has been uploaded successfully!"
       else
         flash.now[:alert] = "An error occurred. The image could not be saved."
@@ -63,6 +82,19 @@ class ComicController < ApplicationController
   end
 
   def destroy
+  end
+
+  def comment
+    comment = Comment.new(:content => raw(params[:comment][:content]),
+			:username => current_user.username, 
+			:comic_index => params[:index])
+    comment.save    
+    ## find a better solution?
+    if !params[:category]
+      redirect_to "/archive/#{params[:index]}"
+    else
+      redirect_to "/#{params[:category]}/#{params[:index]}"
+    end
   end
 
   private
