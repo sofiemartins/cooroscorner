@@ -36,10 +36,18 @@ h1.site-headline {
 }
 
 #title {
+  padding: 10px 10px 10px 10px;
+  display: inline;
   text-align: left;
   font-size: 180%;
   font-weight: bold;
   margin-bottom: 20px;
+  a:link {
+    font-weight: normal;
+    font-size: 60%;
+    color: #991111;
+    text-decoration: none;
+  }
 }
 
 ul.comic-navigation {

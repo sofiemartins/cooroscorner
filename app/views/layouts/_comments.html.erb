@@ -8,10 +8,15 @@
       <p id="comment-content">
         <%= comment.content %>
       </p>
+        <% if user_signed_in? %>
         <ul>
-          <li><%= link_to "Edit", '#' %></li>
-          <li><%= link_to "Delete", '#' %></li>
-        </ul>
+          <% if current_user.username == comment.username || current_user.admin %>
+            <li><%= link_to "Edit", '#' %></li>
+            <li><%= link_to "Delete", '#' %></li>
+          <% end %>
+          <li><%= link_to "Report", '#'%></li>
+        </ul> 
+        <% end %>
     </div>
   <%end%>
 </div>

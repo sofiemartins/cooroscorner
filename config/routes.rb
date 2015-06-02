@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'category'			=> 'category#create'
   get 'background'			=> 'background#new'
   post 'background'			=> 'background#create'
+  get '/delete/:category/:index'	=> 'comic#destroy'
  
   # only accessible for users	
   post '/comment/:category/:index' 	=> 'comic#comment'

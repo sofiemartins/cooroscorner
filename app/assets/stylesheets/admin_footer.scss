@@ -1,0 +1,16 @@
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 20px 20px 20px 20px;
+  background-color: #CCCCCC; 
+  ul {
+    list-style-type: none;
+    li {
+      display: inline;
+      font-size: 200%;
+    }
+  }
+}
+

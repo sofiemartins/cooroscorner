@@ -1,0 +1,23 @@
+<body class="tina">
+  <div class="comic-section">
+    <h1 class="site-headline">Edit</h1>
+    <%= form_for(:comic, url: "/edit/#{params[:category] || "archive"}/#{params[:index]}") %>
+      <% comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i) %>
+
+      <%= f.label :title %><br />
+      <%= f.text_field(:title, :value => comic.title) %><br />
+
+      <%= f.label :category %><br />
+      <%= f.text_field(:category, :value => comic.category) %><br />
+
+      <%= f.label :authors_comment %><br />
+      <%= f.text_area(:authors_comment, cols: 40, rows: 5, value: comic.authors_comment) %><br />
+
+      <%= f.label :image %><br />
+      <%= f.file_field :image, multiple: false, value: comic.image %><br />
+
+      <%= f.submit "Save changes", class: "login-button" %>
+    <% end %>
+  </div>
+</body>
+

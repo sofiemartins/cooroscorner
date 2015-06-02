@@ -82,6 +82,16 @@ class ComicController < ApplicationController
   end
 
   def destroy
+    if !current_user || !current_user.admin?
+      not_found
+    else
+      comic = Comic.all.fetch(archive_index(params[:category], params[:index]))  
+      if comic.destroy
+        flash.now[:success] = "The image has been deleted successfully!"
+      else
+        flash.now[:alert] = "An error occurred. The image couldn't be deleted."
+      end
+    end
   end
 
   def comment

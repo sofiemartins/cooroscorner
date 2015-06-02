@@ -9,7 +9,7 @@
   margin: 5px 5px 20px 5px;
   background-color: #FFFFFF;
   #username-label {
-    margin-label: 40px;
+    margin-left: 40px;
     padding-bottom: 5px;
     font-weight: bold;
     font-size: 80%;
@@ -19,6 +19,12 @@
     margin-bottom: 10px;
   }
   ul {
-    display: inline;
+    font-size: 80%;
+    color: #BBBBBB;
+    margin-left: 80px;
+    list-style-type: none;
+    li {
+      display: inline;
+    }
   }
 }
