@@ -1,0 +1,26 @@
+<div class="user-list">
+  <h3 class="site-headline">User list</h3>
+  <div class="search">
+
+  </div>
+  <div class="table">
+    <table>
+       <tr id="first-line">
+         <td>USER ID</td>
+         <td>USERNAME</td>
+         <td>EMAIL</td>
+         <td>ADMIN?</td>
+       </tr>
+      <% User.all.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.admin %></td>
+          <td><%= link_to "edit", '#'%></td>
+          <td><%= link_to "delete", '#'%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

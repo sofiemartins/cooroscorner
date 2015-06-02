@@ -1,7 +1,7 @@
 <body class="tina">
   <div class="comic-section">
     <h1 class="site-headline">Edit</h1>
-    <%= form_for(:comic, url: "/edit/#{params[:category] || "archive"}/#{params[:index]}") %>
+    <%= form_for(:comic, url: "/edit/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
       <% comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i) %>
 
       <%= f.label :title %><br />

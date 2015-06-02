@@ -1,16 +1,68 @@
 .footer {
+  width: 100%;
   position: fixed;
   right: 0;
   bottom: 0;
   margin: 0;
-  padding: 20px 20px 20px 20px;
-  background-color: #CCCCCC; 
+  background: #000000; 
   ul {
     list-style-type: none;
     li {
+      padding: 2px 50px 2px 50px;
+      margin: 0;
       display: inline;
-      font-size: 200%;
+      font-size: 120%;
+      a:link {
+        width: 200px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #CCCCCC;
+      }
+      a:visited{
+        color: #CCCCCC;
+      }
+      a:hover{
+        background-color: #CCCCCC;
+        color: #777777;
+      }
+      a:active{}
     }
   }
+}
+
+#comics-add {
+  color: #000000;
+  pointer-events: none;
+  cursor: default;
+}
+
+#categories-add {
+  color: #000000;
+  pointer-events: none;
+  cursor: default;
+}
+
+#backgrounds-add {
+  color: #000000;
+  pointer-events: none;
+  cursor: default;
+}
+
+li.comics:hover > #comics-add {
+  pointer-events: auto;
+  cursor: pointer;
+  color: #777777;
+}
+
+li.categories:hover > #categories-add {
+  pointer-events: auto;
+  cursor: pointer;
+  color: #777777;
+}
+
+li.backgrounds:hover > #backgrounds-add {
+  pointer-events: auto;
+  cursor: pointer;
+  color: #777777;
 }
 

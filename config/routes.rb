@@ -10,12 +10,15 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get "login", :to => "user/sessions#new" 
-    post "login", :to => "user/sessions#create"
-    get "register", :to	=> "user/registrations#new"
-    post "register", :to => "user/registrations#create"
-    get "preferences", :to => "user/registrations#edit"
-    get "logout", :to => "user/sessions#destroy"
+    get "login", 			:to => "user/sessions#new" 
+    post "login", 			:to => "user/sessions#create"
+    get "register", 			:to => "user/registrations#new"
+    post "register", 			:to => "user/registrations#create"
+    get "preferences", 			:to => "user/registrations#edit"
+    get "logout", 			:to => "user/sessions#destroy"
+    get '/list/users', 			:to => "user/registrations#list"
+    get '/edit/:username', 		:to => 'user/registrations#edit'
+    post '/edit/:username', 		:to => 'user/registrations#submit_edit'
   end
 
   # Admin routes

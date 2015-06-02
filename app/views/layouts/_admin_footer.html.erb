@@ -1,10 +1,15 @@
 <div class="footer">
   <ul> 
-    <li><%= link_to "comics", '#' %></li>
-    <li><%= link_to "..add", '#' %></li>
-    <li><%= link_to "categories", '#' %></li>
-    <li><%= link_to "..add", '#' %></li>
-    <li><%= link_to "backgrounds", '#' %></li>
-    <li><%= link_to "..add", '#' %></li>
+    <li class="users"><%= link_to "users", '/list/users' %>
+    </li>
+    <li class="comics"><%= link_to "comics", '#' %>
+      <%= link_to "..add", 'upload', id: "comics-add" %>
+    </li>
+    <li class="categories"><%= link_to "categories", '#' %>
+      <%= link_to "..add", 'category', id: "categories-add" %>
+    </li>
+    <li class="backgrounds"><%= link_to "backgrounds", '#' %>
+      <%= link_to "..add", 'background', id: "backgrounds-add" %>
+    </li>
   </ul>
 </div>

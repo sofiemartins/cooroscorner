@@ -1,0 +1,14 @@
+<div class="search">
+  
+</div>
+<div class="table">
+<table>
+  <% Background.all.each do |background| %>
+    <tr>
+      <td><%= background.id %></td>
+      <td><%= background.label %></td>
+      <td><%= background.image %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
