@@ -16,6 +16,8 @@
 !/log/.keep
 /tmp
 
+/public
+
 # Ignore zeus files
 custom_plan.rb
 zeus.json
