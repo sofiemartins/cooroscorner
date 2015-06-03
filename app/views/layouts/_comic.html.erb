@@ -1,6 +1,6 @@
 <div id="comic-image" class="comic-section">
   <p id="title"><%= @comic.title %>
-    <% if current_user.admin %>
+    <% if current_user && current_user.admin %>
        <%= link_to "edit", "/edit/#{params[:category] || "archive"}/#{params[:index]}" %>
        <%= link_to "delete", "/delete/#{params[:category] || "archive"}/#{params[:index]}" %>
     <% end %>
