@@ -19,6 +19,24 @@ class BackgroundController < ApplicationController
     redirect_to background_path
   end
 
+  def edit
+    if !current_user || !current_user.admin
+      not_found
+    else
+    end
+  end
+
+  def submit_edit
+    if !current_user || !current_user.admin
+      not_found
+    else
+      background = Background.find_by(:label => params[:label])
+      evaluate_new_label_input(background)
+      evaluate_new_image_input(background)
+      background.save
+    end
+  end
+
   def destroy
     if !current_user || !current_user.admin
       not_found
@@ -28,6 +46,22 @@ class BackgroundController < ApplicationController
       redirect_to '/list/backgrounds'
     end
   end
+
+  private
+    def evaluate_new_label_input(background)
+      new_label = params[:edit][:label]
+      if !!new_label
+        background.label = new_label
+      end
+    end
+
+  private
+    def evaluate_new_image_input(background)
+      new_image = params[:edit][:image]
+      if !!new_image
+        background.image = new_image
+      end
+    end
 
   private 
     def save_background

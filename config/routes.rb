@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get '/delete/category/:short'			=> 'category#destroy'
   get 'background'				=> 'background#new'
   post 'background'				=> 'background#create'
+  get '/edit/background/:label'			=> 'background#edit'
+  post '/edit/background/:label'		=> 'background#submit_edit'
   get '/delete/background/:label'		=> 'background#destroy'
  
   # only accessible for users	
