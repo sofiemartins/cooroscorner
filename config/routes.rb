@@ -19,16 +19,17 @@ Rails.application.routes.draw do
     get '/list/users', 			:to => "user/registrations#list"
     get '/edit/:username', 		:to => 'user/registrations#edit'
     post '/edit/:username', 		:to => 'user/registrations#submit_edit'
+    get '/delete/user/:username', 	:to => 'user/registrations#destroy'
   end
 
   # Admin routes
-  get 'upload'				=> 'comic#new'
-  post 'upload'				=> 'comic#create'
-  get 'category'			=> 'category#new'
-  post 'category'			=> 'category#create'
-  get 'background'			=> 'background#new'
-  post 'background'			=> 'background#create'
-  get '/delete/:category/:index'	=> 'comic#destroy'
+  get 'upload'					=> 'comic#new'
+  post 'upload'					=> 'comic#create'
+  get 'category'				=> 'category#new'
+  post 'category'				=> 'category#create'
+  get '/delete/category/:category/:index'	=> 'category#destroy'
+  get 'background'				=> 'background#new'
+  post 'background'				=> 'background#create'
  
   # only accessible for users	
   post '/comment/:category/:index' 	=> 'comic#comment'

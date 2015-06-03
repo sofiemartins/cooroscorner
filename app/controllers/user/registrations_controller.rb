@@ -18,6 +18,21 @@ before_filter :configure_sign_up_params, only: [:create]
     else
     end
   end
+ 
+  # DELETE /resource
+  def destroy
+    if right_user_or_admin?
+      user = User.find_by_username(params[:username])
+      user.delete
+      if current_user.admin
+        redirect_to '/list/users'
+      else
+        redirect_to root_path
+      end
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end  
 
   # GET /resource/edit
   def edit
@@ -28,10 +43,7 @@ before_filter :configure_sign_up_params, only: [:create]
   end
 
   def submit_edit
-    given_username = params[:username]
     if right_user_or_admin?
-      old_password = params[:edit][:old_password]
-    
       user = User.find_by_username(params[:username])
       evaluate_username_field(user)
       evaluate_email_field(user)
@@ -115,12 +127,6 @@ before_filter :configure_sign_up_params, only: [:create]
   # def update
   #   super
   # end
-
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
-
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

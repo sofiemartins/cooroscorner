@@ -4,19 +4,22 @@ RSpec.describe "GetComics", type: :request do
   $allcategories = [ "offensive", "random", "mayuyu", "tina", "alice" ]
 
   describe "GET show_last" do
-    scenario "get offensive 1" do
-      comic = Comic.new(category: "offensive")
-      comic.save
-      get '/offensive/1'
-      expect(response).to have_http_status(200) 
-    end 
-
     scenario "gets and redirects" do
       $allcategories.each do |category|
         comic = Comic.new(category: category)
         comic.save
         get "/#{category}"
+        expect(response).to be_success
         expect(response).to have_http_status(200)
+      end
+    end
+
+    scenario "renders template" do
+      $allcategories.each do |category|
+        comic = Comic.new(category: category)
+        comic.save
+        get "/#{category}"
+        expect(response).to render_template("show")
       end
     end
   end
@@ -49,7 +52,7 @@ RSpec.describe "GetComics", type: :request do
         comic.save
         comic.save
         get "/back/#{category}/2"
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(302)
       end
     end
   end
@@ -61,7 +64,7 @@ RSpec.describe "GetComics", type: :request do
         comic.save
         comic.save
         get "/next/#{category}/1"
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(302)
       end
     end
   end
@@ -73,9 +76,8 @@ RSpec.describe "GetComics", type: :request do
         comic.save 
         comic.save
         get "/random/#{category}/1"
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(302)
       end
     end
   end
-
 end
