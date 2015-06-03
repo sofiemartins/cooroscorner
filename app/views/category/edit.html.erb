@@ -2,9 +2,9 @@
   <div class="comic-section">
     <h1 class="site-headline">edit category</h1>
 
-    <%= form_for(:edit, url: "/edit/category/:label") do |f| %>
+    <%= form_for(:edit, url: "/edit/category/:short") do |f| %>
 
-      <% current_category = Category.find_by_label(params[:label]) %>
+      <% current_category = Category.find_by(:short => params[:short]) %>
  
       <%= f.label :label %><br />
       <%= f.text_field :label, value: current_category.label %><br />
