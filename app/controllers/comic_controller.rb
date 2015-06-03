@@ -125,6 +125,12 @@ class ComicController < ApplicationController
       redirect_to "/#{params[:category]}/#{params[:index]}"
     end
   end
+ 
+  def list
+    if !current_user || !current_user.admin
+      not_found
+    end
+  end
 
   private
     def save_comic_from_params

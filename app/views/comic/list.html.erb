@@ -1,0 +1,26 @@
+<div class="search">
+
+</div>
+<div class="table">
+  <tr>
+    <td>ID</td>
+    <td>TITLE</td>
+    <td>AUTHORS COMMENT</td>
+    <td>IMAGE</td>
+    <td>CATEGORY</td>
+    <td>CREATED AT...</td>
+  </tr>
+  <% Comic.all.each do |comic| %>
+    <tr>
+      <td><%= comic.id %></td>
+      <td><%= comic.title %></td>
+      <td><%= comic.authors_comment %></td>
+      <td><%= comic.image %></td>
+      <td><%= comic.category %></td>
+      <td><%= comic.created_at %></td>
+        <% index = Comic.where(:category => comic.category).index(comic) %>
+      <td><%= link_to "edit", "/edit/comic/#{comic.category}/#{index}" %></td>
+      <td><%= link_to "delete", "/delete/comic/#{comic.category}/#{index}" %></td>
+    </tr>
+  <% end %>
+</div>

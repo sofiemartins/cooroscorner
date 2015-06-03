@@ -47,6 +47,12 @@ class BackgroundController < ApplicationController
     end
   end
 
+  def list
+    if !current_user || !current_user.admin
+      not_found
+    end
+  end
+
   private
     def evaluate_new_label_input(background)
       new_label = params[:edit][:label]

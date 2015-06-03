@@ -45,6 +45,12 @@ class CategoryController < ApplicationController
       category.delete
     end
   end
+ 
+  def list
+    if !current_user || !current_user.admin?
+      not_found
+    end
+  end
 
   private 
     def evaluate_new_label_input(category)
