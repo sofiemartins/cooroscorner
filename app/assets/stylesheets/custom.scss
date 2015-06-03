@@ -101,9 +101,9 @@ div.container{
 
 li.comic-list-item:hover > .submenu-comics {
   display: block;
-}
-
-li.comic-list-item:hover > .submenu-comics > li {
+  li {
+    display: list-item;
+  }
 }
 
 .submenu-logged-in {
@@ -123,5 +123,8 @@ li.comic-list-item:hover > .submenu-comics > li {
 
 li.log-in-list-item:hover > .submenu-logged-in {
   display: block;
+  li {
+    display: list-item;
+  }
 }
 
