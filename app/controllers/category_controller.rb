@@ -18,6 +18,19 @@ class CategoryController < ApplicationController
     end
   end
 
+  def edit
+    if !current_user || !current_user.admin?
+      not_found
+    else
+    end
+  end
+
+  def submit_edit
+    if !current_user || !current_user.admin?
+    else 
+    end
+  end
+
   private
 
     def not_found

@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     get "preferences", 			:to => "user/registrations#edit"
     get "logout", 			:to => "user/sessions#destroy"
     get '/list/users', 			:to => "user/registrations#list"
-    get '/edit/:username', 		:to => 'user/registrations#edit'
-    post '/edit/:username', 		:to => 'user/registrations#submit_edit'
+    get '/edit/user/:username', 	:to => 'user/registrations#edit'
+    post '/edit/user/:username', 	:to => 'user/registrations#submit_edit'
     get '/delete/user/:username', 	:to => 'user/registrations#destroy'
   end
 
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/delete/category/:category/:index'	=> 'category#destroy'
   get 'background'				=> 'background#new'
   post 'background'				=> 'background#create'
+  get '/delete/background/:label'		=> 'background#destroy'
  
   # only accessible for users	
   post '/comment/:category/:index' 	=> 'comic#comment'
