@@ -81,6 +81,25 @@ class ComicController < ApplicationController
     redirect_to upload_path
   end
 
+  def edit
+    if !current_user || !current_user.admin
+      not_found
+    end
+  end
+
+  def submit_edit
+    if !current_user || !current_user.admin
+      not_found
+    else
+      comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i)
+      evaluate_new_title_input(comic)
+      evaluate_new_authors_comment(comic)
+      evaluate_new_image(comic)
+      evaluate_new_category_input(comic)
+      comic.save
+    end
+  end
+
   def destroy
     if !current_user || !current_user.admin?
       not_found
@@ -108,7 +127,6 @@ class ComicController < ApplicationController
   end
 
   private
-
     def save_comic_from_params
       comic = Comic.new(title: params[:comic][:title],
 			category: params[:comic][:category],
@@ -117,11 +135,45 @@ class ComicController < ApplicationController
       return comic.save
     end
 
+  private 
+    def evaluate_new_title_input(comic)
+      new_title = params[:edit][:title]
+      if !!new_title
+        comic.title = new_title
+      end
+    end
+
+  private
+    def evaluate_new_authors_comment(comic)
+      new_authors_comment = params[:edit][:authors_comment]
+      if !!new_authors_comment
+        comic.authors_comment = new_authors_comment
+      end
+    end
+
+  private
+    def evaluate_new_image(comic)
+      new_image = params[:edit][:authors_comment]
+      if !!new_image
+        comic.image = new_image
+      end
+    end
+
+  private 
+    def evaluate_new_category_input(comic)
+      new_category = params[:edit][:category]
+      if !!new_category
+        comic.category = new_category
+      end
+    end
+
+  private
     def upload_image
       uploader = ComicImageUploader.new
       uploader.store!(params[:comic][:image]) 
     end
 
+  private
     def not_found
       raise ActionController::RoutingError.new('Not Found')
     end

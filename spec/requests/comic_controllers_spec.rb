@@ -7,6 +7,7 @@ RSpec.describe "ComicControllers", type: :request do
       setup_categories
       setup_example_comics
       Category.all.each do |category|   
+        puts Comic.where(:category => category).count
         get "/#{category.short}"
         expect(response).to be_success
         expect(response).to have_http_status(200)

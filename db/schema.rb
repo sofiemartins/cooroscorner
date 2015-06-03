@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602104812) do
+ActiveRecord::Schema.define(version: 20150603194700) do
 
   create_table "backgrounds", force: :cascade do |t|
     t.string   "label"

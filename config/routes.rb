@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   # Admin routes
   get 'upload'					=> 'comic#new'
   post 'upload'					=> 'comic#create'
+  get '/edit/comic/:category/:index'		=> 'comic#edit'
+  post '/edit/comic/:category/:index'		=> 'comic#submit_edit'
+  get '/delete/comic/:category/:index'		=> 'comic#destroy'
   get 'category'				=> 'category#new'
   post 'category'				=> 'category#create'
   get '/edit/category/:short'			=> 'category#edit'
