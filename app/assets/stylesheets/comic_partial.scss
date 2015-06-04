@@ -12,13 +12,17 @@ div.comic-section {
   border: 1px solid; 
   -moz-border-radius: 15px;
   border-radius: 15px;
-  box-shadow: 10px 10px 5px #000000;
 }
 
 .comic-section-label {
   font-weight: bold;
   font-size: 150%;
   margin-bottom: 50px;
+}
+ 
+div.comic-image-div {
+  margin: 10px 10px 10px 10px;
+  border: 2px solid;
 }
 
 #comic-image {
@@ -27,7 +31,6 @@ div.comic-section {
   img {
   max-width: 80%;
   height: auto;
-  box-shadow: 10px 10px 5px #000000;
   }
 }
 
@@ -39,6 +42,7 @@ h1.site-headline {
 #title {
   padding: 20px 20px 20px 20px;
   display: inline;
+  float: left;
   text-align: left;
   font-size: 180%;
   font-weight: bold;

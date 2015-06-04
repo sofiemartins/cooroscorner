@@ -1,11 +1,11 @@
 <div id="comic-image" class="comic-section">
-  <p id="title"><%= @comic.title %>
+  <div id="title"><%= @comic.title %>
     <% if current_user && current_user.admin %>
        <%= link_to "edit", "/edit/#{params[:category] || "archive"}/#{params[:index]}" %>
        <%= link_to "delete", "/delete/#{params[:category] || "archive"}/#{params[:index]}" %>
     <% end %>
-  </p>
-  <%= image_tag @comic.image.to_s %>
+  </div>
+  <div class="comic-image-div"><%= image_tag @comic.image.to_s %></div>
   <ul class="comic-navigation">
       <li><%= link_to("Back!", 
 	"/back/#{params[:category] || "archive"}/#{params[:index]}" ) %></li>
