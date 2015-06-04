@@ -1,21 +1,26 @@
-<div class="search">
+<div class="list">
+  <h3 class="site-headline">background list</h3>
+  <div class="search">
 
-</div>
-<div class="table">
-  <tr>
-    <td>ID</td>
-    <td>LABEL</td>
-    <td>ABBREVIATION</td>
-    <td>BACKGROUND IMAGE</td>
-  </tr>
-  <% Category.all.each do |category| %>
-    <tr>
-      <td><%= category.id %></td>
-      <td><%= category.label %></td>
-      <td><%= category.short %></td>
-      <td><%= category.background %></td>
-      <td><%= link_to "edit", "/edit/category/#{category.short}" %></td>
-      <td><%= link_to "delete", "/delete/category/#{category.short}" %></td>
-    </tr>
-  <% end %>
+  </div>
+  <div class="table">
+    <table>
+      <tr id="first-line">
+        <td>ID</td>
+        <td>LABEL</td>
+        <td>ABBREVIATION</td>
+        <td>BACKGROUND IMAGE</td>
+      </tr>
+      <% Category.all.each do |category| %>
+        <tr>
+          <td><%= category.id %></td>
+          <td><%= category.label %></td>
+          <td><%= category.short %></td>
+          <td><%= category.background %></td>
+          <td><%= link_to "edit", "/edit/category/#{category.short}" %></td>
+          <td><%= link_to "delete", "/delete/category/#{category.short}" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

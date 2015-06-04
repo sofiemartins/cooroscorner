@@ -1,21 +1,24 @@
-<div class="search">
+<div class="list">
+  <h3 class="site-headline">backgrounds list</h3>
+  <div class="search">
   
-</div>
-<div class="table">
-<table>
-  <tr>
-    <td>ID</td>
-    <td>LABEL</td>
-    <td>IMAGE</td>
-  </tr>
-  <% Background.all.each do |background| %>
-    <tr>
-      <td><%= background.id %></td>
-      <td><%= background.label %></td>
-      <td><%= background.image %></td>
-      <td><%= link_to "edit", "/edit/background/#{background.label}" %></td>
-      <td><%= link_to "delete", "/delete/background/#{background.label}" %></td>
-    </tr>
-  <% end %>
-</table>
+  </div>
+  <div class="table">
+    <table>
+      <tr id="first-line">
+        <td>ID</td>
+        <td>LABEL</td>
+        <td>IMAGE</td>
+      </tr>
+      <% Background.all.each do |background| %>
+        <tr>
+          <td><%= background.id %></td>
+          <td><%= background.label %></td>
+          <td><%= background.image %></td>
+          <td><%= link_to "edit", "/edit/background/#{background.label}" %></td>
+          <td><%= link_to "delete", "/delete/background/#{background.label}" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

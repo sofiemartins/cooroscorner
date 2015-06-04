@@ -1,11 +1,16 @@
-.user-list {
+.list {
   margin-left: 10%;
   margin-right: 10%;
 }
 
 .table {
   table{
+    word-wrap: break-word;
     width: 80%;
+  }
+  tr td {
+    min-width: 2%;
+    max-width: 200px;
   }
 }
 

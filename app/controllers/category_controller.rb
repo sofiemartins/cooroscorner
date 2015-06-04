@@ -84,6 +84,7 @@ class CategoryController < ApplicationController
   private
     def save_category
       @category = Category.save(label: params[:category][:label],
+				short: params[:category][:short],
 				background: params[:category][:background])
       @category.save
     end

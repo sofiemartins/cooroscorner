@@ -54,4 +54,21 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  def setup_admin
+    user = User.new(email: "email@email.com", username: "admin",
+			password: "password", password_confirmation: "password",
+			admin: true)
+    user.save
+    sign_in(user)
+  end
+
+  def setup_user
+    user = User.new(email: "email@email.com", username: "user",
+			password: "password", password_confirmation: "password",
+			admin: false)
+    user.save
+    sign_in(user)
+  end
+
 end
