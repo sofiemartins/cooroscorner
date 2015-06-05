@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603194700) do
+ActiveRecord::Schema.define(version: 20150605000718) do
 
   create_table "backgrounds", force: :cascade do |t|
     t.string   "label"
@@ -36,14 +36,6 @@ ActiveRecord::Schema.define(version: 20150603194700) do
     t.string   "image"
     t.string   "category"
     t.string   "comic"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.text     "content"
-    t.string   "username"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "comic_index"
   end
 
   create_table "users", force: :cascade do |t|

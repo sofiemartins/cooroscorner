@@ -28,6 +28,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Devise includes
   config.include Devise::TestHelpers, type: :controller
+  config.infer_spec_type_from_file_location!
 
   # Capybara/Cucumber setup
   config.include Capybara::DSL

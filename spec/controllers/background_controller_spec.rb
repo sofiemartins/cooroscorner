@@ -26,20 +26,22 @@ RSpec.describe BackgroundController, type: :controller do
     end
   end
 
-#  def setup_admin
-#    user = User.new(email: "email@email.com", username: "admin", 
-#			password: "password", password_confirmation: "password",
-#			admin: true)
-#    user.save
-#    sign_in(user)
-#  end
+  private
+    def setup_admin
+      user = User.new(email: "email@email.com", username: "admin", 
+  		password: "password", password_confirmation: "password",
+		admin: true)
+      user.save
+      sign_in(user)
+    end
 
-#  def setup_user
-#    user = User.new(email: "email@email.com", username: "user",
-#			password: "password", password_confirmation: "password",
-#			admin: false)
-#    user.save
-#    sign_in(user)
-#  end
+  private
+    def setup_user
+      user = User.new(email: "email@email.com", username: "user",
+		password: "password", password_confirmation: "password",
+		admin: false)
+      user.save
+      sign_in(user)
+    end
 
 end

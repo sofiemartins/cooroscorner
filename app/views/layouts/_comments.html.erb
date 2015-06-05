@@ -1,6 +1,12 @@
 <div class="comments">
   <h3 class="comic-section-label">Comments</h3>
-  <% Array(Comment.where(:comic_index => archive_index(params[:category], params[:index]))).each do |comment| %>
+  <% comments = Comment.where(:comic_index => archive_index(params[:category], params[:index])) %>
+  <% if comments.empty? %>
+    <p class="single comment">
+      no comments yet
+    </p>
+  <% end %>
+  <% comments.each do |comment| %>
     <div class="single-comment">
       <p id="username-label">
         <%= comment.username %> - <%= comment.created_at%>
