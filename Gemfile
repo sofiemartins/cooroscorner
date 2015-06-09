@@ -10,7 +10,7 @@ gem 'sprockets', '3.0.3'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'minitest'
+# gem 'minitest'
 gem 'capybara'
 
 gem 'jquery-rails', '4.0.3'
@@ -24,7 +24,7 @@ gem 'bcrypt-ruby'
 
 # gem 'capistrano-rails', group: :development
 
-gem 'debugger', '1.6.8'
+# gem 'debugger', '1.6.8'
 gem 'web-console', '2.1.2'
 gem 'spring', '1.3.5'
 

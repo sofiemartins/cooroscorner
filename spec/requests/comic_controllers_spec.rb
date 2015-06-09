@@ -104,8 +104,7 @@ RSpec.describe "ComicControllers", type: :request do
       setup
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic)
-        expect{ get "/edit/comic/#{comic.category}/#{index}"}.to 
-			raise_error{ ActionController::RoutingError }
+        expect{ get "/edit/comic/#{comic.category}/#{index}"}.to raise_error{ ActionController::RoutingError } 
       end
     end
 
@@ -114,8 +113,7 @@ RSpec.describe "ComicControllers", type: :request do
       setup_user
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic)
-        expect{ get "/edit/comic/#{comic.category}/#{index}" }.to
-			raise_error{ ActionController::RoutingError }
+        expect{ get "/edit/comic/#{comic.category}/#{index}" }.to raise_error{ ActionController::RoutingError }
       end
     end
 

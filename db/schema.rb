@@ -33,9 +33,16 @@ ActiveRecord::Schema.define(version: 20150605000718) do
     t.string   "authors_comment"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "image"
     t.string   "category"
     t.string   "comic"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.string   "username"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "comic_index"
   end
 
   create_table "users", force: :cascade do |t|
