@@ -10,7 +10,7 @@ gem 'sprockets', '3.0.3'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
-# gem 'minitest'
+gem 'minitest', '5.5.1'
 gem 'capybara'
 
 gem 'jquery-rails', '4.0.3'

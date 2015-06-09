@@ -113,7 +113,7 @@ GEM
     mime-types (2.6.1)
     mini_magick (4.2.7)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.5.1)
     multi_json (1.11.0)
     multi_test (0.1.2)
     nokogiri (1.6.6.2)
@@ -154,7 +154,6 @@ GEM
     raindrops (0.13.0)
     rake (10.4.2)
     rdoc (4.2.0)
-      json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec (3.2.0)
@@ -169,7 +168,7 @@ GEM
     rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
-    rspec-rails (3.2.2)
+    rspec-rails (3.2.3)
       actionpack (>= 3.0, < 4.3)
       activesupport (>= 3.0, < 4.3)
       railties (>= 3.0, < 4.3)
@@ -237,6 +236,7 @@ DEPENDENCIES
   jbuilder (= 2.2.13)
   jquery-rails (= 4.0.3)
   mini_magick
+  minitest (= 5.5.1)
   rails (= 4.2.1)
   rails_12factor
   rspec

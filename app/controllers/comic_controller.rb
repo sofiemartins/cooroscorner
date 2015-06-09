@@ -1,9 +1,7 @@
 class ComicController < ApplicationController
   include ActionView::Helpers::UrlHelper
 
-  before_action :authenticate_user!, :except => [:show, :show_last, 
-	:back, :next, :random, :archive, :archive_last, :new, :create,
-        :destroy ]
+  before_action :authenticate_user!, :only => [ :comment ] 
 
   def show 
     begin
@@ -72,7 +70,7 @@ class ComicController < ApplicationController
     if !current_user || !current_user.admin?
       not_found
     else
-     if save_comic_from_params && upload_image
+      if save_comic_from_params && upload_image
         flash.now[:success] = "The image has been uploaded successfully!"
       else
         flash.now[:alert] = "An error occurred. The image could not be saved."

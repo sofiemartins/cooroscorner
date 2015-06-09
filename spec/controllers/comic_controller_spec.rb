@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "ComicControllers", type: :controller do
+RSpec.describe ComicController, type: :controller do
 
   describe "GET /:category" do
     it "asserts right redirect with HTTP 302" do
-      setup
+      setup_database
       Category.all.each do |category|   
-        get "/#{category.short}/"
+        get :show_last, :category => category.short 
         expect(response).to have_http_status(302)
         assert_redirected_to "/#{category.short}/2"
       end
@@ -15,18 +15,18 @@ RSpec.describe "ComicControllers", type: :controller do
 
   describe "GET /:category/:index" do
     it "shows element with the given index with HTTP 200" do
-      setup
+      setup_database
       Category.all.each do |category|
-        get "/#{category.short}/1"
+        get :show, :category => category.short, :index => 1
         expect(response).to be_success
         expect(response).to have_http_status(200)
       end
     end
 
     it "renders a template" do
-      setup
+      setup_database
       Category.all.each do |category|
-        get "/#{category.short}/1"
+        get :show, :category => category.short, :index => 1
         expect(response).to render_template("show")
       end
     end
@@ -34,9 +34,9 @@ RSpec.describe "ComicControllers", type: :controller do
 
   describe "GET /back/:category/:index" do
     it "redirects back with HTTP 302" do
-      setup
+      setup_database
       Category.all.each do |category|
-        get "/back/#{category.short}/2"
+        get :back, :category => category.short, :index => 2
         expect(response).to have_http_status(302)
         assert_redirected_to "/#{category.short}/1"
       end
@@ -45,9 +45,9 @@ RSpec.describe "ComicControllers", type: :controller do
 
   describe "GET /next/:category/:index" do
     it "redirects next with HTTP 302" do
-      setup
+      setup_database
       Category.all.each do |category|
-        get "/next/#{category.short}/1"
+        get :next, :category => category.short, :index => 1
         expect(response).to have_http_status(302)
         assert_redirected_to "/#{category.short}/2"
       end
@@ -56,9 +56,9 @@ RSpec.describe "ComicControllers", type: :controller do
 
   describe "GET /random/:category/:index" do
     it "redirects to random comic page with HTTP 302" do
-      setup
+      setup_database
       Category.all.each do |category|
-        get "/random/#{category.short}/1"
+        get :random, :category => category.short, :index => 1
         expect(response).to have_http_status(302)
       end
     end 
@@ -76,6 +76,7 @@ RSpec.describe "ComicControllers", type: :controller do
 
     it "renders template successful with HTTP 200" do
       setup_admin
+      get :new
       expect(response).to be_success
       expect(response).to have_http_status(200) 
       expect(response).to render_template("new")
@@ -88,41 +89,48 @@ RSpec.describe "ComicControllers", type: :controller do
     end
 
     it "raises not found when logged in as normal user" do
+      setup_user
       expect{ get :create }.to raise_error{ ActionController::RoutingError }
     end
 
     it "changes the number of comics" do
-      initial_count = Comic.count
+      setup_database
       setup_admin
-      post "/upload"
-      assert Comic.count == (initial_count + 1)
+      initial_comic_count = Comic.count
+      post :create, :comic => { :title => "title",
+				:category => "offensive",
+				:authors_comment => "some comment here",
+				:image => nil } 
+      expect(response).to have_http_status(302)
+      assert_redirected_to "/upload"
+      assert Comic.count == initial_comic_count +1
     end
   end
 
   describe "GET edit" do
     it "raises not found, when not logged in" do
-      setup
+      setup_database
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic)
-        expect{ get "/edit/comic/#{comic.category}/#{index}" }.to raise_error{ ActionController::RoutingError }
+        expect{ get :edit, :category => comic.category, :index => index }.to raise_error{ ActionController::RoutingError }
       end
     end
 
     it "raises not found, when logged in as normal user" do
-      setup
+      setup_database
       setup_user
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic)
-        expect{ get "/edit/comic/#{comic.category}/#{index}" }.to raise_error{ ActionController::RoutingsError }
+        expect{ get :edit, :category => comic.category, :index => index }.to raise_error{ ActionController::RoutingError }
       end
     end
 
     it "renders template successful with HTTP 200" do
-      setup
+      setup_database
       setup_admin
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic)
-        get "/edit/comic/#{comic.category}/#{index}"
+        get :edit, :category => comic.category, :index => index
         expect(response).to be_success
         expect(response).to have_http_status(200)
         expect(response).to render_template("edit")
@@ -131,7 +139,7 @@ RSpec.describe "ComicControllers", type: :controller do
   end
 
   private 
-    def setup
+    def setup_database
       setup_categories
       setup_example_comics
       setup_example_comments
