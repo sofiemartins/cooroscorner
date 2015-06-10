@@ -1,8 +1,8 @@
 <body class="tina">
   <div class="comic-section">
     <h1 class="site-headline">Edit</h1>
-    <%= form_for(:comic, url: "/edit/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
-      <% comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i) %>
+    <%= form_for(:comic, url: "/edit/comic/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
+      <% comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i - 1) %>
 
       <%= f.label :title %><br />
       <%= f.text_field(:title, :value => comic.title) %><br />

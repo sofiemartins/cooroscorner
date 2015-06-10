@@ -51,11 +51,11 @@ class ComicController < ApplicationController
 
   def archive
     @all_comics = Array(Comic.all)
-    @comic = @all_comics.fetch(params[:index].to_i)
+    @comic = @all_comics.fetch(params[:index].to_i - 1)
   end
 
   def archive_last
-    @index = Comic.count - 1
+    @index = Comic.count
     redirect_to "/archive/#{@index}"
   end
 
@@ -89,12 +89,13 @@ class ComicController < ApplicationController
     if !current_user || !current_user.admin
       not_found
     else
-      comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i)
+      comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i - 1)
       evaluate_new_title_input(comic)
       evaluate_new_authors_comment(comic)
       evaluate_new_image(comic)
       evaluate_new_category_input(comic)
       comic.save
+      redirect_to "/#{params[:category]}/#{params[:index]}"
     end
   end
 
@@ -141,7 +142,7 @@ class ComicController < ApplicationController
 
   private 
     def evaluate_new_title_input(comic)
-      new_title = params[:edit][:title]
+      new_title = params[:comic][:title]
       if !!new_title
         comic.title = new_title
       end
@@ -149,7 +150,7 @@ class ComicController < ApplicationController
 
   private
     def evaluate_new_authors_comment(comic)
-      new_authors_comment = params[:edit][:authors_comment]
+      new_authors_comment = params[:comic][:authors_comment]
       if !!new_authors_comment
         comic.authors_comment = new_authors_comment
       end
@@ -157,7 +158,7 @@ class ComicController < ApplicationController
 
   private
     def evaluate_new_image(comic)
-      new_image = params[:edit][:authors_comment]
+      new_image = params[:comic][:image]
       if !!new_image
         comic.image = new_image
       end
@@ -165,7 +166,7 @@ class ComicController < ApplicationController
 
   private 
     def evaluate_new_category_input(comic)
-      new_category = params[:edit][:category]
+      new_category = params[:comic][:category]
       if !!new_category
         comic.category = new_category
       end
