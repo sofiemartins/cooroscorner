@@ -103,25 +103,33 @@ class ComicController < ApplicationController
     if !current_user || !current_user.admin?
       not_found
     else
-      comic = Comic.all.fetch(archive_index(params[:category], params[:index]))  
+      comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i - 1)  
       if comic.destroy
         flash.now[:success] = "The image has been deleted successfully!"
       else
         flash.now[:alert] = "An error occurred. The image couldn't be deleted."
       end
+      if params[:index] == "1"
+        redirect_to root_path
+      else
+        redirect_to "/#{params[:category]}/#{params[:index].to_i - 1}"
+      end
     end
   end
 
   def comment
-    comment = Comment.new(:content => raw(params[:comment][:content]),
+    if !current_user
+      not_found
+    else
+      comment = Comment.new(:content => raw(params[:comment][:content]),
 			:username => current_user.username, 
 			:comic_index => params[:index])
-    comment.save    
-    ## find a better solution?
-    if !params[:category]
-      redirect_to "/archive/#{params[:index]}"
-    else
-      redirect_to "/#{params[:category]}/#{params[:index]}"
+      comment.save    
+      if !params[:category]
+        redirect_to "/archive/#{params[:index]}"
+      else
+        redirect_to "/#{params[:category]}/#{params[:index]}"
+      end
     end
   end
  
