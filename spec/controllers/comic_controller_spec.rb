@@ -2,17 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ComicController, type: :controller do
 
-  describe "GET :show_last" do
-    it "redirects to last comic from category for every category (HTTP 302)" do
-      setup_database
-      Category.all.each do |category|   
-        get :show_last, :category => category.short 
-        expect(response).to have_http_status(302)
-        assert_redirected_to "/#{category.short}/2"
-      end
-    end
-  end
-
   describe "GET :show" do
     it "shows element with the given index with HTTP 200" do
       setup_database
@@ -219,7 +208,6 @@ RSpec.describe ComicController, type: :controller do
       assert !!comic
       assert !!Comic.find_by(:id => comic.id)
       get :destroy, :category => comic.category, :index => index
-      puts Comic.find_by(:id => comic.id)
       assert !Comic.find_by(:id => comic.id)
       expect(response).to have_http_status(302)
       assert_redirected_to "/#{comic.category}/#{index-1}"
@@ -231,9 +219,7 @@ RSpec.describe ComicController, type: :controller do
       comic = create_test_comic
       index = Comic.where(:category => comic.category).index(comic) + 1
       initial_comment_count = Comment.count
-      expect{ post :comment, :category => comic.category, 
-			:index => index,
-			:comment => FactoryGirl.build(:comment).attributes }.to raise_error{ ActionController::RoutingError }
+      expect{ post :comment, :category => comic.category, :index => index, :comment => FactoryGirl.build(:comment).attributes }.to raise_error{ ActionController::RoutingError }
       assert Comment.count == initial_comment_count
     end
 

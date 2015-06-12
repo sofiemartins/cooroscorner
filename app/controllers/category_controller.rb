@@ -15,6 +15,7 @@ class CategoryController < ApplicationController
       else
         flash.now[:alert] = "Category could not be saved."
       end
+      redirect_to "/category"
     end
   end
 
@@ -34,6 +35,7 @@ class CategoryController < ApplicationController
       evaluate_new_short_input(category)
       evaluate_new_background_input(category)
       category.save
+      redirect_to "/#{category.short}" 
     end
   end
 
@@ -43,6 +45,7 @@ class CategoryController < ApplicationController
     else
       category = Category.find_by(:short => params[:short])
       category.delete
+      redirect_to root_path
     end
   end
  
@@ -83,10 +86,10 @@ class CategoryController < ApplicationController
  
   private
     def save_category
-      @category = Category.save(label: params[:category][:label],
+      category = Category.new(label: params[:category][:label],
 				short: params[:category][:short],
 				background: params[:category][:background])
-      @category.save
+      category.save
     end
 
 end

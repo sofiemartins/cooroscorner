@@ -34,6 +34,7 @@ class BackgroundController < ApplicationController
       evaluate_new_label_input(background)
       evaluate_new_image_input(background)
       background.save
+      redirect_to background_path 
     end
   end
 

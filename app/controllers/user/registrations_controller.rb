@@ -21,13 +21,17 @@ before_filter :configure_sign_up_params, only: [:create]
  
   # DELETE /resource
   def destroy
-    if right_user_or_admin?
-      user = User.find_by_username(params[:username])
-      user.delete
-      if current_user.admin
-        redirect_to '/list/users'
+    if user_logged_in
+      if right_user? || admin_priviledges?
+        user = User.find_by_username(params[:username])
+        user.delete
+        if current_user.admin
+          redirect_to '/list/users'
+        else
+          redirect_to root_path
+        end
       else
-        redirect_to root_path
+        raise ActionController::RoutingError.new('Not Found')
       end
     else
       raise ActionController::RoutingError.new('Not Found')
@@ -36,22 +40,30 @@ before_filter :configure_sign_up_params, only: [:create]
 
   # GET /resource/edit
   def edit
-    if right_user_or_admin?
+    if user_logged_in
+      if right_user? || admin_priviledges?
+      else
+        raise ActionController::RoutingError.new('Not Found')
+      end
     else
       raise ActionController::RoutingError.new('Not Found')
     end
   end
 
   def submit_edit
-    if right_user_or_admin?
-      user = User.find_by_username(params[:username])
-      evaluate_username_field(user)
-      evaluate_email_field(user)
-      evaluate_password_fields(user,
+    if user_logged_in
+      if right_user? || admin_priviledges?
+        user = User.find_by_username(params[:username])
+        evaluate_username_field(user)
+        evaluate_email_field(user)
+        evaluate_password_fields(user,
 			params[:edit][:new_password],
 			params[:edit][:new_password_confirmation])
-      user.save
-      redirect_to root_path
+        user.save
+        redirect_to root_path
+      else
+        raise ActionController::RoutingError.new('Not Found')
+      end
     else
       raise ActionController::RoutingError.new('Not Found')
     end
@@ -102,10 +114,18 @@ before_filter :configure_sign_up_params, only: [:create]
 			:password, :password_confirmation)
     end
 
+  private 
+    def user_logged_in
+      !!current_user
+    end
+
   private
-    def right_user_or_admin?
-      (!!current_user &&
-      (current_user.username == params[:username])) ||
+    def right_user?
+      current_user.username == params[:username] 
+    end
+
+  private
+    def admin_priviledges?
       current_user.admin
     end
  
