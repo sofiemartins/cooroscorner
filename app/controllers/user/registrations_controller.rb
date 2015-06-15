@@ -1,5 +1,5 @@
 class User::RegistrationsController < Devise::RegistrationsController
-before_filter :configure_sign_up_params, only: [:create]
+# before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -21,78 +21,69 @@ before_filter :configure_sign_up_params, only: [:create]
  
   # DELETE /resource
   def destroy
-    if user_logged_in
-      if right_user? || admin_priviledges?
-        user = User.find_by_username(params[:username])
-        user.delete
-        if current_user.admin
-          redirect_to '/list/users'
-        else
-          redirect_to root_path
-        end
-      else
-        raise ActionController::RoutingError.new('Not Found')
-      end
-    else
+    if !change_priviledges?
       raise ActionController::RoutingError.new('Not Found')
+    else
+      user = User.find_by_username(params[:username])
+      user.delete
+      if current_user.admin
+        redirect_to '/list/users'
+      else
+        redirect_to root_path
+      end
     end
   end  
 
   # GET /resource/edit
   def edit
-    if user_logged_in
-      if right_user? || admin_priviledges?
-      else
-        raise ActionController::RoutingError.new('Not Found')
-      end
-    else
+    if !change_priviledges?
       raise ActionController::RoutingError.new('Not Found')
+    else
     end
   end
 
   def submit_edit
-    if user_logged_in
-      if right_user? || admin_priviledges?
-        user = User.find_by_username(params[:username])
-        evaluate_username_field(user)
-        evaluate_email_field(user)
-        evaluate_password_fields(user,
+    if !change_priviledges?
+      raise ActionController::RoutingError.new('Not Found')
+    else
+      user = User.find_by_username(params[:username])
+      evaluate_username_field(user)
+      evaluate_email_field(user)
+      evaluate_password_fields(user,
 			params[:edit][:new_password],
 			params[:edit][:new_password_confirmation])
-        user.save
-        redirect_to root_path
-      else
-        raise ActionController::RoutingError.new('Not Found')
-      end
-    else
-      raise ActionController::RoutingError.new('Not Found')
+      user.save
+      redirect_to root_path
     end
   end
  
   private 
     def evaluate_password_fields(user, password, password_confirmation)
       if authenticate_password_input(user)
-        user.reset_password!(password, password_confirmation)
+        user.update_attributes(:password => password,
+				:password_confirmation => password_confirmation)
+        user.save
       end
     end
 
   private
     def evaluate_email_field(user)
       email = params[:edit][:email]
-      if !email
-      elif email_given_and_unique(email)
+      if email_given_and_unique(email)
         user.email = email
       else
-        flash.now[:alert] = "This email-address is already in use. Please pick another"
+        if !!email
+          flash.now[:alert] = "This email-address is already in use. Please pick another"
+        end
       end
     end
 
   private
     def evaluate_username_field(user)
-      username = params[:username]
-      if !username
-      elif username_given_and_unique(username)
+      username = params[:edit][:username]
+      if username_given_and_unique(username)
         user.username = username
+        user.save
       else
         flash.now[:alert] = "This username is already in use. Please pick another."
       end
@@ -114,8 +105,13 @@ before_filter :configure_sign_up_params, only: [:create]
 			:password, :password_confirmation)
     end
 
+  private
+    def change_priviledges?
+      user_logged_in? && ( right_user? || admin_priviledges? ) 
+    end
+
   private 
-    def user_logged_in
+    def user_logged_in?
       !!current_user
     end
 
@@ -161,7 +157,7 @@ before_filter :configure_sign_up_params, only: [:create]
 
   # You can put the params you want to permit in the empty array.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << :username
+    devise_parameter_sanitizer.for(:account_update) << :username
   end
 
   # You can put the params you want to permit in the empty array.

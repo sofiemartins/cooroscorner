@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'background/new'
-
-  get 'category/new'
-
   devise_for :user, :controllers => {
     :sessions => 'user/sessions', 
     :registrations => 'user/registrations'
@@ -17,8 +13,8 @@ Rails.application.routes.draw do
     get "preferences", 			:to => "user/registrations#edit"
     get "logout", 			:to => "user/sessions#destroy"
     get '/list/users', 			:to => "user/registrations#list"
-    get '/edit/user/:username', 	:to => 'user/registrations#edit'
-    post '/edit/user/:username', 	:to => 'user/registrations#submit_edit'
+    get '/edit/user/:username',		:to => "user/registrations#edit"
+    post '/edit/user/:username',	:to => "user/registrations#submit_edit"
     get '/delete/user/:username', 	:to => 'user/registrations#destroy'
   end
 

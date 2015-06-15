@@ -70,7 +70,6 @@ RSpec.describe User::RegistrationsController, type: :controller do
     it "succeeds if the logged in user has the same username as the target user" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user = login_user
-      puts user.username
       get :edit, :username => user.username
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -80,10 +79,55 @@ RSpec.describe User::RegistrationsController, type: :controller do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       login_admin
       user = get_example_user
-      puts user.username
       get :edit, :username => user.username
       expect(response).to be_success
       expect(response).to have_http_status(200)
+    end
+  end
+
+  describe "POST #submit_edit" do
+    it "fails when not logged in" do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = get_example_user
+      expect{ post :submit_edit, :username => user.username, 
+		:edit => { :username => "new_username" } }.to raise_error{ ActionController::RoutingError }
+    end
+
+    it "fails when wrong user is logged in" do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      login_user
+      user = get_example_user
+      expect{ post :submit_edit, :username => user.username, 
+		:edit => { :username => "new_username" } }.to raise_error{ ActionController::RoutingError }
+    end
+
+    it "succeeds for the right user" do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = login_user
+      new_username = "new_username_username"
+      assert !User.find_by_username(new_username)
+      post :submit_edit, :username => user.username, 
+		:edit => { :username => new_username }
+      assert !!User.find_by_username(new_username)
+      expect(response).to have_http_status(302)
+      assert_redirected_to root_path
+      assert_redirected_to root_path
+    end
+
+    it "succeeds for admins" do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = get_example_user
+      new_username = "new_username_admin"
+      login_admin
+      assert !User.find_by_username(new_username)
+      post :submit_edit, :username => user.username, 
+		:edit => { :username => new_username,
+				:old_password => "password",
+				:new_password => "new_password",
+				:new_password_confirmation => "new_password" }
+      assert !!User.find_by_username(new_username)
+      expect(response).to have_http_status(302)
+      assert_redirected_to root_path
     end
   end
 
