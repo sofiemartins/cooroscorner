@@ -83,13 +83,8 @@ RSpec.describe ComicController, type: :controller do
       expect{ get :new }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "raises not found when logged in as normal user" do
-      setup_user
-      expect{ get :new }.to raise_error{ ActionController::RoutingError }
-    end
-
     it "renders template successful with HTTP 200 when logged in as admin" do
-      setup_admin
+      setup_user
       get :new
       expect(response).to be_success
       expect(response).to have_http_status(200) 
@@ -102,14 +97,9 @@ RSpec.describe ComicController, type: :controller do
       expect{ get :create }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "raises not found when logged in as normal user" do
-      setup_user
-      expect{ get :create }.to raise_error{ ActionController::RoutingError }
-    end
-
     it "changes the number of comics when logged in as admin" do
       setup_database
-      setup_admin
+      setup_user
       initial_comic_count = Comic.count
       post :create, :comic => { :title => "title",
 				:category => "offensive",
@@ -130,18 +120,9 @@ RSpec.describe ComicController, type: :controller do
       end
     end
 
-    it "raises not found, when logged in as normal user" do
-      setup_database
-      setup_user
-      Comic.all.each do |comic|
-        index = Comic.where(:category => comic.category).index(comic)
-        expect{ get :edit, :category => comic.category, :index => index }.to raise_error{ ActionController::RoutingError }
-      end
-    end
-
     it "renders template successful with HTTP 200 when logged in as admin" do
       setup_database
-      setup_admin
+      setup_user
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic)
         get :edit, :category => comic.category, :index => index
@@ -161,18 +142,9 @@ RSpec.describe ComicController, type: :controller do
       end
     end
 
-    it "raises not found, when logged in as simple user" do
-      setup_database
-      setup_user
-      Comic.all.each do |comic|
-        index = Comic.where(:category => comic.category).index(comic) + 1
-        expect{ post :submit_edit, :category => comic.category, :index => index, :comic => FactoryGirl.build(:comic).attributes }.to raise_error{ ActionController::RoutingError }
-      end
-    end
-
     it "submits edit when logged in as admin" do
       setup_database
-      setup_admin
+      setup_user
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic) + 1
         post :submit_edit, :category => comic.category, :index => index, :comic => FactoryGirl.build(:comic).attributes
@@ -191,18 +163,9 @@ RSpec.describe ComicController, type: :controller do
       expect{ get :destroy, :category => comic.category, :index => index }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "raises not found, when logged in as normal user" do
-      setup_database
-      comic = create_test_comic
-      index = Comic.where(:category => comic.category).index(comic)
-      assert !!comic
-      assert !!Comic.find_by(:id => comic.id)
-      expect{ get :destroy, :category => comic.category, :index => index }.to raise_error{ ActionController::RoutingError }
-    end
- 
     it "destroys comic, when logged in as admin and returns HTTP 200" do
       setup_database
-      setup_admin
+      setup_user
       comic = create_test_comic
       index = Comic.where(:category => comic.category).index(comic) + 1
       assert !!comic
@@ -215,21 +178,12 @@ RSpec.describe ComicController, type: :controller do
   end
 
   describe "GET :comment" do
-    it "raises not found, when not logged in" do
+    it "creates a comment" do
       comic = create_test_comic
-      index = Comic.where(:category => comic.category).index(comic) + 1
-      initial_comment_count = Comment.count
-      expect{ post :comment, :category => comic.category, :index => index, :comment => FactoryGirl.build(:comment).attributes }.to raise_error{ ActionController::RoutingError }
-      assert Comment.count == initial_comment_count
-    end
-
-    it "posts comment if a user is logged in" do
-      comic = create_test_comic
-      setup_user
       index = Comic.where(:category => comic.category).index(comic) + 1
       initial_comment_count = Comment.count
       post :comment, :category => comic.category, :index => index, :comment => FactoryGirl.build(:comment).attributes
-      assert Comment.count == initial_comment_count+1
+      assert Comment.count == initial_comment_count + 1
     end
   end
 
@@ -239,15 +193,9 @@ RSpec.describe ComicController, type: :controller do
       expect{ get :list }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "raises not found, when a normal user is logged in" do
-      setup_database
-      setup_user
-      expect{ get :list }.to raise_error{ ActionController::RoutingError }
-    end
- 
     it "gets successful with HTTP 200, when logged in as admin" do
       setup_database
-      setup_admin
+      setup_user
       get :list
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -291,21 +239,10 @@ RSpec.describe ComicController, type: :controller do
     end
 
   private 
-    def setup_admin
-      user = User.new(email: "email@email.com", username: "admin",
-			password: "password",
-			password_confirmation: "password",
-			admin: true)
-      user.save
-      sign_in(user)
-    end
-
-  private 
     def setup_user
       user = User.new(email: "email@email.com", username: "user",
 			password: "password",
-			password_confirmation: "password",
-			admin: false)
+			password_confirmation: "password" )
       user.save
       sign_in user
     end

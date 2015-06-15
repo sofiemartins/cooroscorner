@@ -7,20 +7,15 @@ RSpec.describe BackgroundController, type: :controller do
       expect{ get :new }.to raise_error{ActionController::RoutingError}
     end
 
-    it "returns not found when logged in as normal user" do
+    it "returns found when logged in as normal user" do
       setup_user
-      expect{ get :new }.to raise_error{ActionController::RoutingError}
-    end
-
-    it "returns http success when logged in as admin" do
-      setup_admin
       get :new
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
 
     it "renders template when logged in as admin" do
-      setup_admin
+      setup_user
       get :new
       expect(response).to render_template("new")
     end
@@ -31,13 +26,8 @@ RSpec.describe BackgroundController, type: :controller do
       expect{ post :create, :background => { :label => "label", :image => nil }}.to raise_error{ ActionController::RoutingError }
     end
 
-    it "returns not found when logged in as normal user" do
-      setup_user
-      expect{ post :create, :background => { :label => "label", :image => nil }}.to raise_error{ ActionController::RoutingError }
-    end
-
     it "creates a new background successfully when logged in as admin" do
-      setup_admin
+      setup_user
       post :create, :background => { :label => "label", :image => nil }
       expect(response).to have_http_status(302)
       assert_redirected_to "/background"
@@ -50,14 +40,8 @@ RSpec.describe BackgroundController, type: :controller do
       expect{ get :edit, :label => background.label }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "returns not found when logged in as normal user" do
-      setup_user
-      background = get_example_background
-      expect{ get :edit, :label => background.label}.to raise_error{ ActionController::RoutingError }
-    end
-
     it "succeeds with HTTP 200 when logged in as admin" do
-      setup_admin
+      setup_user
       background = get_example_background
       get :edit, :label => background.label
       expect(response).to be_success
@@ -71,14 +55,8 @@ RSpec.describe BackgroundController, type: :controller do
       expect{ post :submit_edit, :label => background.label, :edit => FactoryGirl.build(:background).attributes}.to raise_error{ ActionController::RoutingError } 
     end
 
-    it "returns not found when not logged in" do
-      setup_user
-      background = get_example_background
-      expect{ post :submit_edit, :label => background.label, :edit => FactoryGirl.build(:background).attributes}.to raise_error{ ActionController::RoutingError }
-    end
-
     it "submits successfully when logged in as admin" do
-      setup_admin
+      setup_user
       background = get_example_background
       new_attributes = FactoryGirl.build(:background).attributes
       new_background = FactoryGirl.create(:background)
@@ -95,14 +73,8 @@ RSpec.describe BackgroundController, type: :controller do
       expect{ get :destroy, :label => background.label}.to raise_error{ ActionController::RoutingError }
     end
 
-    it "returns not found when logged in as normal user" do
-      setup_user
-      background = get_example_background
-      expect{ get :destroy, :label => background.label}.to raise_error{ ActionController::RoutingError }
-    end
-   
     it "succeeds when logged in as admin and redirects to /list/backgrounds" do
-      setup_admin
+      setup_user
       background = get_example_background
       get :destroy, :label => background.label
       expect(response).to have_http_status(302)
@@ -115,13 +87,8 @@ RSpec.describe BackgroundController, type: :controller do
       expect{ get :list }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "returns not found when logged in as normal user" do
-      setup_user
-      expect{ get :list }.to raise_error{ ActionController::RoutingError }
-    end
-
     it "succeeds when logged in as admin with HTTP 200" do
-      setup_admin
+      setup_user
       get :list 
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -129,19 +96,9 @@ RSpec.describe BackgroundController, type: :controller do
   end
 
   private
-    def setup_admin
-      user = User.new(email: "email@email.com", username: "admin", 
-  		password: "password", password_confirmation: "password",
-		admin: true)
-      user.save
-      sign_in(user)
-    end
-
-  private
     def setup_user
       user = User.new(email: "email@email.com", username: "user",
-		password: "password", password_confirmation: "password",
-		admin: false)
+		password: "password", password_confirmation: "password" )
       user.save
       sign_in(user)
     end

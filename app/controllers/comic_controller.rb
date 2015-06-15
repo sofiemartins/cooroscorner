@@ -60,14 +60,14 @@ class ComicController < ApplicationController
   end
 
   def new
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else
     end
   end
 
   def create
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else
       if save_comic_from_params && upload_image
@@ -80,13 +80,13 @@ class ComicController < ApplicationController
   end
 
   def edit
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     end
   end
 
   def submit_edit
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     else
       comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i - 1)
@@ -100,7 +100,7 @@ class ComicController < ApplicationController
   end
 
   def destroy
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else
       comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i - 1)  
@@ -118,23 +118,19 @@ class ComicController < ApplicationController
   end
 
   def comment
-    if !current_user
-      not_found
+    comment = Comment.new(:content => raw(params[:comment][:content]),
+	:username => current_user.username, 
+	:comic_index => params[:index])
+    comment.save    
+    if !params[:category]
+      redirect_to "/archive/#{params[:index]}"
     else
-      comment = Comment.new(:content => raw(params[:comment][:content]),
-			:username => current_user.username, 
-			:comic_index => params[:index])
-      comment.save    
-      if !params[:category]
-        redirect_to "/archive/#{params[:index]}"
-      else
-        redirect_to "/#{params[:category]}/#{params[:index]}"
-      end
+      redirect_to "/#{params[:category]}/#{params[:index]}"
     end
   end
  
   def list
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     end
   end

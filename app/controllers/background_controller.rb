@@ -1,13 +1,13 @@
 class BackgroundController < ApplicationController
   def new
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     else
     end
   end
 
   def create
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     else
       if save_background && upload_image
@@ -20,14 +20,14 @@ class BackgroundController < ApplicationController
   end
 
   def edit
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     else
     end
   end
 
   def submit_edit
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     else
       background = Background.find_by(:label => params[:label])
@@ -39,7 +39,7 @@ class BackgroundController < ApplicationController
   end
 
   def destroy
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     else
       background = Background.find_by_label(params[:label])
@@ -49,7 +49,7 @@ class BackgroundController < ApplicationController
   end
 
   def list
-    if !current_user || !current_user.admin
+    if !current_user
       not_found
     end
   end

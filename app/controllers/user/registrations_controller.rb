@@ -4,16 +4,16 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    super
+    raise ActionController::RoutingError.new('Not Found') 
   end
 
   # POST /resource
   def create
-    super 
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   def list
-    if !current_user || !current_user.admin
+    if !current_user
       raise ActionController::RoutingError.new('Not Found')
     else
     end
@@ -21,124 +21,18 @@ class User::RegistrationsController < Devise::RegistrationsController
  
   # DELETE /resource
   def destroy
-    if !change_priviledges?
-      raise ActionController::RoutingError.new('Not Found')
-    else
-      user = User.find_by_username(params[:username])
-      user.delete
-      if current_user.admin
-        redirect_to '/list/users'
-      else
-        redirect_to root_path
-      end
-    end
+    raise ActionController::RoutingError.new('Not Found')
   end  
 
   # GET /resource/edit
   def edit
-    if !change_priviledges?
-      raise ActionController::RoutingError.new('Not Found')
-    else
-    end
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   def submit_edit
-    if !change_priviledges?
-      raise ActionController::RoutingError.new('Not Found')
-    else
-      user = User.find_by_username(params[:username])
-      evaluate_username_field(user)
-      evaluate_email_field(user)
-      evaluate_password_fields(user,
-			params[:edit][:new_password],
-			params[:edit][:new_password_confirmation])
-      user.save
-      redirect_to root_path
-    end
+    raise ActionController::RoutingError.new('Not Found')
   end
  
-  private 
-    def evaluate_password_fields(user, password, password_confirmation)
-      if authenticate_password_input(user)
-        user.update_attributes(:password => password,
-				:password_confirmation => password_confirmation)
-        user.save
-      end
-    end
-
-  private
-    def evaluate_email_field(user)
-      email = params[:edit][:email]
-      if email_given_and_unique(email)
-        user.email = email
-      else
-        if !!email
-          flash.now[:alert] = "This email-address is already in use. Please pick another"
-        end
-      end
-    end
-
-  private
-    def evaluate_username_field(user)
-      username = params[:edit][:username]
-      if username_given_and_unique(username)
-        user.username = username
-        user.save
-      else
-        flash.now[:alert] = "This username is already in use. Please pick another."
-      end
-    end
-
-  private
-    def username_given_and_unique(username)
-      !!username && !User.find_by_username(username)
-    end
-
-  private
-    def email_given_and_unique(email)
-      !!email && !User.find_by_email(email)
-    end
-
-  private
-    def user_params
-      params.require(:user).permit(:email, :username,
-			:password, :password_confirmation)
-    end
-
-  private
-    def change_priviledges?
-      user_logged_in? && ( right_user? || admin_priviledges? ) 
-    end
-
-  private 
-    def user_logged_in?
-      !!current_user
-    end
-
-  private
-    def right_user?
-      current_user.username == params[:username] 
-    end
-
-  private
-    def admin_priviledges?
-      current_user.admin
-    end
- 
-  private
-    def authenticate_password_input(user)
-       password_fields_are_all_filled &&
-       user.valid_password?(params[:edit][:old_password]) &&
-       (params[:edit][:new_password] == params[:edit][:new_password_confirmation])
-    end
- 
-  private
-    def password_fields_are_all_filled
-      !!params[:edit][:old_password] &&
-      !!params[:edit][:new_password] &&
-      !!params[:edit][:new_password_confirmation]
-    end
-
   # PUT /resource
   # def update
   #   super

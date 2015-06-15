@@ -1,13 +1,13 @@
 class CategoryController < ApplicationController
   def new
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else
     end
   end
 
   def create
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else
       if save_category
@@ -20,14 +20,14 @@ class CategoryController < ApplicationController
   end
 
   def edit
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else
     end
   end
 
   def submit_edit
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else 
       category = Category.find_by(:short => params[:short])    
@@ -40,7 +40,7 @@ class CategoryController < ApplicationController
   end
 
   def destroy
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     else
       category = Category.find_by(:short => params[:short])
@@ -50,7 +50,7 @@ class CategoryController < ApplicationController
   end
  
   def list
-    if !current_user || !current_user.admin?
+    if !current_user
       not_found
     end
   end

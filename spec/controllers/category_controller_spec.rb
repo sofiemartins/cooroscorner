@@ -7,14 +7,9 @@ RSpec.describe CategoryController, type: :controller do
       expect{ get :new }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "raises not found, when user is logged in" do
-      login_user
-      expect{ get :new }.to raise_error{ ActionController::RoutingError }  
-    end
-
     it "renders successfully with http 200, when logged in as admin" do
-      login_admin
-       get :new
+      login_user
+      get :new
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
@@ -25,13 +20,8 @@ RSpec.describe CategoryController, type: :controller do
       expect{ post :create, :category => FactoryGirl.build(:category).attributes }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "will fail when logged in as normal user" do
-      login_user
-      expect{ post :create, :category => FactoryGirl.build(:category).attributes }.to raise_error{ ActionController::RoutingError } 
-    end
-
     it "will succeed when logged in as admin" do
-      login_admin
+      login_user
       post :create, :category => FactoryGirl.build(:category).attributes
       expect(response).to have_http_status(302)
       assert_redirected_to "/category"
@@ -44,14 +34,8 @@ RSpec.describe CategoryController, type: :controller do
       expect{ get :edit, :short => category.short }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "will fail for any normal user that is logged in" do
-      login_user
-      category = get_example_category
-      expect{ get :edit, :short => category.short }.to raise_error{ ActionController::RoutingError }
-    end
-
     it "will succeed, when an admin is logged in" do
-      login_admin
+      login_user
       category = get_example_category
       get :edit, :short => category.short
       expect(response).to be_success
@@ -65,14 +49,8 @@ RSpec.describe CategoryController, type: :controller do
       expect{ get :submit_edit, :short => category.short, :category => FactoryGirl.build(:category).attributes }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "fails when logged in as normal user" do
-      login_user
-      category = get_example_category
-      expect{ get :submit_edit, :short => category.short, :category => FactoryGirl.build(:category).attributes }.to raise_error{ ActionController::RoutingError } 
-    end
-
     it "fails when logged in as admin" do
-      login_admin
+      login_user
       category = get_example_category
       new_attributes = FactoryGirl.build(:category).attributes
       new_short = FactoryGirl.create(:category).short
@@ -88,14 +66,8 @@ RSpec.describe CategoryController, type: :controller do
       expect{ get :destroy, :short => category.short }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "fails when user loggend in" do
-      login_user
-      category = get_example_category
-      expect{ get :destroy, :short => category.short }.to raise_error{ ActionController::RoutingError }
-    end
-
     it "succeeds when logged in as admin" do
-      login_admin
+      login_user
       category = get_example_category
       get :destroy, :short => category.short
       expect(response).to have_http_status(302)
@@ -108,13 +80,8 @@ RSpec.describe CategoryController, type: :controller do
       expect{ get :list }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "fails when logged in as normal user" do
-      login_user
-      expect{ get :list }.to raise_error{ ActionController::RoutingError }
-    end
-
     it "succeeds when logged in as admin" do
-      login_admin
+      login_user
       get :list
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -124,19 +91,9 @@ RSpec.describe CategoryController, type: :controller do
   def login_user
     user = User.new(email: "email@email.com", username: "user",
 			password: "password",
-			password_confirmation: "password",
-			admin: false)
+			password_confirmation: "password" )
     user.save
     sign_in(user)
-  end
-
-  def login_admin
-    admin = User.new(email: "email@email.com", username: "admin",
-			password: "password",
-			password_confirmation: "password",
-			admin: true)
-    admin.save
-    sign_in(admin)
   end
 
   def get_example_category

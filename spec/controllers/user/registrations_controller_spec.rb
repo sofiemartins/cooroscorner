@@ -3,32 +3,18 @@ require 'rails_helper'
 RSpec.describe User::RegistrationsController, type: :controller do
 
   describe "GET #new" do
-    it "responds successfully with an HTTP 200 code" do
+    it "does not exist for anyone" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      get :new
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-
-    it "renders the new template" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      get :new
-      expect(response).to render_template("new")
+      expect{ get :new }.to raise_error{ ActionController::RoutingError } 
     end
   end
 
   describe "GET #create" do
-    it "creates a user" do
+    it "does not exist for anyone" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      post :create, FactoryGirl.build(:user).attributes
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-
-    it "redirects to root and renders root template" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      post :create, FactoryGirl.build(:user).attributes
-      expect(response).to render_template("/")
+      expect{ get :create, FactoryGirl.build(:user).attributes }.to raise_error{ ActionController::RoutingError }
+      login_user
+      expect{ get :create, FactoryGirl.build(:user).attributes }.to raise_error{ ActionController::RoutingError }
     end
   end
 
@@ -38,15 +24,9 @@ RSpec.describe User::RegistrationsController, type: :controller do
       expect{ get :list }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "fails when logged in as normal user" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      login_user
-      expect{ get :list }.to raise_error{ ActionController::RoutingError }
-    end
-
     it "succeeds with HTTP 200 when logged in as admin" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      login_admin
+      login_user
       get :list
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -54,80 +34,24 @@ RSpec.describe User::RegistrationsController, type: :controller do
   end
 
   describe "GET #edit" do
-    it "fails when not logged in" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = get_example_user
+    it "fails for everyone" do
+      !request.env["devise.mapping"] = Devise.mapping[:user]
       expect{ get :edit, :username => user.username }.to raise_error{ ActionController::RoutingError }
-    end
-
-    it "fails when a normal user is logged in that has not the same username as the target user" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
       login_user
-      user = get_example_user
       expect{ get :edit, :username => user.username }.to raise_error{ ActionController::RoutingError }
-    end
-
-    it "succeeds if the logged in user has the same username as the target user" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = login_user
-      get :edit, :username => user.username
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-
-    it "succeeds when logged in as admin" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      login_admin
-      user = get_example_user
-      get :edit, :username => user.username
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
     end
   end
 
   describe "POST #submit_edit" do
-    it "fails when not logged in" do
+    it "fails for everyone" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user = get_example_user
       expect{ post :submit_edit, :username => user.username, 
 		:edit => { :username => "new_username" } }.to raise_error{ ActionController::RoutingError }
-    end
-
-    it "fails when wrong user is logged in" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
       login_user
-      user = get_example_user
+      
       expect{ post :submit_edit, :username => user.username, 
 		:edit => { :username => "new_username" } }.to raise_error{ ActionController::RoutingError }
-    end
-
-    it "succeeds for the right user" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = login_user
-      new_username = "new_username_username"
-      assert !User.find_by_username(new_username)
-      post :submit_edit, :username => user.username, 
-		:edit => { :username => new_username }
-      assert !!User.find_by_username(new_username)
-      expect(response).to have_http_status(302)
-      assert_redirected_to root_path
-      assert_redirected_to root_path
-    end
-
-    it "succeeds for admins" do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = get_example_user
-      new_username = "new_username_admin"
-      login_admin
-      assert !User.find_by_username(new_username)
-      post :submit_edit, :username => user.username, 
-		:edit => { :username => new_username,
-				:old_password => "password",
-				:new_password => "new_password",
-				:new_password_confirmation => "new_password" }
-      assert !!User.find_by_username(new_username)
-      expect(response).to have_http_status(302)
-      assert_redirected_to root_path
     end
   end
 
@@ -136,22 +60,10 @@ RSpec.describe User::RegistrationsController, type: :controller do
       user = User.new(:email => "email@email.com", 
 			:username => "user",
 			:password => "password",
-			:password_confirmation => "password",
-			:admin => false)
+			:password_confirmation => "password" )
       user.save
       sign_in(user)
       return user
-    end
-
-  private
-    def login_admin
-      admin = User.new(:email => "email@email.com",
-			:username => "admin",
-			:password => "password",
-			:password_confirmation => "password",
-			:admin => true)
-      admin.save
-      sign_in(admin)
     end
 
   private
