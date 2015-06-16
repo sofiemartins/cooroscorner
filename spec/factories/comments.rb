@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :comment do
+    name "James_Gosling"
     content "MyText"
-username "MyString"
   end
 
 end

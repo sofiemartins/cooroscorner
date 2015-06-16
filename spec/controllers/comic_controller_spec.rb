@@ -259,7 +259,7 @@ RSpec.describe ComicController, type: :controller do
   private
     def setup_example_comments
       Comic.all.each do |comic|
-        comment = Comment.new(:content => "content", :username => "username", 
+        comment = Comment.new(:content => "content", :name => "some_alias", 
 				:comic_index => Comic.all.index(comic))
         comment.save
       end
