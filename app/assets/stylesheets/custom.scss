@@ -10,7 +10,13 @@ $green: #008811;
 body {
   min-width: 1000px;
 }
- 
+
+body.index {
+  background-image: url("index.jpg");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
+
 body.tina {
   background-image: image_url("tina.jpg");
   background-repeat: no-repeat;
@@ -41,14 +47,9 @@ body.alien {
   }
 }
 
-div.navbar {
-  height: 170px;
-}
- 
 hr.header-bar {
   padding: 0;
   border: 0;
-  height: 2px;
   background-color: black;
 }
 

@@ -9,14 +9,12 @@
          <td>USER ID</td>
          <td>USERNAME</td>
          <td>EMAIL</td>
-         <td>ADMIN?</td>
        </tr>
       <% User.all.each do |user| %>
         <tr>
           <td><%= user.id %></td>
           <td><%= user.username %></td>
           <td><%= user.email %></td>
-          <td><%= user.admin %></td>
           <td><%= link_to "edit", "/edit/user/#{user.username}" %></td>
           <td><%= link_to "delete", "/delete/user/#{user.username}" %></td>
         </tr>

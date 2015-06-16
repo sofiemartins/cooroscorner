@@ -6,9 +6,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class=<%= yield :background %>>
 <%= render 'layouts/header' %>
-<% if current_user && current_user.admin %>
+<% if current_user %>
   <%= render 'layouts/admin_footer' %>
 <% end %>
 <% flash.each do |message_type, message| %>
