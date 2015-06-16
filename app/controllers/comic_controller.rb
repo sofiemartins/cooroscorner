@@ -135,8 +135,9 @@ class ComicController < ApplicationController
 
   private
     def save_comic_from_params
+      category = Category.find_by(:label => params[:comic][:category]).short
       comic = Comic.new(title: params[:comic][:title],
-			category: params[:comic][:category],
+			category: category,
 			authors_comment: params[:comic][:authors_comment],
 			image: params[:comic][:image])
       return comic.save

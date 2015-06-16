@@ -12,4 +12,12 @@ module ComicsHelper
     params[:index].to_i == 1
   end
 
+  def category_labels
+    labels = []
+    Category.all.each do |category|
+      labels << category.label
+    end
+    return labels
+  end
+
 end

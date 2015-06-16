@@ -69,8 +69,7 @@ RSpec.describe User::RegistrationsController, type: :controller do
       user = User.new(:email => "someother@email.com",
 			:username => "someotheruser",
 			:password => "password",
-			:password_confirmation => "password",
-			:admin => false)
+			:password_confirmation => "password" )
       user.save
       return user
     end

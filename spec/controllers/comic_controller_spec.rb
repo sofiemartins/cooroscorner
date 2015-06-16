@@ -102,12 +102,22 @@ RSpec.describe ComicController, type: :controller do
       setup_user
       initial_comic_count = Comic.count
       post :create, :comic => { :title => "title",
-				:category => "offensive",
+				:category => "Offensively Offensive",
 				:authors_comment => "some comment here",
 				:image => nil } 
       expect(response).to have_http_status(302)
       assert_redirected_to "/upload"
       assert Comic.count == initial_comic_count +1
+    end
+
+    it "saves comic with the abbreviation of the given category" do
+      setup_database
+      setup_user
+      post :create, :comic => { :title => "very very unique title",
+				:category => "Offensively Offensive",
+				:authors_comment => "some comment here",
+				:image => nil }
+      assert Comic.find_by(:title => "very very unique title").category == "offensive"
     end
   end
 
