@@ -17,16 +17,6 @@ RSpec.describe User::SessionsController, type: :controller do
     end
   end
 
-  describe "GET #create" do
-    it "logges in user" do
-      assert !current_user
-      user = get_example_user
-      post :create, :login => { :username => user.username,
-				:password => "password" }
-      assert !!current_user
-    end
-  end
-
   private 
     def get_example_user
       user = User.new(:email => "email@email.com",

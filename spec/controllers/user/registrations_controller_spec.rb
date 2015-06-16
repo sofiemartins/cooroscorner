@@ -13,8 +13,6 @@ RSpec.describe User::RegistrationsController, type: :controller do
     it "does not exist for anyone" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       expect{ get :create, FactoryGirl.build(:user).attributes }.to raise_error{ ActionController::RoutingError }
-      login_user
-      expect{ get :create, FactoryGirl.build(:user).attributes }.to raise_error{ ActionController::RoutingError }
     end
   end
 
@@ -35,7 +33,7 @@ RSpec.describe User::RegistrationsController, type: :controller do
 
   describe "GET #edit" do
     it "fails for everyone" do
-      !request.env["devise.mapping"] = Devise.mapping[:user]
+      @request.env["devise.mapping"] = Devise.mappings[:user]
       expect{ get :edit, :username => user.username }.to raise_error{ ActionController::RoutingError }
       login_user
       expect{ get :edit, :username => user.username }.to raise_error{ ActionController::RoutingError }

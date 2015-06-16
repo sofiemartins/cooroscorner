@@ -24,7 +24,6 @@
     <p><%= @comic.authors_comment %></p>
   </div>
   <div id="user-comments" class="comic-section">
-    <% if user_signed_in? %>
       <%= form_for(:comment, url: "/comment/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
   
         <%= f.label "new comment" %><br />
@@ -33,7 +32,6 @@
         <%= f.submit "Submit", class: "login-button" %><br />
 
       <% end %>
-    <% end %>
     <%= render 'layouts/comments' %>
   
   </div>

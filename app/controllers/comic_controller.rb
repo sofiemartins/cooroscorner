@@ -119,7 +119,6 @@ class ComicController < ApplicationController
 
   def comment
     comment = Comment.new(:content => raw(params[:comment][:content]),
-	:username => current_user.username, 
 	:comic_index => params[:index])
     comment.save    
     if !params[:category]
