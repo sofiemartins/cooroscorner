@@ -1,8 +1,6 @@
 class ComicController < ApplicationController
   include ActionView::Helpers::UrlHelper
 
-  before_action :authenticate_user!, :only => [ :comment ] 
-
   def show 
     begin
       @all_comics = Comic.where(:category => params[:category])
@@ -119,6 +117,7 @@ class ComicController < ApplicationController
 
   def comment
     comment = Comment.new(:content => raw(params[:comment][:content]),
+        :name => params[:comment][:name],
 	:comic_index => params[:index])
     comment.save    
     if !params[:category]

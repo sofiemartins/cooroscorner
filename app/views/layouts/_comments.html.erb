@@ -9,14 +9,14 @@
   <% comments.each do |comment| %>
     <div class="single-comment">
       <p id="username-label">
-        <%= comment.username %> - <%= comment.created_at%>
+        <%= comment.name %> - <%= comment.created_at%>
       </p>
       <p id="comment-content">
         <%= comment.content %>
       </p>
         <% if user_signed_in? %>
         <ul>
-          <% if current_user.username == comment.username || current_user.admin %>
+          <% if current_user %>
             <li><%= link_to "Edit", '#' %></li>
             <li><%= link_to "Delete", '#' %></li>
           <% end %>
