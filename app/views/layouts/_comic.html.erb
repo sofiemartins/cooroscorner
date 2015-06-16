@@ -3,24 +3,29 @@
 <body background="#{background.image}">
   <div id="comic-image" class="comic-section">
     <div id="title"><%= @comic.title %>
-      <% if current_user && current_user.admin %>
+      <% if !!current_user %>
          <%= link_to "edit", "/edit/#{params[:category] || "archive"}/#{params[:index]}" %>
          <%= link_to "delete", "/delete/#{params[:category] || "archive"}/#{params[:index]}" %>
       <% end %>
     </div>
     <div class="comic-image-div"><%= image_tag @comic.image.to_s %></div>
       <ul class="comic-navigation">
-          <li><%= link_to("Back!", 
-  	"/back/#{params[:category] || "archive"}/#{params[:index]}" ) %></li>
-          <li><%= link_to("Random!", 
-	"/random/#{params[:category] || "archive"}/#{params[:index]}" ) %></li>
-          <li><%= link_to("Next!", 
-	"/next/#{params[:category] || "archive"}/#{params[:index]}" ) %></li>
+          <li <% if first_comic %>id="disabled_link"<% end %>>
+		<%= link_to_if(!first_comic, "Back!", 
+  		"/back/#{params[:category] || "archive"}/#{params[:index]}" ) %>
+  	  </li>
+          <li>
+		<%= link_to("Random!", 
+		"/random/#{params[:category] || "archive"}/#{params[:index]}") %>
+	  </li>
+          <li <% if last_comic %>id="disabled_link"<% end %>>
+		<%= link_to_if(!last_comic, "Next!", 
+		"/next/#{params[:category] || "archive"}/#{params[:index]}") %>
+	  </li>
       </ul>
     </div>
   </div>
   <div id="authors-comment" class="comic-section">
-    <p id="headline" >Author's Comment</p>
     <p><%= @comic.authors_comment %></p>
   </div>
   <div id="user-comments" class="comic-section">

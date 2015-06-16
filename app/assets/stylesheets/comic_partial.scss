@@ -53,7 +53,16 @@ ul.comic-navigation {
   margin: 30px 10px 10px 10px;
   list-style-type: none;
   li {
-    display:inline;
+    display: inline;
+  }
+  #disabled_link {
+    font-size: 130%;
+    color: #888888;
+    background-color: #CCCCCC;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    border: 1px solid;
+    border-radius: 5px;
   }
   a:link {
     font-size: 130%;
