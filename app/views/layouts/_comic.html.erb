@@ -6,21 +6,9 @@
          <%= link_to "delete", "/delete/#{params[:category] || "archive"}/#{params[:index]}" %>
       <% end %>
     </div>
+    <%= render 'layouts/comic_navigation' %>
     <div class="comic-image-div"><%= image_tag @comic.image.to_s %></div>
-      <ul class="comic-navigation">
-          <li <% if first_comic %>id="disabled_link"<% end %>>
-		<%= link_to_if(!first_comic, "Back!", 
-  		"/back/#{params[:category] || "archive"}/#{params[:index]}" ) %>
-  	  </li>
-          <li>
-		<%= link_to("Random!", 
-		"/random/#{params[:category] || "archive"}/#{params[:index]}") %>
-	  </li>
-          <li <% if last_comic %>id="disabled_link"<% end %>>
-		<%= link_to_if(!last_comic, "Next!", 
-		"/next/#{params[:category] || "archive"}/#{params[:index]}") %>
-	  </li>
-      </ul>
+    <%= render 'layouts/comic_navigation' %>
     </div>
   </div>
   <div id="authors-comment" class="comic-section">
