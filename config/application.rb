@@ -10,6 +10,9 @@ Bundler.require(*Rails.groups)
 module Cooroscorner
   class Application < Rails::Application
 
+    require Rails.root.join("lib/custom_public_exceptions")
+    config.exceptions_app = CustomPublicExceptions.new(Rails.public_path)
+
     # Configure generators values
     config.generators do |g|
       g.test_framework :rspec, :fixture => true

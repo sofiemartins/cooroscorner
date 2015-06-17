@@ -11,8 +11,11 @@ module ApplicationHelper
   end
 
   def current_background
-    category = Category.find_by(:short => params[:category])
-    background = category.background
+    if params[:category]
+      category = Category.find_by(:short => params[:category])
+      background = category.background
+    else
+    end
   end
 
 end

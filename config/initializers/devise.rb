@@ -1,5 +1,5 @@
 Devise.setup do |config|
-  # config.secret_key = '5112af0d94cf84231d4361638c8bdc302ec446b6f791d92bff57cdfe8bf308762c049482587fb20c5291b1ef3939658e4eeab1ed37996a60216afa8f65ba282e'
+  config.secret_key = '5112af0d94cf84231d4361638c8bdc302ec446b6f791d92bff57cdfe8bf308762c049482587fb20c5291b1ef3939658e4eeab1ed37996a60216afa8f65ba282e'
 
   config.mailer_sender = 'matkingusev@hotmail.com'
 
