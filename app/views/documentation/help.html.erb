@@ -1,0 +1,74 @@
+<h1 class="headline">Hilfe! Das ist doch alles absolut nicht selbsterkl&aumlrend!</h1>
+<div class="help">
+  <div class="login-help">
+    <h2 class="sub-headline">Wie logge ich mich ein?</h2>
+    <p>
+      Da die Funktion des Einloggens nur f&uumlr Administratoren gedacht ist um Inhalte zu bearbeiten
+      muss die Login Seite &uumlber www.cooroscorner.com/login erreicht werden.	
+      Da diese Seite angezeigt wird, heisst das allerdingt, dass das bereits erreicht wurde. 
+    </p>
+    <h2 class="sub-headline">Wie logge ich mich aus?</h2>
+    <p>
+      Wenn ein Nutzer sich anmeldet, sollte unten in seinem Browserfenster ein Balken erscheinen, 
+      der es ihm erm&oumlglicht, m&oumlglichst schnell auf Seiten zur Bearbeitung von Inhalten zu 
+      kommen. Dieser Balken enth&aumllt ganz links einen Logout-Button. 
+      Zum Ausloggen kann alternativ auch <%= link_to("diesem Link", "/logout") %> gefolgt werden.
+    </p>
+    <h2 class="sub-headline">Wie lade ich ein Bild hoch?</h2>
+    <p>
+      Zum Hochladen von Bildern muss sich angemeldet werden. Wenn mit der Maus &uumlber die Schaltfl&aumlche
+      "comics" gefahren wird, erscheint rechts daneben ein Link mit der Aufschrift "..add". 
+      Dieser f&uumlhrt zu einer Seite, auf der Titel, Kategorie und Kommentare zu einem Bild, das durch
+      das &Oumlffnen eines Dialogfensters hochgeladen werden kann, hinzugef&uumlgt werden k&oumlnnen.
+      Es sei dazu bemerkt, dass der Begriff "Comic" auf der gesamten Seite zur Bezeichnung von 
+      einzelnen Bildern verwendet wird und nie f&uumlr eine Serie.
+    </p>
+    <h2 class="sub-headline">Wie l&oumlsche ich ein Bild?</h2>
+    <p>
+      In der schwarzen Fusszeile f&uumlr angemeldete Benutzer f&uumlhrt der Link "Comics" zu einer Liste
+      in der alle bereits erstellten Comics drinstehen. Neben jedem Listenelement gibt es zwei Links: einmal
+      den "edit"-Link f&uumlr das Bearbeiten eines Bilds und einmal den "delete"-Link. Durch Folgen des 
+      "delete"-Links wird das Bild von der Seite entfernt.
+    </p>
+    <h2 class="sub-headline">Wie bearbeite ich ein Bild?</h2>
+    <p>
+      siehe: "Wie l&oumlsche ich ein Bild?"<br />
+      Das Folgen des "edit"-Links kommt der Nutzer zu einem Dialog, in dem er den Titel, die Kategorie und 
+      den Kommentar eines Bildes ver&aumlndern kann. Dabei ist zu beachten, dass s&aumlmtliche &Aumlnderungen
+      in den Eingabefeldern und dem Dropdown mit den Kategorien so &uumlbernommen werden wie sie zum Zeitpunkt der
+      Bet&aumltigung des "Submit"-Buttons darin stehen. Das Bild kann allerdings auf "No file selected" bleiben, 
+      dann wird das alte Bild beibehalten.
+    </p>
+    <h2 class="sub-headline">Wie erstelle ich eine Kategorie</h2>
+    <p>
+      Einfach auf dem schwarzen Balken unten im Browser &uumlber "category" fahren und dem "..add"-Link folgen.
+      Dann das Formular ausf&uumlllen und mit dem "Submit"-Button best&aumltigen.
+      Jetzt kann beim Erstellen neuer Comics die neue Kategorie ausgew&aumlhlt werden.
+    </p>
+    <h2 class="sub-headline">Wie l&oumlsche/bearbeite ich eine Kategorie</h1>
+    <p>
+      Analog zu dem Erstellen und L&oumlschen von Comics k&oumlnnen Kategorien in der Liste gel&oumlscht werden,
+      die Liste kann &uumlber den Link in der schwarzen Fusszeile ("categories") erreicht werden.
+    </p>
+    <h2 class="sub-headline">Wie erstelle ich Hintergr&uumlnde?</h2>
+    <p>
+      Die bisher etwas entt&aumluschende Antwort: Gar nicht. Das habe ich noch nicht eingerichtet. 
+      Sie k&oumlnnen zwar erstellt werden, es werden dabei allerdings nur das Hintergrundbild und der Titel
+      in der Datenbank gespeichert. Wird der erstellte Hintergrund beim Erstellen einer Kategorie 
+      ausgew&aumlhlt, ist der Hintergrund sp&aumlter einfach nur weiss und hat eben nicht das gew&aumlhlte
+      Hintergrundbild. Wenn ein neuer Hintergrund dazu soll, bitte mich anschreiben!
+    </p>
+    <h2 class="sub-headline">Wie bearbeite ich Hintergr&uumlde?</h2>
+    <p>
+      Hintegr&uumlnde k&oumlnnen wie Comics und Kategorien &uumlber die Liste bearbeitet werden, es bringt aber nichts, da
+      das Bearbeiten des Hintergrundbildes keinen Effekt hat und das Bearbeiten des Titels den Hintergrund 
+      unwirksam macht. Es ist daher nicht empfohlen, diese Dialoge zu benutzen. 
+      Es ist allerdings in Arbeit, dass sie in Zukunft auch benutzt werden k&oumlnnen.
+      Wenn ein Hintergrund bearbeitet werden soll, bitte mich anschreiben!
+    </p>
+    <h2 class="sub-headline">Warum hat mein erstellter Hintergrund keine Wirkung?</h2>
+    <p>
+      siehe: "Wie erstelle ich Hintergr&uumlnde?"
+    </p>
+  </div>
+</div>

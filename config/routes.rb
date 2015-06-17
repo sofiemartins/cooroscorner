@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'documentation/help'
+
   devise_for :user, :controllers => {
     :sessions => 'user/sessions', 
     :registrations => 'user/registrations'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   # Admin routes
+  get 'help'					=> 'documentation#help'
   get 'upload'					=> 'comic#new'
   post 'upload'					=> 'comic#create'
   get '/list/comics'				=> 'comic#list'
