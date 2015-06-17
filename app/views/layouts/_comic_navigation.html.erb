@@ -1,4 +1,7 @@
 <ul class="comic-navigation">
+  <li>
+    <%= link_to("First!", "/#{params[:category] || "archive"}/1") %>
+  </li>
   <li <% if first_comic %>id="disabled_link"<% end %>>
     <%= link_to_if(!first_comic, "Back!",
 	"/back/#{params[:category] || "archive"}/#{params[:index]}") %>
@@ -10,5 +13,8 @@
   <li <% if last_comic %>id="disabled_link"<% end %>>
     <%= link_to_if(!last_comic, "Next!",
 	"/next/#{params[:category] || "archive"}/#{params[:index]}") %>
+  </li>
+  <li>
+    <%= link_to "Last!", "/#{params[:category] || "archive" }/#{last_comic_number}" %>
   </li>
 </ul>

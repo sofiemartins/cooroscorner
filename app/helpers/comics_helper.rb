@@ -12,6 +12,14 @@ module ComicsHelper
     params[:index].to_i == 1
   end
 
+  def last_comic_number
+    if !params[:category]
+      number = Comic.all.count
+    else
+      number = Comic.where(:category => params[:category]).count
+    end
+  end
+
   def category_labels
     labels = []
     Category.all.each do |category|
