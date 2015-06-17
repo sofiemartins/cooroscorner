@@ -9,6 +9,8 @@ $green: #008811;
 
 body {
   min-width: 1000px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body.index {
@@ -19,7 +21,7 @@ body.index {
 }
 
 body.tina {
-  background-image: image_url("tina.jpg");
+  background-image: url("tina.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: -700px -80px;
@@ -31,6 +33,13 @@ body.alien {
   background-size: cover;
   background-position: -30% -10%;
   background-color: #45D1E2;
+  div.navbar {
+    color: #EEEEEE;
+  }
+}
+
+body.black {
+  background-color: #222222;
 }
 
 

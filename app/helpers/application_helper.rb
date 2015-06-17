@@ -10,4 +10,9 @@ module ApplicationHelper
     end
   end
 
+  def current_background
+    category = Category.find_by(:short => params[:category])
+    background = category.background
+  end
+
 end

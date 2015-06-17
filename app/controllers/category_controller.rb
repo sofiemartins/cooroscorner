@@ -45,7 +45,7 @@ class CategoryController < ApplicationController
     else
       category = Category.find_by(:short => params[:short])
       category.delete
-      redirect_to root_path
+      redirect_to root_path 
     end
   end
  

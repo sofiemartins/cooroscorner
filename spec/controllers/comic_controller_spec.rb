@@ -157,9 +157,21 @@ RSpec.describe ComicController, type: :controller do
       setup_user
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic) + 1
-        post :submit_edit, :category => comic.category, :index => index, :comic => FactoryGirl.build(:comic).attributes
+        post :submit_edit, :category => comic.category, :index => index, :comic => { :title => "new title" } 
         assert_redirected_to "/#{comic.category}/#{index}"
       end
+    end
+
+    it "submits edit and edits the right comic" do
+      setup_database
+      setup_user
+      new_title = "new title"
+      comic = create_test_comic
+      index = Comic.where(:category => comic.category).index(comic) + 1
+      get :submit_edit, :category => comic.category, :index => index, 
+			:comic => { :title => new_title }
+      edited_comic = Comic.where(:category => comic.category).fetch(index - 1)
+      assert edited_comic.title == new_title
     end
   end
 
@@ -183,7 +195,7 @@ RSpec.describe ComicController, type: :controller do
       get :destroy, :category => comic.category, :index => index
       assert !Comic.find_by(:id => comic.id)
       expect(response).to have_http_status(302)
-      assert_redirected_to "/#{comic.category}/#{index-1}"
+      assert_redirected_to "/list/comics"
     end
   end
 

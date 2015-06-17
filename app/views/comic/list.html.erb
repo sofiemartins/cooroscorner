@@ -21,7 +21,7 @@
           <td><%= comic.image %></td>
           <td><%= comic.category %></td>
           <td><%= comic.created_at %></td>
-            <% index = Comic.where(:category => comic.category).index(comic) %>
+            <% index = Comic.where(:category => comic.category).index(comic)+1 %>
           <td><%= link_to "edit", "/edit/comic/#{comic.category}/#{index}" %></td>
           <td><%= link_to "delete", "/delete/comic/#{comic.category}/#{index}" %></td>
         </tr>

@@ -93,7 +93,9 @@ class ComicController < ApplicationController
       evaluate_new_image(comic)
       evaluate_new_category_input(comic)
       comic.save
-      redirect_to "/#{params[:category]}/#{params[:index]}"
+      new_category = comic.category
+      new_index = Comic.where(:category => comic.category).index(comic) + 1
+      redirect_to "/#{new_category}/#{new_index}"
     end
   end
 
@@ -107,11 +109,7 @@ class ComicController < ApplicationController
       else
         flash.now[:alert] = "An error occurred. The image couldn't be deleted."
       end
-      if params[:index] == "1"
-        redirect_to root_path
-      else
-        redirect_to "/#{params[:category]}/#{params[:index].to_i - 1}"
-      end
+      redirect_to "/list/comics"
     end
   end
 
@@ -135,9 +133,9 @@ class ComicController < ApplicationController
 
   private
     def save_comic_from_params
-      category = Category.find_by(:label => params[:comic][:category]).short
+      category = Category.find_by(:label => params[:comic][:category])
       comic = Comic.new(title: params[:comic][:title],
-			category: category,
+			category: category.short,
 			authors_comment: params[:comic][:authors_comment],
 			image: params[:comic][:image])
       return comic.save
@@ -171,7 +169,8 @@ class ComicController < ApplicationController
     def evaluate_new_category_input(comic)
       new_category = params[:comic][:category]
       if !!new_category
-        comic.category = new_category
+        category_short = Category.find_by(:label => params[:comic][:category]).short
+        comic.category = category_short
       end
     end
 

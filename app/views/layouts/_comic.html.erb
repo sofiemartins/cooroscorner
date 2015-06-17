@@ -1,6 +1,4 @@
-<% background_label = Category.find_by(:short => params[:category]) %>
-<% background = Background.find_by(:label => background_label) %>
-<body background="#{background.image}">
+<% provide(:background, current_background )%>
   <div id="comic-image" class="comic-section">
     <div id="title"><%= @comic.title %>
       <% if !!current_user %>

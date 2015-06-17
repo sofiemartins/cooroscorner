@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<% background_path = yield(:background) + ".jpg" %>
 <body class=<%= yield :background %>>
 <% current_uri = request.env['PATH_INFO'] %>
 <% if !(current_uri == root_path) %>

@@ -2,7 +2,7 @@
   <div class="comic-section">
     <h1 class="site-headline">edit category</h1>
 
-    <%= form_for(:edit, url: "/edit/category/:short") do |f| %>
+    <%= form_for(:edit, url: "/edit/category/#{params[:short]}") do |f| %>
 
       <% current_category = Category.find_by(:short => params[:short]) %>
  
@@ -13,7 +13,7 @@
       <%= f.text_field :short, value: current_category.short %><br />
 
       <%= f.label :background %><br />
-      <%= f.file_field :background, multiple: false, value: current_category.background %><br />
+      <%= f.select :background,  array_of_background_labels, value: current_category.background %><br />
 
       <%= f.submit "save changes", class: "login-button" %>
 
