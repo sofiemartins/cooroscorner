@@ -4,13 +4,13 @@
     </li>
     <li class="users"><%= link_to "users", '/list/users' %>
     </li>
-    <li class="comics"><%= link_to "comics", '/list/comics' %>
+    <li class="comics" id="with-add"><%= link_to "comics", '/list/comics' %>
       <%= link_to "..add", '/upload', id: "comics-add" %>
     </li>
-    <li class="categories"><%= link_to "categories", '/list/categories' %>
+    <li class="categories" id="with-add"><%= link_to "categories", '/list/categories' %>
       <%= link_to "..add", '/category', id: "categories-add" %>
     </li>
-    <li class="backgrounds"><%= link_to "backgrounds", '/list/backgrounds' %>
+    <li class="backgrounds" id="with-add"><%= link_to "backgrounds", '/list/backgrounds' %>
       <%= link_to "..add", '/background', id: "backgrounds-add" %>
     </li>
     <li class="help"><%= link_to "help", '/help' %>

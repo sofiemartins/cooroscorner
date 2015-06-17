@@ -10,10 +10,15 @@ class CategoryController < ApplicationController
     if !current_user
       not_found
     else
-      if save_category
+      category = create_category
+      if category.save
         flash.now[:success] = "Category has been saved successfully!"
       else
-        flash.now[:alert] = "Category could not be saved."
+        error_message = ""
+        category.error.each do |error|
+          error_message += "/n" + error
+        end
+        flash.now[:alert] = "Category could not be saved, due to..." + error_message
       end
       redirect_to "/category"
     end
@@ -85,11 +90,10 @@ class CategoryController < ApplicationController
     end
  
   private
-    def save_category
+    def create_category
       category = Category.new(label: params[:category][:label],
 				short: params[:category][:short],
 				background: params[:category][:background])
-      category.save
     end
 
 end

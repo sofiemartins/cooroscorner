@@ -12,6 +12,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'minitest', '5.5.1'
 gem 'capybara'
+gem 'capistrano'
+gem 'capistrano-passenger'
 
 gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.5.3'
