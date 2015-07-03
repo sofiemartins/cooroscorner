@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
-
   devise_for :user, :controllers => {
     :sessions => 'user/sessions', 
     :registrations => 'user/registrations'
