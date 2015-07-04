@@ -38,6 +38,11 @@ body.alien {
   }
 }
 
+body.not_found {
+  background-image: image-url("404.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 body.black {
   background-color: #222222;
 }

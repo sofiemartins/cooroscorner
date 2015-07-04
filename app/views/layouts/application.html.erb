@@ -9,7 +9,7 @@
 <% background_path = yield(:background) + ".jpg" %>
 <body class=<%= yield :background %>>
 <% current_uri = request.env['PATH_INFO'] %>
-<% if !(current_uri == root_path) %>
+<% if !(current_uri == root_path || yield(:background) == 'not_found') %>
   <%= render 'layouts/header' %>
 <% end %>
 <% if current_user %>
