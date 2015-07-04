@@ -15,8 +15,8 @@ class CategoryController < ApplicationController
         flash.now[:success] = "Category has been saved successfully!"
       else
         error_message = ""
-        category.error.each do |error|
-          error_message += "/n" + error
+        category.errors.each do |error|
+          error_message += "\n" + error
         end
         flash.now[:alert] = "Category could not be saved, due to..." + error_message
       end
@@ -35,12 +35,21 @@ class CategoryController < ApplicationController
     if !current_user
       not_found
     else 
+      puts params[:short]
       category = Category.find_by(:short => params[:short])    
       evaluate_new_label_input(category)
       evaluate_new_short_input(category)
       evaluate_new_background_input(category)
-      category.save
-      redirect_to "/#{category.short}" 
+      if category.save
+        flash.now[:success] = "Changes have successfully been submitted."
+      else
+        error_message = ""
+        category.errors.each do |error|
+          error_message += "\n" + "#{error}" 
+        end
+        flash.now[:alert] = "Changes could not be saved, due to ..." + error_message
+      end
+      redirect_to "/list/categories"
     end
   end
 
