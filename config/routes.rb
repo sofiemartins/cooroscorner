@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  root :to => 'welcome#index'
+
+  get '/404', :to => 'errors#not_found'
+  get '/500', :to => 'errors#internal_server_error'
+
   devise_for :user, :controllers => {
     :sessions => 'user/sessions', 
     :registrations => 'user/registrations'
@@ -47,9 +52,6 @@ Rails.application.routes.draw do
 
   get '/:category/:index'		=> 'comic#show'
   get '/:category'			=> 'comic#show_last'
-
-  root :to => 'welcome#index'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

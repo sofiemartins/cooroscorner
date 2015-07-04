@@ -14,21 +14,21 @@ body {
 }
 
 body.index {
-  background-image: url("index.jpg");
+  background-image: image-url("index.jpg");
   background-repeat: no-repeat;
   background-size: auto 100%;
   height: 1000px;
 }
 
 body.tina {
-  background-image: url("tina.jpg");
+  background-image: image-url("tina.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: -700px -80px;
 }
 
 body.alien {
-  background-image: image_url("alien.jpg");
+  background-image: image-url("alien.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: -30% -10%;
