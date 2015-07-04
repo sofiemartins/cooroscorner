@@ -11,9 +11,9 @@ class BackgroundController < ApplicationController
       not_found
     else
       if save_background && upload_image
-        flash.now[:success] = "The background has been saved successfully!"
+        flash.keep[:success] = "The background has been saved successfully!"
       else
-        flash.now[:alert] = "An error occurred. The background could not be saved..."
+        flash.keep[:alert] = "An error occurred. The background could not be saved..."
       end
     end
     redirect_to background_path
@@ -37,9 +37,9 @@ class BackgroundController < ApplicationController
       evaluate_new_image_input(background)
       if background.save
         update_corresponding_categories(old_label, new_label)
-        flash.now[:success] = "Changes have successfully been submitted."
+        flash.keep[:success] = "Changes have successfully been submitted."
       else
-        flash.now[:alert] = "Changes could not be saved, because the new content is not valid."
+        flash.keep[:alert] = "Changes could not be saved, because the new content is not valid."
       end
       redirect_to "/list/backgrounds" 
     end

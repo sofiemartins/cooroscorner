@@ -12,11 +12,11 @@ class CategoryController < ApplicationController
     else
       category = create_category
       if category.save
-        flash.now[:success] = "Category has been saved successfully!"
+        flash.keep[:success] = "Category has been saved successfully!"
       else
-        flash.now[:alert] = "Category could not be saved due to invalid input data."
+        flash.keep[:alert] = "Category could not be saved due to invalid input data."
       end
-      redirect_to "/category"
+      redirect_to "/list/categories"
     end
   end
 
@@ -31,16 +31,20 @@ class CategoryController < ApplicationController
     if !current_user
       not_found
     else 
+      old_short = params[:short]
+      new_short = params[:edit][:short]
       category = Category.find_by(:short => params[:short])    
       evaluate_new_label_input(category)
       evaluate_new_short_input(category)
       evaluate_new_background_input(category)
       if category.save
-        flash.now[:success] = "Changes have successfully been submitted."
+        update_corresponding_comics(old_short, new_short)
+        flash.keep[:success] = "Changes have successfully been submitted."
+        redirect_to "/list/categories"
       else
-        flash.now[:alert] = "Changes could not be saved, because the new content is not valid."
+        flash.keep[:alert] = "Changes could not be saved, because \n" + error_message(category)
+        redirect_to "/edit/category/#{params[:short]}"
       end
-      redirect_to "/list/categories"
     end
   end
 
@@ -50,7 +54,7 @@ class CategoryController < ApplicationController
     else
       category = Category.find_by(:short => params[:short])
       category.delete
-      redirect_to root_path 
+      redirect_to "/list/categories" 
     end
   end
  
@@ -94,6 +98,23 @@ class CategoryController < ApplicationController
       category = Category.new(label: params[:category][:label],
 				short: params[:category][:short],
 				background: params[:category][:background])
+    end
+
+  private
+    def update_corresponding_comics(old_short, new_short)
+      Comic.where(:category => old_short).each do |comic|
+        comic.category = new_short
+        comic.save
+      end
+    end
+
+  private 
+    def error_message(category)
+      error = ""
+      category.errors.messages.each do |message|
+        error += message + "\n"
+      end
+      return error
     end
 
 end

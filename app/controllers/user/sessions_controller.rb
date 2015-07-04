@@ -12,10 +12,10 @@ before_filter :configure_sign_in_params, only: [:create]
       if !!params[:session][:remember_me]
         @user.remember_me!
       end
-      flash.now[:notice] = "You have been logged in successfully!"
+      flash.keep[:notice] = "You have been logged in successfully!"
       redirect_to root_path
     else
-      flash.now[:alert] = "Invalid username/password combination!"
+      flash.keep[:alert] = "Invalid username/password combination!"
       render 'new'
     end
   end
@@ -24,9 +24,9 @@ before_filter :configure_sign_in_params, only: [:create]
   def destroy
     if user_signed_in?
       sign_out current_user
-      flash.now[:notice] = "Signed out successfully."
+      flash.keep[:notice] = "Signed out successfully."
     else 
-      flash.now[:alert] = "You have to log in before logging out!"
+      flash.keep[:alert] = "You have to log in before logging out!"
     end
     redirect_to root_path
   end

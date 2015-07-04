@@ -6,6 +6,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
 <% background_path = yield(:background) + ".jpg" %>
 <body class=<%= yield :background %>>
 <% current_uri = request.env['PATH_INFO'] %>
@@ -14,9 +17,6 @@
 <% end %>
 <% if current_user %>
   <%= render 'layouts/admin_footer' %>
-<% end %>
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
 <%= yield %>
 

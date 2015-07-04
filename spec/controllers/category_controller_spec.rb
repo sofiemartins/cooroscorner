@@ -24,7 +24,7 @@ RSpec.describe CategoryController, type: :controller do
       login_user
       post :create, :category => FactoryGirl.build(:category).attributes
       expect(response).to have_http_status(302)
-      assert_redirected_to "/category"
+      assert_redirected_to "/list/categories"
     end
   end
 
@@ -53,10 +53,23 @@ RSpec.describe CategoryController, type: :controller do
       login_user
       category = get_example_category
       new_attributes = FactoryGirl.build(:category).attributes
-      new_short = FactoryGirl.create(:category).short
       get :submit_edit, :short => category.short, :edit => new_attributes 
       expect(response).to have_http_status(302)
       assert_redirected_to "/list/categories"
+    end
+
+    it "changes all comics which properties correspond to the changed category" do
+      login_user
+      category = Category.new(:label => "label", :short => "short")
+      category.save
+      comic = Comic.new(:title => "title", :category => category.short, :authors_comment => "comment")
+      comic.save
+      
+      new_attributes = FactoryGirl.build(:category).attributes
+      get :submit_edit, :short => category.short, :edit => new_attributes
+
+      assert !Comic.find_by(:category => "short")
+      assert Comic.where(:category => "complex").count == 1
     end
   end
 
@@ -71,7 +84,7 @@ RSpec.describe CategoryController, type: :controller do
       category = get_example_category
       get :destroy, :short => category.short
       expect(response).to have_http_status(302)
-      assert_redirected_to root_path
+      assert_redirected_to "/list/categories" 
     end
   end
 

@@ -14,12 +14,14 @@
     </div>
     <%= render 'layouts/comic_navigation' %>
     <div class="comic-image-div"><%= image_tag @comic.image.to_s %></div>
-    <%= render 'layouts/comic_navigation' %>
+      <%= render 'layouts/comic_navigation' %>
     </div>
   </div>
-  <div id="authors-comment" class="comic-section">
-    <p><%= @comic.authors_comment %></p>
-  </div>
+  <% if !(@comic.authors_comment == "") %>
+    <div id="authors-comment" class="comic-section">
+      <p><%= @comic.authors_comment %></p>
+    </div>
+  <% end %>
   <div id="user-comments" class="comic-section">
       <%= form_for(:comment, url: "/comment/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
   

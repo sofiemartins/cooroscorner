@@ -69,9 +69,9 @@ class ComicController < ApplicationController
       not_found
     else
       if save_comic_from_params && upload_image
-        flash.now[:success] = "The image has been uploaded successfully!"
+        flash.keep[:success] = "The image has been uploaded successfully!"
       else
-        flash.now[:alert] = "An error occurred. The image could not be saved."
+        flash.keep[:alert] = "An error occurred. The image could not be saved."
       end
     end
     redirect_to upload_path
@@ -105,9 +105,9 @@ class ComicController < ApplicationController
     else
       comic = Comic.where(:category => params[:category]).fetch(params[:index].to_i - 1)  
       if comic.destroy
-        flash.now[:success] = "The image has been deleted successfully!"
+        flash.keep[:success] = "The image has been deleted successfully!"
       else
-        flash.now[:alert] = "An error occurred. The image couldn't be deleted."
+        flash.keep[:alert] = "An error occurred. The image couldn't be deleted."
       end
       redirect_to "/list/comics"
     end
