@@ -2,7 +2,7 @@
   <div class="comic-section">
     <h1 class="site-headline">edit background</h1>
 
-    <%= form_for(:edit, url: "/edit/background/:label") do |f| %>
+    <%= form_for(:edit, url: "/edit/background/#{params[:label]}") do |f| %>
   
       <% current_background = Background.find_by_label(params[:label])%>
 

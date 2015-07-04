@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :background do
-    label "label"
+    label "background100"
   end
 end

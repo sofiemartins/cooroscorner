@@ -12,8 +12,9 @@ RSpec.describe Background, type: :model do
       background = Background.new(:label => "label")
       assert background.valid?
       assert background.save
-      assert !background.valid?
-      assert !background.save
+      background1 = Background.new(:label => "label")
+      assert !background1.valid?
+      assert !background1.save
     end
   end
 end

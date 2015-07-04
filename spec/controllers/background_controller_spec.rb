@@ -59,10 +59,31 @@ RSpec.describe BackgroundController, type: :controller do
       setup_user
       background = Background.new(:label => "background1")
       assert background.save
-      post :submit_edit, :label => background.label, :edit => { :label => "background100"} 
+      assert !!Background.find_by(:label => "background1")
+      assert !Background.find_by(:label => "background100")
+      new_attributes = FactoryGirl.build(:background).attributes
+      post :submit_edit, :label => background.label, :edit => new_attributes 
       expect(response).to have_http_status(302)
-      assert_redirected_to background_path
-      assert background.label == "background100"
+      assert_redirected_to "/list/backgrounds" 
+      assert Background.find_by(:label => "background100")
+      assert !Background.find_by(:label => "background1")
+    end
+
+    it "changes all corresponding categories, when background label is changed" do
+      setup_user
+      background = Background.new(:label => "background")
+      assert background.save
+      category = Category.new(:label => "category", :short => "cat", :background => background.label)
+      assert category.save
+
+      assert Category.where(:background => "background").count == 1
+      assert !Category.find_by(:background => "background100")
+
+      new_attributes = FactoryGirl.build(:background).attributes 
+      post :submit_edit, :label => background.label, :edit => new_attributes
+
+      assert !Category.find_by(:background => "background")
+      assert Category.where(:background => "background100").count == 1
     end
   end
 

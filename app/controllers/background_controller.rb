@@ -30,11 +30,18 @@ class BackgroundController < ApplicationController
     if !current_user
       not_found
     else
-      background = Background.find_by(:label => params[:label])
+      old_label = params[:label]
+      new_label = params[:edit][:label]
+      background = Background.find_by(:label => old_label)
       evaluate_new_label_input(background)
       evaluate_new_image_input(background)
-      background.save
-      redirect_to background_path 
+      if background.save
+        update_corresponding_categories(old_label, new_label)
+        flash.now[:success] = "Changes have successfully been submitted."
+      else
+        flash.now[:alert] = "Changes could not be saved, because the new content is not valid."
+      end
+      redirect_to "/list/backgrounds" 
     end
   end
 
@@ -86,5 +93,13 @@ class BackgroundController < ApplicationController
   private
     def not_found
       raise ActionController::RoutingError.new('Not Found')
+    end
+
+  private
+    def update_corresponding_categories(old_label, new_label)
+      Category.where(:background => old_label).each do |category|
+        category.background = new_label
+        category.save
+      end
     end
 end
