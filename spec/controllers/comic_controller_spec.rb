@@ -158,7 +158,7 @@ RSpec.describe ComicController, type: :controller do
       Comic.all.each do |comic|
         index = Comic.where(:category => comic.category).index(comic) + 1
         post :submit_edit, :category => comic.category, :index => index, :comic => { :title => "new title" } 
-        assert_redirected_to "/#{comic.category}/#{index}"
+        assert_redirected_to "/list/comics"
       end
     end
 

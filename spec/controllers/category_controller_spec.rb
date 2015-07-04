@@ -49,14 +49,14 @@ RSpec.describe CategoryController, type: :controller do
       expect{ get :submit_edit, :short => category.short, :category => FactoryGirl.build(:category).attributes }.to raise_error{ ActionController::RoutingError }
     end
 
-    it "fails when logged in as admin" do
+    it "succeeds when logged in as admin" do
       login_user
       category = get_example_category
       new_attributes = FactoryGirl.build(:category).attributes
       new_short = FactoryGirl.create(:category).short
       get :submit_edit, :short => category.short, :edit => new_attributes 
       expect(response).to have_http_status(302)
-      assert_redirected_to "/#{new_short}"
+      assert_redirected_to "/list/categories"
     end
   end
 

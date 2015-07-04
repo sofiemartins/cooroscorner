@@ -62,7 +62,6 @@ RSpec.describe BackgroundController, type: :controller do
       post :submit_edit, :label => background.label, :edit => { :label => "background100"} 
       expect(response).to have_http_status(302)
       assert_redirected_to background_path
-      puts background.label
       assert background.label == "background100"
     end
   end

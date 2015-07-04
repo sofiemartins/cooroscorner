@@ -95,7 +95,7 @@ class ComicController < ApplicationController
       comic.save
       new_category = comic.category
       new_index = Comic.where(:category => comic.category).index(comic) + 1
-      redirect_to "/#{new_category}/#{new_index}"
+      redirect_to "/list/comics"
     end
   end
 

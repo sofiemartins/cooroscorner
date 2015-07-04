@@ -14,11 +14,7 @@ class CategoryController < ApplicationController
       if category.save
         flash.now[:success] = "Category has been saved successfully!"
       else
-        error_message = ""
-        category.errors.each do |error|
-          error_message += "\n" + error
-        end
-        flash.now[:alert] = "Category could not be saved, due to..." + error_message
+        flash.now[:alert] = "Category could not be saved due to invalid input data."
       end
       redirect_to "/category"
     end
@@ -35,7 +31,6 @@ class CategoryController < ApplicationController
     if !current_user
       not_found
     else 
-      puts params[:short]
       category = Category.find_by(:short => params[:short])    
       evaluate_new_label_input(category)
       evaluate_new_short_input(category)
@@ -43,11 +38,7 @@ class CategoryController < ApplicationController
       if category.save
         flash.now[:success] = "Changes have successfully been submitted."
       else
-        error_message = ""
-        category.errors.each do |error|
-          error_message += "\n" + "#{error}" 
-        end
-        flash.now[:alert] = "Changes could not be saved, due to ..." + error_message
+        flash.now[:alert] = "Changes could not be saved, because the new content is not valid."
       end
       redirect_to "/list/categories"
     end
