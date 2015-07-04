@@ -30,6 +30,7 @@ class BackgroundController < ApplicationController
     if !current_user
       not_found
     else
+      puts params[:label]
       background = Background.find_by(:label => params[:label])
       evaluate_new_label_input(background)
       evaluate_new_image_input(background)

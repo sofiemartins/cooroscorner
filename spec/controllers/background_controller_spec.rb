@@ -57,13 +57,13 @@ RSpec.describe BackgroundController, type: :controller do
 
     it "submits successfully when logged in as admin" do
       setup_user
-      background = get_example_background
-      new_attributes = FactoryGirl.build(:background).attributes
-      new_background = FactoryGirl.create(:background)
-      post :submit_edit, :label => background.label, :edit => new_attributes 
+      background = Background.new(:label => "background1")
+      assert background.save
+      post :submit_edit, :label => background.label, :edit => { :label => "background100"} 
       expect(response).to have_http_status(302)
       assert_redirected_to background_path
-      assert background.label == new_background.label
+      puts background.label
+      assert background.label == "background100"
     end
   end
 
