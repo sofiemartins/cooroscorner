@@ -1,4 +1,10 @@
 <% provide(:background, current_background )%>
+  <% if params[:category] == "alice" %>
+    <div class="general-information">
+      Dear reader, please notice that this is read from the right to the left.
+    </div>
+  <% end %>
+
   <div id="comic-image" class="comic-section">
     <div id="title"><%= @comic.title %>
       <% if !!current_user %>
