@@ -14,7 +14,7 @@ class CategoryController < ApplicationController
       if category.save
         flash.keep[:success] = "Category has been saved successfully!"
       else
-        flash.keep[:alert] = "Category could not be saved due to invalid input data."
+        flash.keep[:alert] = "Category could not be saved due to invalid input data. \n" + error_instructions
       end
       redirect_to "/list/categories"
     end
@@ -42,7 +42,7 @@ class CategoryController < ApplicationController
         flash.keep[:success] = "Changes have successfully been submitted."
         redirect_to "/list/categories"
       else
-        flash.keep[:alert] = "Changes could not be saved, because \n" + error_message(category)
+        flash.keep[:alert] = "Changes could not be saved due to invalid input data. \n" + error_instructions
         redirect_to "/edit/category/#{params[:short]}"
       end
     end
@@ -108,13 +108,17 @@ class CategoryController < ApplicationController
       end
     end
 
-  private 
-    def error_message(category)
-      error = ""
-      category.errors.messages.each do |message|
-        error += message + "\n"
-      end
-      return error
+  private
+    def error_instructions
+      instructions = "Please be sure that your label...\n"
+      instructions += "\t...is not empty, \n"
+      instructions += "\t...is not longer than 50 signs, \n"
+      instructions += "\t...is not already in use. \n"
+      instructions += "Also be sure that the abbreviation...\n"
+      instructions += "\t...is not empty, \n"
+      instructions += "\t...is not longer than 10 signs, \n"
+      instructions += "\t...is not already in use, \n"
+      instructions += "\t...does not contain any whitespace, numerals or special signs."
     end
 
 end

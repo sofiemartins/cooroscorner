@@ -15,7 +15,7 @@ before_filter :configure_sign_in_params, only: [:create]
       flash.keep[:notice] = "You have been logged in successfully!"
       redirect_to root_path
     else
-      flash.keep[:alert] = "Invalid username/password combination!"
+      flash.now[:alert] = "Invalid username/password combination!"
       render 'new'
     end
   end
@@ -26,7 +26,7 @@ before_filter :configure_sign_in_params, only: [:create]
       sign_out current_user
       flash.keep[:notice] = "Signed out successfully."
     else 
-      flash.keep[:alert] = "You have to log in before logging out!"
+      flash.now[:alert] = "You have to log in before logging out!"
     end
     redirect_to root_path
   end
