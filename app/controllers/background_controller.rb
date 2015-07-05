@@ -10,10 +10,11 @@ class BackgroundController < ApplicationController
     if !current_user
       not_found
     else
-      if save_background && upload_image
-        flash.keep[:success] = "The background has been saved successfully!"
+      if save_background
+        upload_image
+        flash[:success] = "The background has been saved successfully!"
       else
-        flash.keep[:alert] = "An error occurred. The background could not be saved..."
+        flash[:alert] = "An error occurred. The background could not be saved..."
       end
     end
     redirect_to background_path

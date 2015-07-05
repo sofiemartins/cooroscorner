@@ -110,15 +110,15 @@ class CategoryController < ApplicationController
 
   private
     def error_instructions
-      instructions = "Please be sure that your label...\n"
-      instructions += "\t...is not empty, \n"
-      instructions += "\t...is not longer than 50 signs, \n"
-      instructions += "\t...is not already in use. \n"
-      instructions += "Also be sure that the abbreviation...\n"
-      instructions += "\t...is not empty, \n"
-      instructions += "\t...is not longer than 10 signs, \n"
-      instructions += "\t...is not already in use, \n"
-      instructions += "\t...does not contain any whitespace, numerals or special signs."
+      instructions = "Please be sure that your label "
+      instructions += "is not empty,  "
+      instructions += "is not longer than 50 signs, "
+      instructions += "is not already in use. "
+      instructions += "Also be sure that the abbreviation "
+      instructions += "is not empty, "
+      instructions += "is not longer than 10 signs, "
+      instructions += "is not already in use, "
+      instructions += "does not contain any whitespace, numerals or special signs."
     end
 
 end
