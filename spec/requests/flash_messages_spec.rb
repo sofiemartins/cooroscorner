@@ -140,6 +140,28 @@ RSpec.describe "FlashMessages", type: :request do
     end
   end
 
+  describe "create comic" do
+    it "flashs alert when unsuccessful" do
+
+    end
+
+    it ", flash vanishes after unsuccessful creation and reload" do
+
+    end
+
+    it "flashs success when successful" do
+
+    end
+  
+    it ", flash vanishes after successful creation and reload" do
+
+    end
+  end
+
+  describe "edit comic" do
+
+  end
+
   private 
     def perform_background_edit(new_label)
       background = setup_background("somelabel")
@@ -174,6 +196,11 @@ RSpec.describe "FlashMessages", type: :request do
       category = Category.new(:label => "some label", :short => short)
       post "/category", :category => { :label => category.label, :short => category.short }
       return category
+    end
+
+  private 
+    def setup_comic(image)
+
     end
 
   private 
