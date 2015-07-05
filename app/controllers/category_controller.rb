@@ -14,7 +14,7 @@ class CategoryController < ApplicationController
       if category.save
         flash.keep[:success] = "Category has been saved successfully!"
       else
-        flash.keep[:alert] = "Category could not be saved due to invalid input data. \n" + error_instructions
+        flash.keep[:alert] = category.errors.full_messages.to_sentence
       end
       redirect_to "/list/categories"
     end
