@@ -104,7 +104,7 @@ RSpec.describe ComicController, type: :controller do
       post :create, :comic => { :title => "title",
 				:category => "Offensively Offensive",
 				:authors_comment => "some comment here",
-				:image => nil } 
+				:image => "test.jpg" } 
       expect(response).to have_http_status(302)
       assert_redirected_to "/upload"
       assert Comic.count == initial_comic_count +1
@@ -116,7 +116,7 @@ RSpec.describe ComicController, type: :controller do
       post :create, :comic => { :title => "very very unique title",
 				:category => "Offensively Offensive",
 				:authors_comment => "some comment here",
-				:image => nil }
+				:image => "test.jpg" }
       assert Comic.find_by(:title => "very very unique title").category == "offensive"
     end
   end

@@ -141,25 +141,29 @@ RSpec.describe "FlashMessages", type: :request do
   end
 
   describe "create comic" do
-    it "flashs alert when unsuccessful" do
-
-    end
-
-    it ", flash vanishes after unsuccessful creation and reload" do
-
-    end
-
     it "flashs success when successful" do
-
+      setup_comic
+      expect(flash[:success]).to be_present  
     end
   
     it ", flash vanishes after successful creation and reload" do
-
+      setup_comic
+      reload
+      expect(flash[:success]).to be_nil
     end
   end
 
   describe "edit comic" do
+    it "flashes when edit successful" do
+      perform_comic_edit
+      expect(flash[:success]).to be_present
+    end
 
+    it ", flash vanishes after successful edit and reload" do
+      perform_comic_edit
+      reload
+      expect(flash[:success]).to be_nil
+    end
   end
 
   private 
@@ -172,6 +176,12 @@ RSpec.describe "FlashMessages", type: :request do
     def perform_category_edit(new_short)
       category = setup_category("valid")
       post "/edit/category/#{category.short}", :edit => { :short => new_short }
+    end
+
+  private
+    def perform_comic_edit
+      comic = setup_comic
+      post "/edit/comic/#{comic.category}/#{Comic.all.index(comic).to_i + 1}", :comic => { :title => "newtitle"}
     end
 
   private
@@ -199,8 +209,13 @@ RSpec.describe "FlashMessages", type: :request do
     end
 
   private 
-    def setup_comic(image)
-
+    def setup_comic
+      login_user
+      category = Category.new(:label => "Category", :short => "category")
+      category.save
+      comic = Comic.new(:title => "title", :category => "category")
+      post "/upload", :comic => { :title => comic.title, :category => category.label}
+      return comic
     end
 
   private 

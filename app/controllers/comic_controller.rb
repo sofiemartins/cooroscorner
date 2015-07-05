@@ -68,7 +68,8 @@ class ComicController < ApplicationController
     if !current_user
       not_found
     else
-      if save_comic_from_params && upload_image
+      if save_comic_from_params
+        upload_image
         flash.keep[:success] = "The image has been uploaded successfully!"
       else
         flash.keep[:alert] = "An error occurred. The image could not be saved."
@@ -92,10 +93,13 @@ class ComicController < ApplicationController
       evaluate_new_authors_comment(comic)
       evaluate_new_image(comic)
       evaluate_new_category_input(comic)
-      comic.save
-      new_category = comic.category
-      new_index = Comic.where(:category => comic.category).index(comic) + 1
-      redirect_to "/list/comics"
+      if comic.save
+        flash.keep[:success] = "The changes have been applied successfully!"
+        redirect_to "/list/comics"
+      else
+        flash.keep[:alert] = "Invalid input."
+        redirect_to "/edit/comic/#{params[:category]}/#{params[:index]}"
+      end
     end
   end
 
