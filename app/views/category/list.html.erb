@@ -15,10 +15,10 @@
         <tr>
           <td><%= category.id %></td>
           <td><%= category.label %></td>
-          <td><%= category.short %></td>
+          <td><%= category.abbreviation %></td>
           <td><%= category.background %></td>
-          <td><%= link_to "edit", "/edit/category/#{category.short}" %></td>
-          <td><%= link_to "delete", "/delete/category/#{category.short}" %></td>
+          <td><%= link_to "edit", "/edit/category/#{category.abbreviation}" %></td>
+          <td><%= link_to "delete", "/delete/category/#{category.abbreviation}" %></td>
         </tr>
       <% end %>
     </table>

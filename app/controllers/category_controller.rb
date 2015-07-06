@@ -31,19 +31,19 @@ class CategoryController < ApplicationController
     if !current_user
       not_found
     else 
-      old_short = params[:short]
-      new_short = params[:edit][:short]
-      category = Category.find_by(:short => params[:short])    
+      old_abbreviation = params[:abbreviation]
+      new_abbreviation = params[:edit][:abbreviation]
+      category = Category.find_by(:abbreviation => params[:abbreviation])    
       evaluate_new_label_input(category)
-      evaluate_new_short_input(category)
+      evaluate_new_abbreviation_input(category)
       evaluate_new_background_input(category)
       if category.save
-        update_corresponding_comics(old_short, new_short)
+        update_corresponding_comics(old_abbreviation, new_abbreviation)
         flash.keep[:success] = "Changes have successfully been submitted."
         redirect_to "/list/categories"
       else
         flash.keep[:alert] = "Changes could not be saved due to invalid input data. \n" + error_instructions
-        redirect_to "/edit/category/#{params[:short]}"
+        redirect_to "/edit/category/#{params[:abbreviation]}"
       end
     end
   end
@@ -52,7 +52,7 @@ class CategoryController < ApplicationController
     if !current_user
       not_found
     else
-      category = Category.find_by(:short => params[:short])
+      category = Category.find_by(:abbreviation => params[:abbreviation])
       category.delete
       redirect_to "/list/categories" 
     end
@@ -73,10 +73,10 @@ class CategoryController < ApplicationController
     end
 
   private 
-    def evaluate_new_short_input(category)
-      new_short = params[:edit][:short]
-      if !!new_short
-        category.short = new_short
+    def evaluate_new_abbreviation_input(category)
+      new_abbreviation = params[:edit][:abbreviation]
+      if !!new_abbreviation
+        category.abbreviation = new_abbreviation
       end
     end
 
@@ -96,14 +96,14 @@ class CategoryController < ApplicationController
   private
     def create_category
       category = Category.new(label: params[:category][:label],
-				short: params[:category][:short],
+				abbreviation: params[:category][:abbreviation],
 				background: params[:category][:background])
     end
 
   private
-    def update_corresponding_comics(old_short, new_short)
-      Comic.where(:category => old_short).each do |comic|
-        comic.category = new_short
+    def update_corresponding_comics(old_abbreviation, new_abbreviation)
+      Comic.where(:category => old_abbreviation).each do |comic|
+        comic.category = new_abbreviation
         comic.save
       end
     end

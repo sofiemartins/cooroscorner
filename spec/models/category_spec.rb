@@ -3,31 +3,31 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
    describe "when creating a new category" do
     it "label needs to be present" do
-      category = Category.new(:label => "", :short => "short")
+      category = Category.new(:label => "", :abbreviation => "abbrev")
       assert !category.valid?
       assert !category.save
     end
  
     it "label has to be maximum 50 signs" do
-      category = Category.new(:label => "a"*51, :short => "short")
+      category = Category.new(:label => "a"*51, :abbreviation => "abbrev")
       assert !category.valid?
       assert !category.save
-      category = Category.new(:label => "a"*50, :short => "short")
+      category = Category.new(:label => "a"*50, :abbreviation => "abbrev")
       assert category.valid?
       assert category.save
     end
 
     it "label needs to be unique" do
-      category = Category.new(:label => "label", :short => "shorta")
+      category = Category.new(:label => "label", :abbreviation => "abbreva")
       assert category.valid?
       assert category.save
-      category = Category.new(:label => "label", :short => "shortb")
+      category = Category.new(:label => "label", :abbreviation => "abbrevb")
       assert !category.valid?
       assert !category.save
     end
 
-    it "short needs to be present" do
-      category = Category.new(:label => "label", :short => "")
+    it "abbreviation needs to be present" do
+      category = Category.new(:label => "label", :abbreviation => "")
       assert !category.valid?
       assert !category.save
       category = Category.new(:label => "label")
@@ -35,26 +35,26 @@ RSpec.describe Category, type: :model do
       assert !category.save
     end
 
-    it "short needs to be maximum 10 signs" do
-      category = Category.new(:label => "label", :short => "a"*11)
+    it "abbreviation needs to be maximum 10 signs" do
+      category = Category.new(:label => "label", :abbreviation => "a"*11)
       assert !category.valid?
       assert !category.save
-      category = Category.new(:label => "label", :short => "a"*10)
+      category = Category.new(:label => "label", :abbreviation => "a"*10)
       assert category.valid?
       assert category.save
     end
 
-    it "short needs to be unique" do
-      category = Category.new(:label => "label1", :short => "short")
+    it "abbreviation needs to be unique" do
+      category = Category.new(:label => "label1", :abbreviation => "abbrev")
       assert category.valid?
       assert category.save
-      category = Category.new(:label => "label2", :short => "short")
+      category = Category.new(:label => "label2", :abbreviation => "abbrev")
       assert !category.valid?
       assert !category.save
     end
 
-    it "short needs to have no spaces" do
-      category = Category.new(:label => "label", :short => "spa ce")
+    it "abbreviation needs to have no spaces" do
+      category = Category.new(:label => "label", :abbreviation => "spa ce")
       assert !category.valid?
       assert !category.save
     end

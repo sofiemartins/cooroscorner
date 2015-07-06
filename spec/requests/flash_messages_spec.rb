@@ -173,9 +173,9 @@ RSpec.describe "FlashMessages", type: :request do
     end
 
   private 
-    def perform_category_edit(new_short)
+    def perform_category_edit(new_abbreviation)
       category = setup_category("valid")
-      post "/edit/category/#{category.short}", :edit => { :short => new_short }
+      post "/edit/category/#{category.abbreviation}", :edit => { :abbreviation => new_abbreviation }
     end
 
   private
@@ -201,17 +201,17 @@ RSpec.describe "FlashMessages", type: :request do
     end
 
   private
-    def setup_category(short)
+    def setup_category(abbreviation)
       login_user
-      category = Category.new(:label => "some label", :short => short)
-      post "/category", :category => { :label => category.label, :short => category.short }
+      category = Category.new(:label => "some label", :abbreviation => abbreviation)
+      post "/category", :category => { :label => category.label, :abbreviation => category.abbreviation }
       return category
     end
 
   private 
     def setup_comic
       login_user
-      category = Category.new(:label => "Category", :short => "category")
+      category = Category.new(:label => "Category", :abbreviation => "category")
       category.save
       comic = Comic.new(:title => "title", :category => "category")
       post "/upload", :comic => { :title => comic.title, :category => category.label}

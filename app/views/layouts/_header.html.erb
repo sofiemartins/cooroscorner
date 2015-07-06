@@ -6,7 +6,7 @@
         <li class="comic-list-item"><%= link_to "Comics", root_path, id: "comic" %>
 	  <ul class="submenu-comics">
             <% Category.all.each do |category| %>
-            <li><%= link_to "#{category.label}", "#{category.short}" %></li>
+            <li><%= link_to "#{category.label}", "#{category.abbreviation}" %></li>
             <% end %>
           </ul>
 	</li>

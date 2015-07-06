@@ -73,7 +73,7 @@ RSpec.describe BackgroundController, type: :controller do
       setup_user
       background = Background.new(:label => "background")
       assert background.save
-      category = Category.new(:label => "category", :short => "cat", :background => background.label)
+      category = Category.new(:label => "category", :abbreviation => "cat", :background => background.label)
       assert category.save
 
       assert Category.where(:background => "background").count == 1

@@ -2,15 +2,15 @@
   <div class="comic-section">
     <h1 class="site-headline">edit category</h1>
 
-    <%= form_for(:edit, url: "/edit/category/#{params[:short]}") do |f| %>
+    <%= form_for(:edit, url: "/edit/category/#{params[:abbreviation]}") do |f| %>
 
-      <% current_category = Category.find_by(:short => params[:short]) %>
+      <% current_category = Category.find_by(:abbreviation => params[:abbreviation]) %>
  
       <%= f.label :label %><br />
       <%= f.text_field :label, value: current_category.label %><br />
 
       <%= f.label "Abbreviation" %><br />
-      <%= f.text_field :short, value: current_category.short %><br />
+      <%= f.text_field :abbreviation, value: current_category.abbreviation %><br />
 
       <%= f.label :background %><br />
       <%= f.select :background,  array_of_background_labels, value: current_category.background %><br />

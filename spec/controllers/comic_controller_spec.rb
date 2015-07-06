@@ -6,7 +6,7 @@ RSpec.describe ComicController, type: :controller do
     it "shows element with the given index with HTTP 200" do
       setup_database
       Category.all.each do |category|
-        get :show, :category => category.short, :index => 1
+        get :show, :category => category.abbreviation, :index => 1
         expect(response).to be_success
         expect(response).to have_http_status(200)
       end
@@ -15,7 +15,7 @@ RSpec.describe ComicController, type: :controller do
     it "renders template" do
       setup_database
       Category.all.each do |category|
-        get :show, :category => category.short, :index => 1
+        get :show, :category => category.abbreviation, :index => 1
         expect(response).to render_template("show")
       end
     end
@@ -25,9 +25,9 @@ RSpec.describe ComicController, type: :controller do
     it "redirects back with HTTP 302" do
       setup_database
       Category.all.each do |category|
-        get :back, :category => category.short, :index => 2
+        get :back, :category => category.abbreviation, :index => 2
         expect(response).to have_http_status(302)
-        assert_redirected_to "/#{category.short}/1"
+        assert_redirected_to "/#{category.abbreviation}/1"
       end
     end
   end
@@ -36,9 +36,9 @@ RSpec.describe ComicController, type: :controller do
     it "redirects next with HTTP 302" do
       setup_database
       Category.all.each do |category|
-        get :next, :category => category.short, :index => 1
+        get :next, :category => category.abbreviation, :index => 1
         expect(response).to have_http_status(302)
-        assert_redirected_to "/#{category.short}/2"
+        assert_redirected_to "/#{category.abbreviation}/2"
       end
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe ComicController, type: :controller do
     it "redirects to random comic page with HTTP 302" do
       setup_database
       Category.all.each do |category|
-        get :random, :category => category.short, :index => 1
+        get :random, :category => category.abbreviation, :index => 1
         expect(response).to have_http_status(302)
       end
     end 
@@ -241,8 +241,8 @@ RSpec.describe ComicController, type: :controller do
     end
 
   private
-    def setup_category(label, short)
-      category = Category.new(:label => label, :short => short)
+    def setup_category(label, abbreviation)
+      category = Category.new(:label => label, :abbreviation => abbreviation)
       category.save
     end
 
@@ -256,7 +256,7 @@ RSpec.describe ComicController, type: :controller do
 
   private
     def setup_comic(category)
-      comic = Comic.new(:category => category.short, :title => "some title", :authors_comment => "some comment")
+      comic = Comic.new(:category => category.abbreviation, :title => "some title", :authors_comment => "some comment")
       comic.save
     end
 

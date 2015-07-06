@@ -31,13 +31,13 @@ RSpec.describe CategoryController, type: :controller do
   describe "GET #edit" do
     it "will fail when not logged in" do
       category = get_example_category
-      expect{ get :edit, :short => category.short }.to raise_error{ ActionController::RoutingError }
+      expect{ get :edit, :abbreviation => category.abbreviation }.to raise_error{ ActionController::RoutingError }
     end
 
     it "will succeed, when an admin is logged in" do
       login_user
       category = get_example_category
-      get :edit, :short => category.short
+      get :edit, :abbreviation => category.abbreviation
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
@@ -46,29 +46,29 @@ RSpec.describe CategoryController, type: :controller do
   describe "GET #submit_edit" do
     it "fails when not logged in" do
       category = get_example_category
-      expect{ get :submit_edit, :short => category.short, :category => FactoryGirl.build(:category).attributes }.to raise_error{ ActionController::RoutingError }
+      expect{ get :submit_edit, :abbreviation => category.abbreviation, :category => FactoryGirl.build(:category).attributes }.to raise_error{ ActionController::RoutingError }
     end
 
     it "succeeds when logged in as admin" do
       login_user
       category = get_example_category
       new_attributes = FactoryGirl.build(:category).attributes
-      get :submit_edit, :short => category.short, :edit => new_attributes 
+      get :submit_edit, :abbreviation => category.abbreviation, :edit => new_attributes 
       expect(response).to have_http_status(302)
       assert_redirected_to "/list/categories"
     end
 
     it "changes all comics which properties correspond to the changed category" do
       login_user
-      category = Category.new(:label => "label", :short => "short")
+      category = Category.new(:label => "label", :abbreviation => "abbrev")
       category.save
-      comic = Comic.new(:title => "title", :category => category.short, :authors_comment => "comment")
+      comic = Comic.new(:title => "title", :category => category.abbreviation, :authors_comment => "comment")
       comic.save
       
       new_attributes = FactoryGirl.build(:category).attributes
-      get :submit_edit, :short => category.short, :edit => new_attributes
+      get :submit_edit, :abbreviation => category.abbreviation, :edit => new_attributes
 
-      assert !Comic.find_by(:category => "short")
+      assert !Comic.find_by(:category => "abbreviation")
       assert Comic.where(:category => "complex").count == 1
     end
   end
@@ -76,13 +76,13 @@ RSpec.describe CategoryController, type: :controller do
   describe "GET #destroy" do
     it "fails when not logged in" do
       category = get_example_category
-      expect{ get :destroy, :short => category.short }.to raise_error{ ActionController::RoutingError }
+      expect{ get :destroy, :abbreviation => category.abbreviation }.to raise_error{ ActionController::RoutingError }
     end
 
     it "succeeds when logged in as admin" do
       login_user
       category = get_example_category
-      get :destroy, :short => category.short
+      get :destroy, :abbreviation => category.abbreviation
       expect(response).to have_http_status(302)
       assert_redirected_to "/list/categories" 
     end
@@ -111,7 +111,7 @@ RSpec.describe CategoryController, type: :controller do
 
   def get_example_category
     category = Category.new(label: "label",
-				short: "short")
+				abbreviation: "abbrev")
     category.save
     return category
   end

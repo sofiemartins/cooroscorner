@@ -139,7 +139,7 @@ class ComicController < ApplicationController
     def save_comic_from_params
       category = Category.find_by(:label => params[:comic][:category])
       comic = Comic.new(title: params[:comic][:title],
-			category: category.short,
+			category: category.abbreviation,
 			authors_comment: params[:comic][:authors_comment],
 			image: params[:comic][:image])
       return comic.save
@@ -173,8 +173,8 @@ class ComicController < ApplicationController
     def evaluate_new_category_input(comic)
       new_category = params[:comic][:category]
       if !!new_category
-        category_short = Category.find_by(:label => params[:comic][:category]).short
-        comic.category = category_short
+        category_abbreviation = Category.find_by(:label => params[:comic][:category]).abbreviation
+        comic.category = category_abbreviation
       end
     end
 
