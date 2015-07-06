@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616011046) do
+ActiveRecord::Schema.define(version: 20150706063000) do
 
   create_table "backgrounds", force: :cascade do |t|
     t.string   "label"
@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20150616011046) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "label"
-    t.string   "short"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "background"
+    t.string   "abbreviation"
   end
 
   create_table "comics", force: :cascade do |t|
