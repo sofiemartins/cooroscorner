@@ -21,3 +21,4 @@
 # Ignore zeus files
 custom_plan.rb
 zeus.json
+config/database.yml
