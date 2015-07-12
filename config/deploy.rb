@@ -1,12 +1,16 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
+lock '3.4.0'
 
 set :application, 'cooroscorner.com'
 set :deploy_user, 'web45'
-set :deploy_to 'server5.'
+set :deploy_to, '/html/rails'
+
+set :password, ask('Server password', nil)
+server 'server5.railshosting.de', user: 'web45', port: 981, password: fetch(:password), roles: %w{web app db}
 
 set :scm, :git
 set :repo_url, 'git@github.com:sofiemartins/cooroscorner.git'
+set :branch, 'master'
 
 set :keep_releases, 5
 set :linked_files, %w{config/database.yml}
