@@ -1,35 +1,28 @@
 # config valid only for Capistrano 3.1
 lock '3.4.0'
 
+# application settings
 set :application, 'cooroscorner.com'
-set :deploy_user, 'web45'
-set :deploy_to, '/html/rails'
+set :deploy_via, :copy
 
-set :password, ask('Server password', nil)
-server 'server5.railshosting.de', user: 'web45', port: 981, password: fetch(:password), roles: %w{web app db}
-
+# repository settings
 set :scm, :git
 set :repo_url, 'git@github.com:sofiemartins/cooroscorner.git'
 set :branch, 'master'
 
+# server settings
+set :deploy_user, 'web45'
+set :deploy_to, '/html/rails'
+set :use_sudo, false
+set :rails_env, "production"
+set :ssh_options, { :port => 981 }
 set :keep_releases, 5
+
 set :linked_files, %w{config/database.yml}
 set :linkes_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-
-# Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/var/www/my_app'
-
-# Default value for :format is :pretty
-# set :format, :pretty
-
-# Default value for :log_level is :debug
-# set :log_level, :debug
-
-# Default value for :pty is false
-# set :pty, true
+set :pty, true
+server 'server5.railshosting.de', :app, :web, :db, :primary => true
 
 namespace :deploy do
 
