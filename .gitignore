@@ -24,3 +24,4 @@ zeus.json
 config/database.yml
 config/deploy.rb
 Rakefile
+config/secrets.yml
