@@ -16,6 +16,8 @@ gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-rails', '~> 1.1.0'
 gem 'capistrano-bundler' 
 gem 'capistrano-rbenv', '~> 2.0'
+gem 'execjs'
+gem 'therubyracer'
 
 gem 'jquery-rails', '~> 4.0.3'
 gem 'turbolinks', '~> 2.5.3'
