@@ -171,6 +171,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.14.0)
     rake (10.4.2)
+    rb-readline (0.5.3)
     rdoc (4.2.0)
       json (~> 1.4)
     ref (2.0.0)
@@ -271,6 +272,7 @@ DEPENDENCIES
   minitest (~> 5.5.1)
   rails (~> 4.2.1)
   rails_12factor
+  rb-readline
   rspec
   rspec-rails
   sass-rails (~> 5.0.3)

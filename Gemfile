@@ -18,6 +18,7 @@ gem 'capistrano-bundler'
 gem 'capistrano-rbenv', '~> 2.0'
 gem 'execjs'
 gem 'therubyracer'
+gem 'rb-readline'
 
 gem 'jquery-rails', '~> 4.0.3'
 gem 'turbolinks', '~> 2.5.3'
