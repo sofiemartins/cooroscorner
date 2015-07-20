@@ -1,0 +1,13 @@
+<div id="user-comments" class="comic-section">
+    <%= form_for(:comment, url: "/comment/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
+
+      <%= f.label "your name" %><br />
+      <%= f.text_field :name %><br />
+ 
+      <%= f.label "comment" %><br />
+      <%= f.text_area :content, cols: 80, rows: 1 %><br />
+
+      <%= f.submit "Submit", class: "button" %><br />
+
+    <% end %>
+</div>

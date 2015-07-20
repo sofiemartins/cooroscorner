@@ -12,8 +12,6 @@
       padding-right: 70px;
       display: block;
       float: left;
-      #with-add{
-      }
       font-size: 120%;
       a:link {
         font-weight: bold;
@@ -36,7 +34,7 @@
   padding-right: 20px;
 }
 
-.add {
+#comics-add #categories-add #backgrounds-add {
   color: #000000;
   pointer-events: none;
   cursor: default;

@@ -1,40 +1,8 @@
 <% provide(:background, current_background )%>
-  <% if params[:category] == "alice" %>
-    <div class="general-information">
-      Dear reader, please notice that this is read from the right to the left.
-    </div>
-  <% end %>
 
-  <div id="comic-image" class="comic-section">
-    <div id="title"><%= @comic.title %>
-      <% if !!current_user %>
-         <%= link_to "edit", "/edit/#{params[:category] || "archive"}/#{params[:index]}" %>
-         <%= link_to "delete", "/delete/#{params[:category] || "archive"}/#{params[:index]}" %>
-      <% end %>
-    </div>
-    <%= render 'layouts/comic_navigation' %>
-    <div class="comic-image-div"><%= image_tag @comic.image.to_s %></div>
-      <%= render 'layouts/comic_navigation' %>
-    </div>
-  </div>
-  <% if !(@comic.authors_comment == "") %>
-    <div id="authors-comment" class="comic-section">
-      <p><%= @comic.authors_comment %></p>
-    </div>
-  <% end %>
-  <div id="user-comments" class="comic-section">
-      <%= form_for(:comment, url: "/comment/#{params[:category] || "archive"}/#{params[:index]}") do |f| %>
+  <%= render 'layouts/general_information' %>
+  <%= render 'layouts/comic_image' %>
+  <%= render 'layouts/authors_comment' %>
+  <%= render 'layouts/new_comment' %>
+  <%= render 'layouts/comments' %>
   
-        <%= f.label "your name" %><br />
-        <%= f.text_field :name %><br />
-  
-        <%= f.label "comment" %><br />
-        <%= f.text_area :content, cols: 80, rows: 1 %><br />
-
-        <%= f.submit "Submit", class: "button" %><br />
-
-      <% end %>
-    <%= render 'layouts/comments' %>
-  
-  </div>
-</body>
