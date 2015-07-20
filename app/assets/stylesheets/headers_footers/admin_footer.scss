@@ -34,7 +34,19 @@
   padding-right: 20px;
 }
 
-#comics-add #categories-add #backgrounds-add {
+#comics-add {
+  color: #000000;
+  pointer-events: none;
+  cursor: default;
+}
+
+#categories-add {
+  color: #000000;
+  pointer-events: none;
+  cursor: default;
+}
+
+#backgrounds-add {
   color: #000000;
   pointer-events: none;
   cursor: default;
