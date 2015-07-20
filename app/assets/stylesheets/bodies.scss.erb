@@ -7,14 +7,21 @@ body {
 
 <% Background.all.each do |background| %>
   body.<%= background.label %> {
-    background-image: image-url(<%= background.label %>.jpg);
-    background-repeat: no-repeat;
-    background-size: auto 100%;
+      background-image: image-url(<%= background.image %>".jpg");
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+    background-color: <%= background.color %>
   }
 <% end %>
 
 body.not_found {
   background-image: image-url("404.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+ 
+body.index {
+  background-image: image-url("index.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
