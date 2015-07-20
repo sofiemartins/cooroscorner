@@ -1,0 +1,39 @@
+$green: #008811;
+
+hr.header-bar {
+  padding: 0;
+  border: 0;
+  background-color: black;
+}
+
+ul.nav {
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: right;
+  list-style-type: none;
+  margin-top: 1%;
+  padding: 0;
+}
+
+div.container{
+  height: 150px;
+  font-size: 200%;
+  ul.nav li {
+    padding-left: 5px;
+    display: inline;
+    font-size: 80%;
+  }
+  a:link {
+    color: #888888;
+    text-decoration: none;
+  }
+  a:visited {
+    color: #888888;
+  }
+  a:hover{
+    color: #111111;
+  }
+  a:active{
+    color: #000000;
+  }
+}
