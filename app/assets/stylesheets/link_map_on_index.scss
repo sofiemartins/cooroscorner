@@ -8,8 +8,8 @@ ul.index-link-list {
  
 li.index-link-item {
   width: 70%;
-  padding: 20px 15px 20px 15px;
-  margin: 50px 50% 50px 50px;
+  padding: 20px 10px 20px 10px;
+  margin: 25px 50px 25px 50px;
   background-color: white;
   opacity: 0.6;
   border: solid 1px;
@@ -23,7 +23,7 @@ body.index {
     text-decoration: none;
     color: #000000;
     font-style: italic;
-    font-size: 120%;
+    font-size: 150%;
     outline: none;
     :hover {
       opacity: 1.0;
@@ -33,7 +33,7 @@ body.index {
 
 .index-link {
   width: 500px;
-  font-size: 120%;
+  font-size: 200%;
   font-style: italic;
   text-decoration: none;
   color: #000000;
@@ -67,4 +67,16 @@ body.index {
   background-image: image-url("alice-background.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#archive-link-item {
+  background-image: image-url("archive-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#about-link {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
