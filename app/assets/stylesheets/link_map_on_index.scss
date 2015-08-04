@@ -11,7 +11,7 @@ li.index-link-item {
   padding: 20px 15px 20px 15px;
   margin: 50px 50% 50px 50px;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.6;
   border: solid 1px;
   text-align: right;
 }
@@ -19,6 +19,16 @@ li.index-link-item {
 body.index {
   background-image: image-url("index.png");
   background-size: cover;
+  a {
+    text-decoration: none;
+    color: #000000;
+    font-style: italic;
+    font-size: 120%;
+    outline: none;
+    :hover {
+      opacity: 1.0;
+    }
+  }
 }
 
 .index-link {
