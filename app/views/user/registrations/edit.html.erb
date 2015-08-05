@@ -2,19 +2,7 @@
   <div class="comic-section">
     <h1 class="site-headline">edit user</h1>
 
-    <%= form_for(:edit, url: "/edit/user/#{params[:username]}") do |f| %>
-    <% user = User.find_by(:username => params[:username]) || current_user %>
-
-      <% if current_user.admin %>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, value: user.email %>
-      <% else %>
-        <%= link_to "change email?", '#' %>
-      <% end %> 
-      <br />
-
-      <%= f.label :username %><br />
-      <%= f.text_field :username, value: user.username %><br />
+    <%= form_for(:edit, url: "/edit/password") do |f| %>
 
       <%= f.label "old password (leave empty when not changing password)"%><br />
       <%= f.password_field :old_password, autocomplete: "off" %><br />

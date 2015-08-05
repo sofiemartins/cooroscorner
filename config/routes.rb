@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     post "login", 			:to => "user/sessions#create"
     get "logout", 			:to => "user/sessions#destroy"
     get '/list/users', 			:to => "user/registrations#list"
+    get "/edit/password",	 	:to => "user/registrations#edit"
   end
 
   # Admin routes

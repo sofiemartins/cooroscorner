@@ -26,7 +26,10 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    raise ActionController::RoutingError.new('Not Found')
+    if !current_user
+      raise ActionController::RoutingError.new('Not Found')
+    else
+    end
   end
 
   def submit_edit

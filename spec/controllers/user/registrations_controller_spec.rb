@@ -32,16 +32,24 @@ RSpec.describe User::RegistrationsController, type: :controller do
   end
 
   describe "GET #edit" do
-    it "fails for everyone" do
+    it "fails for non users" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      expect{ get :edit, :username => user.username }.to raise_error{ ActionController::RoutingError }
-      login_user
-      expect{ get :edit, :username => user.username }.to raise_error{ ActionController::RoutingError }
+      user = get_example_user
+      get :edit, :username => user.username
+      expect(response).to have_http_status(302)
+    end
+
+    it "succeeds for users" do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = login_user
+      get :edit, :username => user.username
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
     end
   end
 
   describe "POST #submit_edit" do
-    it "fails for everyone" do
+    it "fails for non users" do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user = get_example_user
       expect{ post :submit_edit, :username => user.username, 
@@ -50,6 +58,12 @@ RSpec.describe User::RegistrationsController, type: :controller do
       
       expect{ post :submit_edit, :username => user.username, 
 		:edit => { :username => "new_username" } }.to raise_error{ ActionController::RoutingError }
+    end
+
+    it "succeeds for users" do
+      @request.env["devise.maping"] = Devise.mappings[:user]
+      login_user
+      :post :submit_edit, :edit => { :old_password => }
     end
   end
 

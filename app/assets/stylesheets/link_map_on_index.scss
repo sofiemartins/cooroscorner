@@ -7,19 +7,17 @@ ul.index-link-list {
 }
  
 li.index-link-item {
-  width: 70%;
-  padding: 20px 10px 20px 10px;
-  margin: 25px 50px 25px 50px;
-  background-color: white;
+  margin: 25px 40% 25px 50px;
   opacity: 0.6;
-  border: solid 1px;
   text-align: right;
+  div {
+    padding: 125px 150px 125px 150px;
+    border: solid 1px;
+  }
 }
 
 body.index {
-  background-image: image-url("index.png");
-  background-size: cover;
-  a {
+  a.index-link {
     text-decoration: none;
     color: #000000;
     font-style: italic;
@@ -31,18 +29,10 @@ body.index {
   }
 }
 
-.index-link {
-  width: 500px;
-  font-size: 200%;
-  font-style: italic;
-  text-decoration: none;
-  color: #000000;
-}
-
 #offensive-link-item {
   background-image: image-url("offensive-background.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 #random-link-item {
@@ -54,29 +44,36 @@ body.index {
 #mayuyu-link-item {
   background-image: image-url("mayuyu-background.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 #tina-link-item {
   background-image: image-url("tina-background.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 #alice-link-item {
   background-image: image-url("alice-background.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 #archive-link-item {
   background-image: image-url("archive-background.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 #about-link {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  top: 0;
+  right: 0; 
+}
+
+#index-logo {
+  width: 300px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
