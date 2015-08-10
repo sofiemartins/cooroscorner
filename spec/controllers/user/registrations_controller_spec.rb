@@ -63,7 +63,6 @@ RSpec.describe User::RegistrationsController, type: :controller do
     it "succeeds for users" do
       @request.env["devise.maping"] = Devise.mappings[:user]
       login_user
-      :post :submit_edit, :edit => { :old_password => }
     end
   end
 
