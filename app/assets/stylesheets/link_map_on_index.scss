@@ -38,12 +38,14 @@ body.index {
 #random-link-item {
   background-image: image-url("random-background.png");
   background-repeat: no-repeat;
+  background-position: bottom;
   background-size: contain;
 }
 
 #mayuyu-link-item {
   background-image: image-url("mayuyu-background.png");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
 }
 
