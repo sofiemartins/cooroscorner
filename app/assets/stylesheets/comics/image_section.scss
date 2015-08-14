@@ -5,21 +5,29 @@ $green: #008800;
   div.comic{
     margin-top: 30px;
   }
+
+  div.comic-section {
+    margin-left: 2%;
+    padding: 30px 30px 30px 30px;
+  }
 }
 
 @media screen and (max-width: 800px){
   div.comic{
     margin-top: 150px;
   }
+
+  div.comic-section {
+    margin-left: 0;
+    padding: 30px 30px 30px 0;
+  }
 }
 
 div.comic-section {
   min-width: 70%;
   margin-top: 30px;
-  margin-left: 2%;
   margin-right: 2%;
   margin-bottom: 30px;
-  padding: 30px 30px 30px 30px; 
   background: $light-green;
   border: 1px solid; 
   -moz-border-radius: 15px;

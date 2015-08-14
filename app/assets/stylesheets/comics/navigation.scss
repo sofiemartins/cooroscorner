@@ -1,17 +1,33 @@
 $light-green: #55BB55;
 $green: #008800;
 
+@media screen and (min-device-width: 800px){
+  .comic-nav-img {
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .comic-nav-img {
+    height: 20px;
+  }
+}
+
 ul.comic-navigation {
   margin: 30px 10px 30px 10px;
   list-style-type: none;
   li {
     display: inline;
     padding: 5px 5px 5px 5px;
-    .comic-nav-img {
-      height: 25px;
-    }
   }
   #disabled_link {
+    img {
+      opacity: 0.4;
+    }
+  }
+
+  /* when using text, and not symbols for navigation, use this css! */
+  /*#disabled_link {
     font-size: 130%;
     color: #888888;
     background-color: #CCCCCC;
@@ -47,5 +63,5 @@ ul.comic-navigation {
     background-color: #EEEEEE;
     color: #000000;
   
-  }
+  }*/
 }
