@@ -1,6 +1,18 @@
 $light-green: #55BB55;
 $green: #008800;
 
+@media screen and (min-device-width: 800px){
+  div.comic{
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 800px){
+  div.comic{
+    margin-top: 150px;
+  }
+}
+
 div.comic-section {
   min-width: 70%;
   margin-top: 30px;
@@ -23,10 +35,13 @@ div.comic-section {
 #comic-image {
   margin-top: 20px;
   text-align: center;
+}
+
+.comic-image-div {
   img {
-  border: 4px solid;
-  max-width: 80%;
-  height: auto;
+    border: 4px solid;
+    max-width: 80%;
+    height: auto;
   }
 }
 

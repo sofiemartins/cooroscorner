@@ -6,6 +6,10 @@ ul.comic-navigation {
   list-style-type: none;
   li {
     display: inline;
+    padding: 5px 5px 5px 5px;
+    .comic-nav-img {
+      height: 25px;
+    }
   }
   #disabled_link {
     font-size: 130%;

@@ -1,20 +1,24 @@
 <ul class="comic-navigation">
   <li>
-    <%= link_to("First!", "/#{params[:category] || "archive"}/1") %>
+    <%= link_to( image_tag("first.png", alt: "First!", class: "comic-nav-img"),
+		 "/#{params[:category] || "archive"}/1") %> 
   </li>
   <li <% if first_comic %>id="disabled_link"<% end %>>
-    <%= link_to_if(!first_comic, "Back!",
-	"/back/#{params[:category] || "archive"}/#{params[:index]}") %>
+    <%= link_to_if(!first_comic, 
+		image_tag("back.png", alt: "Back!", class: "comic-nav-img"),
+		"/back/#{params[:category] || "archive"}/#{params[:index]}") %>
   </li>
   <li>
-    <%= link_to("Random!", 
-	"/random/#{params[:category] || "archive"}/#{params[:index]}") %>
+    <%= link_to( image_tag("random.png", alt: "Random!", class: "comic-nav-img"), 
+		"/random/#{params[:category] || "archive"}/#{params[:index]}") %>
   </li>
   <li <% if last_comic %>id="disabled_link"<% end %>>
-    <%= link_to_if(!last_comic, "Next!",
-	"/next/#{params[:category] || "archive"}/#{params[:index]}") %>
+    <%= link_to_if(!last_comic, 
+		image_tag("next.png", alt: "Next!", class: "comic-nav-img"),
+		"/next/#{params[:category] || "archive"}/#{params[:index]}") %>
   </li>
   <li>
-    <%= link_to "Last!", "/#{params[:category] || "archive" }/#{last_comic_number}" %>
+    <%= link_to image_tag("last.png", alt: "Last!", class: "comic-nav-img"),
+		"/#{params[:category] || "archive" }/#{last_comic_number}" %>
   </li>
 </ul>
