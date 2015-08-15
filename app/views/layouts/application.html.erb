@@ -5,6 +5,24 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script>
+    $(document).ready(function(){
+      showSubmenuIfRightWindowSize();
+
+      $(window).resize(showSubmenuIfRightWindowSize());
+
+      function showSubmenuIfRightWindowSize(){
+        if($(".submenu-comics").css("float") == "right"){
+          $(".comic-list-item").mouseover(function(){
+            $(".submenu-comics").css("display", "list-item");
+          });
+          $(".navbar").mouseleave(function(){
+            $(".submenu-comics").css("display", "none");
+          });
+        }
+      }
+    }); 
+  </script>
 </head>
 <% background_path = yield(:background) + ".jpg" %>
 <body class=<%= yield :background %>>

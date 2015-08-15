@@ -1,45 +1,20 @@
 $green: #008811;
 
-@media screen and (min-device-width: 800px){
-
-  .submenu-comics {
-    display: none;
-    text-align: right;
-    float: right;
-    font-size: 80%;
-    padding: 30px 0 30px 30px;
-    top: 40px;
-    right: 2%;
-    position: absolute;
-    li {
-      list-style-type: none;
-      display: none;
-    }
-  }
-
-  li.comic-list-item:hover > .submenu-comics {
-    display: block;
-    li {
-      display: list-item;
-    }
+.submenu-comics {
+  float: right;
+  text-align: right;
+  margin-top: 0;
+  margin-right: 2%;
+  display: none;
+  font-size: 50%;
+  list-style-type: none;
+  li {
+    list-style-type: none;
   }
 }
 
-@media screen and (max-width: 800px){
+@media only screen and (max-width: 800px){
   .submenu-comics {
      float: none;
-     padding-top: 10px;
-     padding-bottom: 10px;
-     display: none;
-     text-align: center;
-     position: static;
-     list-style-type: none;
-     li {
-       list-style-type: none;
-     }
    }
-
-  li.comic-list-item:hover > .submenu-comics {
-    display: none;
-  }
 }
