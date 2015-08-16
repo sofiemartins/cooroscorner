@@ -9,7 +9,7 @@
     <hr id="header-bar" />
     <ul class="submenu-comics">
       <% Category.all.each do |category| %>
-        <li><%= link_to "#{category.label}", "#{category.abbreviation}" %></li>
+        <li><%= link_to "#{category.label}", "/#{category.abbreviation}" %></li>
       <% end %>
     </ul>
   </nav>
