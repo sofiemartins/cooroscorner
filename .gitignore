@@ -23,6 +23,7 @@ custom_plan.rb
 zeus.json
 config/database.yml
 config/deploy.rb
+config/unicorn.rb
 config/deploy
 Rakefile
 Capfile
