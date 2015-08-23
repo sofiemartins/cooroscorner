@@ -1,18 +1,23 @@
 $light-green: #DDFFDD;
 
 ul.index-link-list {
-  display: inline;
+  background-color: #00868b; 
   list-style-type: none;
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
 }
  
 li.index-link-item {
-  margin: 25px 40% 25px 50px;
+  width: 400px;
+  margin: 25px 20px 25px 50px;
   opacity: 0.6;
   text-align: right;
   div {
     padding: 125px 150px 125px 150px;
     border: solid 1px;
+    background-color: white;
   }
 }
 
@@ -44,6 +49,7 @@ li.index-link-item {
 }
 
 body.index {
+  margin: 0;
   a.index-link {
     text-decoration: none;
     color: #000000;
@@ -85,7 +91,7 @@ body.index {
 #alice-link-item {
   background-image: image-url("alice-background.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 #archive-link-item {
@@ -97,16 +103,19 @@ body.index {
 #about-link {
   font-size: 100%;
   color: #AAA;
-  position: absolute;
-  top: 170px;
-  left: 25px;
 }
 
 @media screen and (min-device-width: 600px){
   #index-logo {
-    width: 300px;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    width: 500px;
+    position: fixed;
+    top: 30%;
+    left: 8%;
+  }
+
+  #about-link{
+    position: fixed;
+    top: 70%;
+    left: 10%;
   }
 }
