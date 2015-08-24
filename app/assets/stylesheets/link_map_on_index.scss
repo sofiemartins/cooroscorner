@@ -46,7 +46,7 @@
   }
 }
 
-@media (max-width: 900px) and (min-width: 600px) {
+@media (max-width: 750px) and (min-width: 500px) {
   body.index {
     text-align: center;
     ul {
@@ -90,7 +90,7 @@
   }
 }
 
-@media screen and (min-width: 900px){
+@media screen and (min-width: 750px){
   body.index {
     ul {
       border-left: dashed 5px;
