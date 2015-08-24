@@ -26,6 +26,13 @@
     }
   }
 
+  #scissors-icon-image {
+    width: 30px;
+    position: relative;
+    left: -15px;
+    top: 100px;
+  }
+
   #index-logo {
     width: 300px;
     position: absolute;
@@ -48,7 +55,6 @@
 
 @media (max-width: 750px) and (min-width: 500px) {
   body.index {
-    text-align: center;
     ul {
       border: dashed 3px;
       width: 500px;
@@ -72,6 +78,13 @@
         }
       }
     }
+  }
+ 
+  #scissors-icon-image {
+    width: 40px;
+    position: relative;
+    left: -20px;
+    top: 100px;
   }
 
   #index-logo {
@@ -124,6 +137,12 @@
   #offensive-link-item img {
     margin-bottom: 30px;
   }
+
+  #scissors-icon-image {
+    width: 40px;
+    position: relative;
+    left: -20px;
+  } 
 }
 
 body.index {
@@ -166,13 +185,6 @@ body.index {
       }
     }
   }
-}
-
-#scissors-icon-image {
-  width: 40px;
-  position: relative;
-  left: -20px;
-
 }
 
 #about-link {
