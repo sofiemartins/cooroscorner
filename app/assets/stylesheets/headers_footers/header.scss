@@ -1,16 +1,11 @@
 $green: #008811;
 
 hr.header-bar {
-  margin: 0;
-  padding: 0;
-  border: 0;
   background-color: black;
 }
 
 @media screen and (min-width: 600px){
   ul.nav {
-    margin: 0;
-    padding: 0;
     text-align: right;
     list-style-type: none;
   }
