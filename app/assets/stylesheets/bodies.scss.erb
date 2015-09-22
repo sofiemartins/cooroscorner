@@ -11,8 +11,7 @@
 }
 
 body {
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #cccccc;
 }
 
 <% Background.all.each do |background| %>
@@ -31,6 +30,7 @@ body.not_found {
 }
  
 body.index {
+  background-color: none;
   background-image: image-url("index.jpg");
   background-repeat: no-repeat;
   background-size: cover;
