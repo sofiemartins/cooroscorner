@@ -11,17 +11,14 @@
 }
 
 body {
-  background-color: #cccccc;
+    background:
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
 }
-
-<% Background.all.each do |background| %>
-  body.<%= background.label %> {
-    background-image: image-url("<%= background.image %>");
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    background-color: <%= background.color || "#FFFFFF" %>;
-  }
-<% end %>
 
 body.not_found {
   background-image: image-url("404.jpg");
@@ -30,7 +27,7 @@ body.not_found {
 }
  
 body.index {
-  background-color: none;
+  background-color: white;
   background-image: image-url("index.jpg");
   background-repeat: no-repeat;
   background-size: cover;
