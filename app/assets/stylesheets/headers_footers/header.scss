@@ -1,18 +1,23 @@
 $green: #008811;
 
-hr.header-bar {
+#header-bar {
+  margin-top: 4px;
+  margin-left: 0;
+  margin-right: 2%;
   background-color: black;
 }
 
 @media screen and (min-width: 600px){
   ul.nav {
+    margin-left: 2%;
+    margin-right: 2%;
     text-align: right;
     list-style-type: none;
   }
 
   div.navbar {
     height: 130px;
-    font-size: 150%;
+    font-size: 170%;
     ul.nav li {
       padding-left: 2px;
       display: inline;
