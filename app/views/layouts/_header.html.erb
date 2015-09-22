@@ -6,9 +6,4 @@
       <li class="about"><%= link_to "About", about_path %></li>
     </ul>
     <hr id="header-bar" />
-    <ul class="submenu-comics">
-      <% Category.all.each do |category| %>
-        <li><%= link_to "#{category.label}", "/#{category.abbreviation}" %></li>
-      <% end %>
-    </ul>
 </div>
