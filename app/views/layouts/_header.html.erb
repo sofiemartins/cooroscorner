@@ -1,5 +1,4 @@
 <div class="navbar">
-  <nav>
     <ul class="nav">
       <li><%= link_to image_tag("logo.png", alt: "Cooro's Corner", id: "logo-img"), root_path, id: "logo" %></li>
       <li class="comic-list-item"><%= link_to "Comics", root_path, id: "comic" %></li>
@@ -12,5 +11,4 @@
         <li><%= link_to "#{category.label}", "/#{category.abbreviation}" %></li>
       <% end %>
     </ul>
-  </nav>
 </div>
