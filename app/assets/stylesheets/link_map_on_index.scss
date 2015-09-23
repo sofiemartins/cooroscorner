@@ -1,4 +1,4 @@
-@media screen and (max-width: 500px) and (max-aspect-ratio: 600/700){
+@media screen and (max-width: 500px){
   body.index {
     min-width: 200px;
     ul {
@@ -53,7 +53,7 @@
   }
 }
 
-@media (max-width: 750px) and (min-width: 500px) and (max-aspect-ratio: 600/700){
+@media (max-width: 750px) and (min-width: 500px){
   body.index {
     ul {
       border: dashed 3px;
@@ -107,9 +107,7 @@
   body.index{
     ul {
       border: dashed 5px;
-      margin-left: 5%;
-      margin-right: 5%;
-      margin-top: 50%;
+      margin: 50% 5% 5% 5%;
       li {
         width: 90%;
         div {
@@ -152,7 +150,7 @@
   }
 }
 
-@media screen and (min-width: 750px) and (min-aspec-ration: 600/700){
+@media screen and (min-width: 750px) and (min-aspect-ratio: 600/700){
   body.index {
     ul {
       border-left: dashed 5px;
