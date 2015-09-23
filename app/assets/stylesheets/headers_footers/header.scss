@@ -7,7 +7,7 @@ $green: #008811;
   background-color: black;
 }
 
-@media screen and (min-width: 600px){
+@media (min-aspect-ratio: 600/700){
   ul.nav {
     margin-left: 2%;
     margin-right: 2%;
@@ -38,18 +38,15 @@ $green: #008811;
   }
 }
 
-@media screen and (max-width: 600px){
+@media (max-aspect-ratio: 600/700){
   ul.nav {
-    margin-top: 20px;
-    padding: 0;
     list-style-type: none;
     text-align: center;
   }
 
   div.navbar {
-    font-size: 200%;
     ul.nav li {
-      padding-left: 5px;
+      width: 100%;
       display: list-item;
     }
     a:link {

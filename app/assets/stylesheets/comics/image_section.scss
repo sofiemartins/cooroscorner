@@ -1,7 +1,7 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media screen and (min-device-width: 800px){
+@media screen and (min-aspect-ratio: 600/700) {
   div.comic{
     margin-top: 30px;
   }
@@ -12,9 +12,9 @@ $green: #008800;
   }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-aspect-ratio: 600/700){
   div.comic{
-    margin-top: 150px;
+    margin-top: 50%;
   }
 
   div.comic-section {

@@ -1,15 +1,29 @@
 $green: #008811;
 
-#logo {
-  margin-right: 15px;
-  display: block;
-  float: left;
-  color: $green;
-  font-size: 200%;
-  text-decoration: none;
+@media (max-aspect-ratio: 600/700) {
+  #logo {
+    margin-right: 15px;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 5%;
+    width: 100px;  
+    color: $green;
+    font-size: 200%;
+    text-decoration: none;
+  }
+
+  #logo-img {
+  }
 }
 
-#logo-img {
-  float: left;
-  height: 150px;
+@media (min-aspect-ratio: 600/700){
+  #logo {
+    position: absolute;
+    top: 20px;
+    left: 5%;
+    right: 5%;
+    width: 200px;
+    height: 30%;
+  }
 }
