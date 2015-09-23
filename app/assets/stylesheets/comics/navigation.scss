@@ -1,15 +1,16 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media screen and (min-device-width: 800px){
+@media (min-aspect-ratio: 600/700){
   .comic-nav-img {
     height: 40px;
   }
 }
 
-@media screen and (max-width: 800px){
+@media (max-aspect-ratio: 600/700){
   .comic-nav-img {
-    height: 20px;
+    height: 100px;
+    margin: 40px 0;
   }
 }
 
