@@ -7,3 +7,23 @@ $green: #008800;
     height: 50px;
   }
 }
+
+@media (max-aspect-ratio: 600/700){
+  #user-comments {
+    textarea {
+      height: 160px;
+      font-size: 100%;
+    }
+
+    .textfield {
+      text-align: left;
+      width: 90%;
+      height: 80px;
+      font-size: 100%;
+    }
+
+    .button{
+    }
+  }
+}
+

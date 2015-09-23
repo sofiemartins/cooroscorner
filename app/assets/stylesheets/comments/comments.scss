@@ -1,6 +1,34 @@
+@media (min-aspect-ratio: 600/700){
+  .comments {
+    padding: 10px 20px 10px 10px;
+  }
+
+  .single-comment {
+    #username-label {
+      font-size: 80%;
+    }
+    ul {
+      font-size: 80%;
+    }
+  }
+}
+
+@media (max-aspect-ratio: 600/700){
+  .comments {
+    padding: 10px 30px 5px 60px;
+    font-size: 300%;
+  }
+
+  .single-comment {
+    #username-label{
+      font-size: 80%;  
+    }
+  }
+}
+
 .comments {
-  margin: 20px 0 20px 0;
-  padding: 10px 20px 10px 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   background-color: #BBFFBB;
 }
 
