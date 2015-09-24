@@ -1,7 +1,7 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media (min-aspect-ratio: 600/700){
+@media (orientation: landscape){
   .general-information {
     margin-right: 5%;
     text-align: right;
@@ -11,7 +11,7 @@ $green: #008800;
   }
 }
 
-@media (max-aspect-ratio: 600/700){
+@media (orientation: portrait){
   .general-information {
     position: absolute;
     top: 40%;
