@@ -1,4 +1,4 @@
-@media (min-aspect-ratio: 600/700){
+@media (orientation: landscape){
   .comments {
     padding: 10px 20px 10px 10px;
   }
@@ -13,17 +13,9 @@
   }
 }
 
-@media (max-aspect-ratio: 600/700){
-  .comic-section-label {
-    font-size: 450%;
-  }
-
+@media (orientation: portrait){
   .comments {
     padding: 10px 30px 5px 60px;
-  }
-
-  .no-comments {
-    font-size: 300%;
   }
 }
 
