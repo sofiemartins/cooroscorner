@@ -6,3 +6,10 @@ ul {
 a {
   outline: none;
 } 
+
+/* Big fonts for small high resolution devices, so that mobile phone users can look at the site without zooming*/
+@media (min-resolution: 55dpcm){
+  * {
+    font-size: 100%;
+  }
+}

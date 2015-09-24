@@ -1,7 +1,7 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media (orientation: landscape){
+@media (orientation: landscape) and (max-resolution: 55dpcm){
   .comic{
     margin-top: 30px;
   }
@@ -19,7 +19,7 @@ $green: #008800;
   }
 }
 
-@media (orientation: portrait){
+@media (orientation: portrait) and (max-resolution: 55dpcm){
   .comic {
     margin-top: 50px;
   }
@@ -31,6 +31,25 @@ $green: #008800;
     padding-top: 30px;
     padding-left: 4%;
     padding-right: 4%;
+  }
+
+  .comic-image-div {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-resolution: 55dpcm){
+  .comic {
+    margin-top: 50px;
+  }
+
+  .comic-section {
+    margin: 10px;
+    text-align: center;
+    font-size: 300%;
+    padding: 30px 4% 0 4%;
   }
 
   .comic-image-div {
