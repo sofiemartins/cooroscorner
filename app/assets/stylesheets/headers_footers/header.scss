@@ -7,7 +7,7 @@ $green: #008811;
   background-color: black;
 }
 
-@media (min-aspect-ratio: 600/700){
+@media (orientation: landscape){
   #header-bar-2 {
     display: none;
   }
@@ -42,17 +42,38 @@ $green: #008811;
   }
 }
 
-@media (max-aspect-ratio: 600/700){
+@media (orientation: portrait) and (min-resolution: 55dpcm){
   #header-bar-2 {
     position: absolute;
     top: 30%;
     left: 2%;
     right: 2%;
+  }
+
+  ul.nav{
+    margin-top: 47%;
+  }
+}
+
+@media (orientation: portrait) and (max-resolution: 55dpcm){
+  #header-bar-2 {
+    position: absolute;
+    top: 28%;
+    left: 2%;
+    right: 2%;
+  }
+ 
+  ul.nav {
+    margin-top: 54%;
+  }
+}
+
+@media (orientation: portrait){
+  #header-bar-2 {
     background-color: black;
   }
 
   ul.nav {
-    margin-top: 47%;
     padding: 0;
     list-style-type: none;
     text-align: center;
@@ -61,7 +82,6 @@ $green: #008811;
   div.navbar {
     font-size: 150%;
     ul.nav li {
-      margin-right: 30px;
       display: inline;
     }
     a:link {
