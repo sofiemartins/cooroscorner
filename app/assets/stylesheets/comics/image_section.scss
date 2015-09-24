@@ -1,7 +1,7 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media (min-aspect-ratio: 600/700){
+@media (orientation: landscape){
   .comic{
     margin-top: 30px;
   }
@@ -19,11 +19,11 @@ $green: #008800;
   }
 }
 
-@media (max-aspect-ratio: 600/700){
+@media (orientation: portrait){
   .comic-section {
     margin: 50px 10px;
     text-align: center;
-    font-size: 350%;
+    font-size: 150%;
     width: 90%;
     padding-top: 30px;
     padding-left: 4%;
