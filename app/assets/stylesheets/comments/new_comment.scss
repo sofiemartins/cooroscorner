@@ -8,23 +8,37 @@ $green: #008800;
   }
 }
 
-@media (max-aspect-ratio: 600/700){
+@media (max-resolution: 55dpcm) {
+  #user-comments {
+    padding-left: 0;
+    textarea {
+      width: 85%;
+      height: 50px;
+    }
+
+    .textfield {
+      text-align: left;
+      width: 85%;
+      height: 20px;
+      font-size: 100%;
+    }
+  }
+}
+
+@media (orientation: portrait) and (min-resolution: 55dpcm){
   #user-comments {
     textarea {
       height: 160px;
-      font-size: 100%;
     }
 
     .textfield {
       text-align: left;
       width: 90%;
       height: 80px;
-      font-size: 100%;
     }
 
     .button{
       height: 80px;
-      font-size: 100%;
       margin-left: 40px;
     }
   }
