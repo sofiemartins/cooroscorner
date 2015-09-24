@@ -2,12 +2,19 @@ $green: #008811;
 
 #header-bar {
   margin-top: 4px;
-  margin-left: 0;
+  margin-left: 2%;
   margin-right: 2%;
   background-color: black;
 }
 
 @media (min-aspect-ratio: 600/700){
+<<<<<<< HEAD
+=======
+  #header-bar-2 {
+    display: none;
+  }
+
+>>>>>>> header-1
   ul.nav {
     margin-left: 2%;
     margin-right: 2%;
@@ -39,15 +46,36 @@ $green: #008811;
 }
 
 @media (max-aspect-ratio: 600/700){
+<<<<<<< HEAD
   ul.nav {
+=======
+  #header-bar-2 {
+    position: absolute;
+    top: 30%;
+    left: 2%;
+    right: 2%;
+    background-color: black;
+  }
+
+  ul.nav {
+    margin-top: 47%;
+    padding: 0;
+>>>>>>> header-1
     list-style-type: none;
     text-align: center;
   }
 
   div.navbar {
+<<<<<<< HEAD
     ul.nav li {
       width: 100%;
       display: list-item;
+=======
+    font-size: 150%;
+    ul.nav li {
+      margin-right: 30px;
+      display: inline;
+>>>>>>> header-1
     }
     a:link {
       color: #888888;

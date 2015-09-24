@@ -1,5 +1,6 @@
 $green: #008811;
 
+<<<<<<< HEAD
 @media (max-aspect-ratio: 600/700) {
   #logo {
     margin-right: 15px;
@@ -8,22 +9,46 @@ $green: #008811;
     top: 20px;
     left: 5%;
     width: 100px;  
+=======
+@media (min-aspect-ratio: 600/700){
+  #logo {
+    margin-right: 15px;
+    display: block;
+    float: left;
+>>>>>>> header-1
     color: $green;
     font-size: 200%;
     text-decoration: none;
   }
 
   #logo-img {
+<<<<<<< HEAD
   }
 }
 
 @media (min-aspect-ratio: 600/700){
+=======
+    float: left;
+    height: 150px;
+  }
+}
+
+@media (max-aspect-ratio: 600/700){
+>>>>>>> header-1
   #logo {
     position: absolute;
     top: 20px;
     left: 5%;
     right: 5%;
+<<<<<<< HEAD
     width: 200px;
     height: 30%;
+=======
+    width: 90%;
+  }
+
+  #logo-img {
+    width: 100%;
+>>>>>>> header-1
   }
 }

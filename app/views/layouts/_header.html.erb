@@ -1,9 +1,10 @@
 <div class="navbar">
     <ul class="nav">
       <li><%= link_to image_tag("logo.png", alt: "Cooro's Corner", id: "logo-img"), root_path, id: "logo" %></li>
-      <li class="comic-list-item"><%= link_to "Comics", root_path, id: "comic" %></li>
-      <li class="archive"><%= link_to "Archive", archive_path %></li>
-      <li class="about"><%= link_to "About", about_path %></li>
+      <li class="nav-item"><%= link_to "Comics", root_path, id: "comic" %></li>
+      <li class="nav-item"><%= link_to "Archive", archive_path %></li>
+      <li class="nav-item"><%= link_to "About", about_path %></li>
     </ul>
+    <hr id="header-bar-2" />
     <hr id="header-bar" />
 </div>
