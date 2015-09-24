@@ -1,7 +1,7 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media (orientation: landscape){
+@media (orientation: landscape) and (max-resolution: 55dpcm){
   .general-information {
     margin-right: 5%;
     text-align: right;
@@ -11,11 +11,20 @@ $green: #008800;
   }
 }
 
-@media (orientation: portrait){
+@media (orientation: portrait) and (max-resolution: 55dpcm){
   .general-information {
     position: absolute;
     top: 40%;
     left: 10px;
     font-size: 80%;
+  }
+}
+
+@media (min-resolution: 55dpcm){
+  .general-information {
+    position: absolute;
+    top: 37%;
+    left: 20px;
+    font-size: 190%;
   }
 }
