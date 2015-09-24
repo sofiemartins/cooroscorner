@@ -1,18 +1,26 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media (min-aspect-ratio: 600/700){
+@media (orientation: landscape){
   .comic-nav-img {
     height: 40px;
   }
 }
 
-@media (max-aspect-ratio: 600/700){
+@media (orientation: portrait) and (max-resolution: 100dpcm){
+  .comic-nav-img {
+    height: 40px;
+  }
+}
+
+/* Modern mobile phones need larger symbols */
+@media (orientation: portrait) and (min-resolution: 100dpcm){
   .comic-nav-img {
     height: 100px;
     margin: 40px 0;
   }
 }
+
 
 ul.comic-navigation {
   margin: 20px 10px;
