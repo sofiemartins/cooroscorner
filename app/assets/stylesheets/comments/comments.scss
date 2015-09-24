@@ -14,14 +14,16 @@
 }
 
 @media (max-aspect-ratio: 600/700){
+  .comic-section-label {
+    font-size: 450%;
+  }
+
   .comments {
     padding: 10px 30px 5px 60px;
-    font-size: 300%;
   }
 
   .single-comment {
     #username-label{
-      font-size: 80%;  
     }
   }
 }
@@ -40,14 +42,12 @@
     margin-left: 40px;
     padding-bottom: 5px;
     font-weight: bold;
-    font-size: 80%;
   }
   #comment-content {
     margin-left: 80px;
     margin-bottom: 10px;
   }
   ul {
-    font-size: 80%;
     color: #BBBBBB;
     margin-left: 80px;
     list-style-type: none;

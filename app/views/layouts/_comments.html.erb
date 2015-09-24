@@ -1,5 +1,5 @@
 <div class="comments">
-  <h3 class="comic-section-label">Comments</h3>
+  <h1 class="comic-section-label">Comments</h1>
   <% comments = Comment.where(:comic_index => archive_index(params[:category], params[:index])) %>
   <% if comments.empty? %>
     <p class="single comment">
