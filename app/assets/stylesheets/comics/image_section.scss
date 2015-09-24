@@ -20,10 +20,14 @@ $green: #008800;
 }
 
 @media (orientation: portrait){
+  .comic {
+    margin-top: 50px;
+  }
+
   .comic-section {
-    margin: 50px 10px;
+    margin: 10px;
     text-align: center;
-    font-size: 150%;
+    font-size: 100%;
     width: 90%;
     padding-top: 30px;
     padding-left: 4%;
