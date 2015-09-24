@@ -1,13 +1,8 @@
 $light-green: #55BB55;
 $green: #008800;
 
-<<<<<<< HEAD
-@media screen and (min-aspect-ratio: 600/700) {
-  div.comic{
-=======
 @media (min-aspect-ratio: 600/700){
   .comic{
->>>>>>> header-1
     margin-top: 30px;
   }
 
@@ -24,11 +19,6 @@ $green: #008800;
   }
 }
 
-<<<<<<< HEAD
-@media screen and (max-aspect-ratio: 600/700){
-  div.comic{
-    margin-top: 50%;
-=======
 @media (max-aspect-ratio: 600/700){
   .comic-section {
     margin: 10px;
@@ -37,7 +27,6 @@ $green: #008800;
     width: 90%;
     padding-left: 4%;
     padding-right: 4%;
->>>>>>> header-1
   }
 
   .comic-image-div {
