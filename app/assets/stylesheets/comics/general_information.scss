@@ -1,10 +1,21 @@
 $light-green: #55BB55;
 $green: #008800;
 
-.general-information {
-  margin-right: 5%;
-  text-align: right;
-  font-size: 110%;
-  color: #000000;
-  font-style: italic;
+@media (min-aspect-ratio: 600/700){
+  .general-information {
+    margin-right: 5%;
+    text-align: right;
+    font-size: 110%;
+    color: #000000;
+    font-style: italic;
+  }
+}
+
+@media (max-aspect-ratio: 600/700){
+  .general-information {
+    position: absolute;
+    top: 37%;
+    left: 10px;
+    font-size: 200%;
+  }
 }
