@@ -56,15 +56,10 @@ $green: #008811;
 }
 
 @media (orientation: portrait) and (max-resolution: 55dpcm){
-  #header-bar-2 {
-    position: absolute;
-    top: 28%;
-    left: 2%;
-    right: 2%;
-  }
- 
   ul.nav {
-    margin-top: 54%;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 50%;
   }
 }
 

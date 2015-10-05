@@ -22,6 +22,10 @@ $green: #008800;
 @media (orientation: portrait) and (max-resolution: 55dpcm){
   .comic {
     margin-top: 50px;
+    position: absolute;
+    top: 36%;
+    left: 7px;
+    right: 7px;
   }
 
   .comic-section {
