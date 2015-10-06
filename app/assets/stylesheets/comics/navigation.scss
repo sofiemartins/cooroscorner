@@ -1,20 +1,28 @@
 $light-green: #55BB55;
 $green: #008800;
 
-@media (orientation: landscape){
+/* Very small screens need small symbols */
+
+@media (max-width: 400px){
+  .comic-nav-img {
+    height: 20px;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 400px){
   .comic-nav-img {
     height: 40px;
   }
 }
 
-@media (orientation: portrait) and (max-resolution: 55dpcm){
+@media (orientation: portrait) and (max-resolution: 55dpcm) and (min-width: 400px){
   .comic-nav-img {
     height: 40px;
   }
 }
 
 /* Modern mobile phones need larger symbols */
-@media (orientation: portrait) and (min-resolution: 55dpcm){
+@media (orientation: portrait) and (min-resolution: 55dpcm) and (min-width: 400px){
   .comic-nav-img {
     height: 100px;
     margin: 40px 0;
