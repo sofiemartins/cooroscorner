@@ -18,14 +18,12 @@ $green: #008811;
 
 @media (orientation: portrait){
   #logo {
-    position: absolute;
+    position: relative;
     top: 20px;
-    left: 5%;
-    right: 5%;
-    width: 90%;
+    left: 0;
   }
 
   #logo-img {
-    width: 100%;
+    width: 95%;
   }
 }
