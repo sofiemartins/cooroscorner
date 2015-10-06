@@ -20,14 +20,6 @@ $green: #008800;
 }
 
 @media (orientation: portrait) and (max-resolution: 55dpcm){
-  .comic {
-    margin-top: 50px;
-    position: absolute;
-    top: 36%;
-    left: 7px;
-    right: 7px;
-  }
-
   .comic-section {
     margin: 10px;
     text-align: center;
@@ -42,6 +34,39 @@ $green: #008800;
       width: 100%;
     }
   }
+}
+
+@media (orientation: portrait) and (max-resolution: 55dpcm) and (min-aspect-ratio: 500/700){
+  .comic {
+    position: absolute;
+    top: 360px;
+    left: 7px;
+    right: 7px;
+  }
+}
+
+@media (orientation: portrait) and
+       (max-resolution: 55dpcm) and 
+       (max-aspect-ratio: 500/700) and
+       (min-aspect-ratio: 400/700) {
+  .comic {
+    position: absolute;
+    top: 280px;
+    left: 7px;
+    right: 7px;
+  }
+}
+
+@media (orientation: portrait) and 
+       (max-resolution: 55dpcm) and 
+       (max-aspect-ratio: 400/700) {
+  .comic {
+    position: absolute;
+    top: 230px;
+    left: 2px;
+    right: 2px;
+  }  
+
 }
 
 @media (min-resolution: 55dpcm){
