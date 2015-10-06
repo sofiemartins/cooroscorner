@@ -1,10 +1,10 @@
 <div class="navbar">
     <ul class="nav">
       <li><%= link_to image_tag("logo.png", alt: "Cooro's Corner", id: "logo-img"), root_path, id: "logo" %></li>
-      <hr id="header-bar-2" />
-      <li class="nav-item"><%= link_to "Comics", root_path, id: "comic" %></li>
-      <li class="nav-item"><%= link_to "Archive", archive_path %></li>
-      <li class="nav-item"><%= link_to "About", about_path %></li>
+      <hr id="header-bar-2" class="nav-element" />
+      <li class="nav-element" ><%= link_to "Comics", root_path, id: "comic" %></li>
+      <li class="nav-element" ><%= link_to "Archive", archive_path %></li>
+      <li class="nav-element" ><%= link_to "About", about_path %></li>
+      <hr id="header-bar" class="nav-element" />
     </ul>
-    <hr id="header-bar" />
 </div>

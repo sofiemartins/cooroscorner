@@ -1,6 +1,6 @@
 $green: #008811;
 
-@media (min-aspect-ratio: 600/700){
+@media (orientation: landscape){
   #logo {
     margin-right: 15px;
     display: block;
@@ -16,7 +16,7 @@ $green: #008811;
   }
 }
 
-@media (max-aspect-ratio: 600/700){
+@media (orientation: portrait){
   #logo {
     position: absolute;
     top: 20px;

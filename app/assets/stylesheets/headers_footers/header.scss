@@ -57,10 +57,23 @@ $green: #008811;
 
 @media (orientation: portrait) and (max-resolution: 55dpcm){
   ul.nav {
+    position: absolute; 
+    top: 0;
+    left: 0;
     margin-left: 6px;
     margin-right: 6px;
-    margin-top: 50%;
+    width: 100%;
+    height: 50%;
   }
+
+  .nav-element {
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+
+  
 }
 
 @media (orientation: portrait){
