@@ -1,5 +1,25 @@
 <% provide(:background, current_background )%>
 
+  <script>
+    $(document).keydown(function(e){
+      var category = "<%= params[:category] || "archive" %>";
+      var index = "<%= params[:index] %>";
+      var new_path_ending = category + "/" + index;
+      switch(e.which){
+        case 37:
+          window.location.replace("/back/" + new_path_ending)
+        break;
+
+        case 39:
+          window.location.replace("/next/" + new_path_ending)
+        break;
+
+        default: return;
+      }
+      e.preventDefault();
+    });
+  </script>
+
   <div class="comic">
     <%= render 'layouts/general_information' %>
     <%= render 'layouts/comic_image' %>
