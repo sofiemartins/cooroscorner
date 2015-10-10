@@ -6,16 +6,16 @@
   <li <% if first_comic %>id="disabled_link"<% end %>>
     <%= link_to_if(!first_comic, 
 		image_tag("back.png", alt: "Back!", class: "comic-nav-img"),
-		"/back/#{params[:category] || "archive"}/#{params[:index]}") %>
+		"/#{params[:category] || "archive"}/#{params[:index].to_i - 1}") %>
   </li>
   <li>
     <%= link_to( image_tag("random.png", alt: "Random!", class: "comic-nav-img"), 
-		"/random/#{params[:category] || "archive"}/#{params[:index]}") %>
+		"/#{params[:category] || "archive"}/#{random_comic_index}") %>
   </li>
   <li <% if last_comic %>id="disabled_link"<% end %>>
     <%= link_to_if(!last_comic, 
 		image_tag("next.png", alt: "Next!", class: "comic-nav-img"),
-		"/next/#{params[:category] || "archive"}/#{params[:index]}") %>
+		"/#{params[:category] || "archive"}/#{params[:index].to_i + 1}") %>
   </li>
   <li>
     <%= link_to image_tag("last.png", alt: "Last!", class: "comic-nav-img"),

@@ -20,6 +20,16 @@ module ComicsHelper
     end
   end
 
+  def random_comic_index 
+    if (!!params[:category])
+      number_of_comics_in_category = Comic.where(:category => params[:category]).count
+      new_index = 1 + Random.rand(number_of_comics_in_category)
+    else
+      number_of_comics_in_category = Comic.count
+      new_index = 1 + Random.rand(number_of_comics_in_category)
+    end
+  end
+
   def category_labels
     labels = []
     Category.all.each do |category|
