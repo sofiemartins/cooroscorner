@@ -21,38 +21,6 @@ RSpec.describe ComicController, type: :controller do
     end
   end
 
-  describe "GET :back" do
-    it "redirects back with HTTP 302" do
-      setup_database
-      Category.all.each do |category|
-        get :back, :category => category.abbreviation, :index => 2
-        expect(response).to have_http_status(302)
-        assert_redirected_to "/#{category.abbreviation}/1"
-      end
-    end
-  end
-
-  describe "GET :next" do
-    it "redirects next with HTTP 302" do
-      setup_database
-      Category.all.each do |category|
-        get :next, :category => category.abbreviation, :index => 1
-        expect(response).to have_http_status(302)
-        assert_redirected_to "/#{category.abbreviation}/2"
-      end
-    end
-  end
-
-  describe "GET :random" do
-    it "redirects to random comic page with HTTP 302" do
-      setup_database
-      Category.all.each do |category|
-        get :random, :category => category.abbreviation, :index => 1
-        expect(response).to have_http_status(302)
-      end
-    end 
-  end
-
   describe "GET :archive_last" do
     it "redirects to the archive page with the last index" do
       setup_database
