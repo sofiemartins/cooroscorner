@@ -2,16 +2,26 @@
 
   <script>
     $(document).keydown(function(e){
+      var last_comic = <%= last_comic %>
+      var first_comic = <%= first_comic %>
       var category = "<%= params[:category] || "archive" %>";
       var index = "<%= params[:index] %>";
-      var new_path_ending = category + "/" + index;
+
       switch(e.which){
         case 37:
-          window.location.replace("/back/" + new_path_ending)
+          if (!first_comic) {
+            var last_index = index - 1;
+            var last_comic_path = "/" + category + "/" + last_index;
+            window.location.replace(last_comic_path);
+          }
         break;
 
         case 39:
-          window.location.replace("/next/" + new_path_ending)
+          if (!last_comic){
+            var next_index = index - 1 + 2; // Didn't get js to recognize that the + 1 means add one and not concatenate a '1'. It's dirty but it works now ...
+            var next_comic_path = "/" + category + "/" + next_index;
+            window.location.replace(next_comic_path);
+          }
         break;
 
         default: return;
