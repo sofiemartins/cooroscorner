@@ -16,37 +16,6 @@ class ComicController < ApplicationController
     redirect_to "/#{params[:category]}/#{@last_index}"
   end
 
-  def back
-    new_index = params[:index].to_i - 1
-    if !params[:category]
-      redirect_to "/archive/#{new_index}"
-    else
-      redirect_to "/#{params[:category]}/#{new_index}"
-    end
-  end
-
-  def next
-    new_index = params[:index].to_i + 1
-    if !params[:category]
-      redirect_to "/archive/#{new_index}"
-    else
-      redirect_to "/#{params[:category]}/#{new_index}"
-    end
-  end
-
-  def random
-    if params[:category] == "archive" 
-      total_number_of_comics = Comic.count
-      new_index = 1 + Random.rand(total_number_of_comics)
-      redirect_to "/archive/#{new_index}"
-    else
-      all_comics = Comic.where(:category => params[:category])
-      total_number_of_comics = all_comics.count
-      new_index = 1 + Random.rand(total_number_of_comics)
-      redirect_to "/#{params[:category]}/#{new_index}"
-    end
-  end
-
   def archive
     @all_comics = Array(Comic.all)
     @comic = @all_comics.fetch(params[:index].to_i - 1)
